@@ -638,6 +638,20 @@
 			try{
 			contextScriptStr += "context = [{absXimgBG: "+absXimgBG+", absYimgBG: "+absYimgBG+", height : "+tody+", width : "+todx+", absXimgTag: "+absXimgTag+", absYimgTag: "+absYimgTag+", heightTag : "+todyTag+", heightVp : "+deviceProperty.browserHeight+", widthVp : "+deviceProperty.browserWidth+", scaleVp:"+(1/dpr)+" }];";
 			} catch(e){}
+			
+			alert(context.width);
+			
+			
+			
+		
+			
+			
+			
+			
+			
+			
+			alert(context.height);
+			
 
 		}
 
@@ -646,7 +660,6 @@
 		dbgGTMpush('Dbg.deviceProperty.scaleVp',context.scaleVp);
 
 		var cjs = (new ClientJS());
-
 		/*if(
 			(dpr > 1) &&
 			( ((!cjs.isChrome()) && (!cjs.isFirefox())) ||
