@@ -583,7 +583,7 @@
 			todyTag = Math.round(todxTag/1.5);
 
 			//Check max limits
-			if (todx > 2400) { todx = 2400; tody = 1600; todxTag = 2400; }
+			if (todx > 3600) { dbgGTMpush('Dbg.ScreenSizeGreaterThanImageSizeAvailable.Landscape',todx); todx = 3600; tody = 2400; todxTag = 3600; }
 			absYimgBG = Math.round(deviceProperty.browserHeight - tody)/2;
 			absXimgBG = Math.round(deviceProperty.browserWidth - todx)/2;
 			absYimgTag = Math.round(deviceProperty.browserHeight - todyTag)/2;
@@ -620,7 +620,7 @@
 			absXimgTag = Math.round(deviceProperty.browserWidth - todxTag)/2;
 
 			//Check max limits
-			if (tody > 1600) { todx = 1600; tody = 1600; todyTag = 1600; alert("max limit reached");
+			if (tody > 2400) { dbgGTMpush('Dbg.ScreenSizeGreaterThanImageSizeAvailabe.Portrait',tody); todx = 2400; tody = 2400; todyTag = 2400;  }
 			absYimgBG = Math.round(deviceProperty.browserHeight - tody)/2;
 			absXimgBG = Math.round(deviceProperty.browserWidth - todx)/2;
 
@@ -652,7 +652,7 @@
 			
 			alert(context.height);
 			
-
+		}
 		
 
 
