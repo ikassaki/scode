@@ -499,24 +499,6 @@
 
 		dbgGTMpush('Dbg.deviceProperty.actualResolution',height+"x"+width);
 
-		/*
-		if  (dpr > 1) 
-		{
-			var parser = new UAParser();
-			if  ( (/Chrome/i.test(parser.getBrowser().name))  ||
-				  (/Safari/i.test(parser.getBrowser().name)) ||
-				  (/Firefox/i.test(parser.getBrowser().name)) ||
-				  (/UCWEB/i.test(navigator.vendor))
- 			    )
-				{
-				}
-			else
-				{
-					//reset everything to use device defaults.
-					//dpr = 1; alert("res dpr");
-				}
-		}
-		*/
 
 		height = dpr * height;
 		width = dpr * width;
@@ -620,7 +602,7 @@
 			absXimgTag = Math.round(deviceProperty.browserWidth - todxTag)/2;
 
 			//Check max limits
-			if (tody > 2400) { dbgGTMpush('Dbg.ScreenSizeGreaterThanImageSizeAvailabe.Portrait',tody); todx = 2400; tody = 2400; todyTag = 2400;  }
+			if (tody > 2400) { dbgGTMpush('Dbg.ScreenSizeGreaterThanImageSizeAvailabe.Portrait',tody); todx = 2400; tody = 2400; todyTag = 2400; }
 			absYimgBG = Math.round(deviceProperty.browserHeight - tody)/2;
 			absXimgBG = Math.round(deviceProperty.browserWidth - todx)/2;
 
@@ -638,50 +620,16 @@
 			try{
 			contextScriptStr += "context = [{absXimgBG: "+absXimgBG+", absYimgBG: "+absYimgBG+", height : "+tody+", width : "+todx+", absXimgTag: "+absXimgTag+", absYimgTag: "+absYimgTag+", heightTag : "+todyTag+", heightVp : "+deviceProperty.browserHeight+", widthVp : "+deviceProperty.browserWidth+", scaleVp:"+(1/dpr)+" }];";
 			} catch(e){}
-			
-			alert(context.width);
-			
-			
-			
-		
-			
-			
-			
-			
-			
-			
-			alert(context.height);
-			
+
 		}
-		
 
 
 		markR("image preload script completed");GTMpush("imagePreloadScriptComplete");
 		dbgGTMpush('Dbg.deviceProperty.scaleVp',context.scaleVp);
 
 		var cjs = (new ClientJS());
-		/*if(
-			(dpr > 1) &&
-			( ((!cjs.isChrome()) && (!cjs.isFirefox())) ||
-			(cjs.isChrome() && cjs.getBrowserMajorVersion() < 30) )
-		  )
-			{	alert("resetting dpr to 1 "); dbgGTMpush('Dbg.resetDPR.To.1', dpr);	dpr = 1; }
-*/
-		/*
-		var parser = new UAParser();
-		if  ( (/Chrome/i.test(parser.getBrowser().name))  ||
-			  (/Safari/i.test(parser.getBrowser().name)) ||
-			  (/Firefox/i.test(parser.getBrowser().name)) ||
-			  (/UCWEB/i.test(navigator.vendor))
-		    )
-			{		;		}
-		else
-			{
-				//reset everything to use device defaults.
-				context.heightVp = "device-height";
-				context.widthVp="device-width"; alert(2);
-			}
-			*/
+
+
 		if  (dpr > 1) 
 		{
 				{
@@ -689,7 +637,7 @@
 						{ dbgGTMpush('Dbg.resetDPR.To.1', dpr);	dpr = 1; }
 				}
 		}
-		alert((new UAParser()).getBrowser().name);
+		dbgGTMpush('Dbg.UAParser.BrowserName', (new UAParser()).getBrowser().name); 
 
 		context.scaleVp = (1/dpr);
 		context.scriptSrc = scriptinsert;
@@ -717,7 +665,7 @@
 
 				if (cjs.isFirefox()) document.open();
 				console.log(replaceHelper(context, source));
-				document.write(replaceHelper(context, source)); alert(replaceHelper(context, source)); alert(context.width); alert(context.height);
+				document.write(replaceHelper(context, source)); 
 				markRed(replaceHelper(context, source));
 				if (cjs.isFirefox()) document.close();
 
