@@ -1,0 +1,295 @@
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<script type="text/javascript">
+	var g_t = 0; try { g_t = new Date().getTime();   } catch(e) {;} 
+
+	// START******************** markr.js ************************
+	// https://gist.github.com/pmeenan/5902672; https://github.com/nicjansma/usertiming.js/blob/master/src/usertiming.js
+	try
+	{
+		window.marks || (window.marks = []);
+		window.performance || (window.performance = {});
+		window._perfRefForUserTimingPolyfill = window.performance;
+		window.performance.now || (window.performance.now = performance.now || performance.webkitNow || performance.msNow || performance.mozNow);
+		if (!window.performance.now)
+		  {
+		    var s = Date.now ? Date.now() : +(new Date());
+		    if (performance.timing && performance.timing.navigationStart)
+		      s = performance.timing.navigationStart;
+		    window.performance.now = (function(){
+		      	var n = Date.now ? Date.now() : +(new Date());
+		      	return n-s;  // will this "s" be captured in closure throughout the web page ?
+		      });
+		  }
+	} catch(e) {;}
+
+	function markR(label) {
+		try { marks.push( { name:label, time:window.performance.now() } ); } catch(e) {alert("<<"+e.message);;}
+	}
+	markR("markR init");
+	// END******************** markr.js ************************
+
+
+
+
+
+	//http://stackoverflow.com/a/3855394/1339233
+	var qs = (function(a) {
+    if (a == "") return {};
+    var b = {};
+    for (var i = 0; i < a.length; ++i)
+    {
+        var p=a[i].split('=', 2);
+        if (p.length == 1)
+            b[p[0]] = "";
+        else
+            b[p[0]] = decodeURIComponent(p[1].replace(/\+/g, " "));
+    }
+    return b;
+	})(window.location.search.substr(1).split('&'));
+
+
+	function replaceHelper(cntxt, source)
+	{
+		var retval = source;
+		for (var key in cntxt)
+		{
+			retval = retval.split("{{"+key+"}}").join(""+cntxt[key]);
+		}
+		return (retval);
+	}
+
+
+	var dpr = qs["dpi"];
+	// if desktop browser, set dpr to 1. depending on zoom, firefox craps the dpi value....
+	var height = dpr * qs["yrsln"];
+	var width = dpr * qs["xrsln"];
+	var indext = dpr * qs["t"];
+
+
+	var deviceProperty = {
+		browserHeight : height, browserWidth : width, 
+		pxRatio:(height>width)?height/width:width/height, 
+		layout:(width < height?"Portrait":"Landscape")
+	};
+
+
+	var context = {};
+	var todx, tody, absXimgBG, absYimgBG, absXimgTag, absYimgTag, todxTag, todyTag;
+
+	// Preload images
+	var img1 = new Image();
+	var img2 = new Image();
+	var img3 = new Image();
+	var img4 = new Image();
+	var img5 = new Image();
+
+
+	if (deviceProperty.layout == "Landscape")
+	{
+		if (deviceProperty.pxRatio >= 1.5 )
+		{
+			//calculate based on width
+			mod = deviceProperty.browserWidth % 30;
+			rem = Math.floor(deviceProperty.browserWidth / 30);
+			todx = (mod>0)?30*(rem+1):deviceProperty.browserWidth;
+			tody = Math.round(todx/1.5);
+		}
+		else
+		{
+			//calculate based on height
+			mod = deviceProperty.browserHeight % 20;
+			rem = Math.floor(deviceProperty.browserHeight / 20);
+			tody = (mod>0)?20*(rem+1):deviceProperty.browserHeight;
+			todx = 1.5*tody;
+		}
+
+		mod = deviceProperty.browserWidth % 30;
+		rem = Math.floor(deviceProperty.browserWidth / 30);
+		todxTag = (mod>0)?30*(rem):deviceProperty.browserWidth;
+		todyTag = Math.round(todxTag/1.5); 
+
+		//Check max limits
+		if (todx > 2400) { todx = 2400; tody = 1600; todxTag = 2400; }
+		absYimgBG = Math.round(deviceProperty.browserHeight - tody)/2;
+		absXimgBG = Math.round(deviceProperty.browserWidth - todx)/2;
+		absYimgTag = Math.round(deviceProperty.browserHeight - todyTag)/2;
+		absXimgTag = Math.round(deviceProperty.browserWidth - todxTag)/2;
+
+		context = {absXimgBG: absXimgBG, absYimgBG: absYimgBG, width : todx, absXimgTag: absXimgTag, absYimgTag: absYimgTag, widthTag : todxTag, heightVp : deviceProperty.browserHeight, widthVp : deviceProperty.browserWidth, scaleVp:(1/dpr) };
+
+		img1.src = replaceHelper(context, "BG/LandscapeLanding_{{width}}px.jpg");
+		img2.src = replaceHelper(context, "BG/LandscapeLandingTag_{{widthTag}}px.png");
+		img3.src = replaceHelper(context, "BG/LandscapeLandingBH_{{widthTag}}px.png");
+		img4.src = replaceHelper(context, "BG/LandscapeLandingCiY_{{widthTag}}px.png");
+		img5.src = replaceHelper(context, "BG/LandscapeLandingLog_{{widthTag}}px.png");
+	}
+	else
+	{
+		// Portrait mode. y > x
+		mod = deviceProperty.browserHeight % 20;
+		rem = Math.floor(deviceProperty.browserHeight / 20);
+		tody = (mod>0)?20*(rem+1):deviceProperty.browserHeight;
+		todx = tody;
+
+		mod = deviceProperty.browserWidth % 20;
+		rem = Math.floor(deviceProperty.browserWidth / 20);
+		todxTag = (mod>0)?20*(rem):deviceProperty.browserWidth;
+		todyTag = todxTag;
+		absYimgTag = Math.round(deviceProperty.browserHeight - todyTag)/2;
+		absXimgTag = Math.round(deviceProperty.browserWidth - todxTag)/2;
+
+		//Check max limits
+		if (tody > 1600) { todx = 1600; tody = 1600; todyTag = 1600; }
+		absYimgBG = Math.round(deviceProperty.browserHeight - tody)/2;
+		absXimgBG = Math.round(deviceProperty.browserWidth - todx)/2;
+
+		/* context = {absXimgBG: absXimgBG, absYimgBG: absYimgBG, height : tody, absXimgTag: absXimgTag, absYimgTag: absYimgTag, heightTag : todyTag
+		  };*/
+		context = {absXimgBG: absXimgBG, absYimgBG: absYimgBG, height : tody, absXimgTag: absXimgTag, absYimgTag: absYimgTag, heightTag : todyTag, heightVp : deviceProperty.browserHeight, widthVp : deviceProperty.browserWidth, scaleVp:(1/dpr) };
+		/*depending on version of the chrome browser, either set the scaleVp to 1 or 1/dpr. looks like for version 537.36, it needs to be set to 1/dpr...version 535.19 and before needs only 1.		*/
+		
+		img1.src = replaceHelper(context, "BG/PortraitLanding_{{height}}px.jpg");
+		img2.src = replaceHelper(context, "BG/PortraitLandingTag_{{heightTag}}px.png");
+		img3.src = replaceHelper(context, "BG/PortraitLandingBH_{{heightTag}}px.png");
+		img4.src = replaceHelper(context, "BG/PortraitLandingCiY_{{heightTag}}px.png");
+		img5.src = replaceHelper(context, "BG/PortraitLandingLog_{{heightTag}}px.png");
+	}	
+
+	markR("image preload completed");
+
+</script>
+
+<script src="client.min.js"></script>
+
+<script type="text/javascript">
+
+	var scriptinsert = "<script src=\"markr.js\"  type=\"text/javascript\"><\/script>";
+	scriptinsert += "<script src=\"https://zvncyxu6t5.execute-api.us-east-1.amazonaws.com/WEB/getUQ\"  id=\"getUQresponse\" type=\"text/javascript\"><\/script>";
+	scriptinsert += "<script src=\"client.min.js\"  type=\"text/javascript\"><\/script>";
+	scriptinsert += "<script type=\"text/javascript\">markR('client.min.js script loaded');<\/script>";
+	scriptinsert += "<script src=\"plugin-detect-0.6.3.js\"  type=\"text/javascript\"><\/script>";
+	scriptinsert += "<script type=\"text/javascript\">markR('plugin-detect-0.6.3.js script loaded');<\/script>";
+	scriptinsert += "<script src=\"base64.js\"  type=\"text/javascript\"><\/script>";
+	scriptinsert += "<script type=\"text/javascript\">markR('base64.js script loaded');<\/script>";
+	scriptinsert += "<script src=\"sniff.js\"  type=\"text/javascript\"><\/script>";
+	scriptinsert += "<script type=\"text/javascript\">markR('sniff.js script loaded');<\/script>";
+	scriptinsert += "<script src=\"http://cdnjs.cloudflare.com/ajax/libs/gsap/1.17.0/TweenMax.min.js\"  type=\"text/javascript\"><\/script>";
+	scriptinsert += "<script type=\"text/javascript\">markR('tweenlite.js script loaded');<\/script>";
+
+
+</script>
+
+<script id="entry-template_Landscape" type="text/x-handlebars-template">
+
+	<html>
+	<meta name='viewport' content='height={{heightVp}}, width={{widthVp}}, initial-scale={{scaleVp}}, minimum-scale={{scaleVp}}, maximum-scale={{scaleVp}}, target-densitydpi=device-dpi'> 
+	<head>
+		<style type="text/css">
+			body 
+			{
+			    overflow:hidden;
+			    background-color: black;//#282828;
+			}
+		</style>
+		
+	</head>
+	<body onload='EnumProperties()'>
+		<div class="entry">
+		<div class="body">
+		
+			<img src="BG/LandscapeLanding_{{width}}px.jpg " id="Landing" onload="markR('LandscapeLanding_{{width}}px.jpg')" style="border: 0px solid red; position:absolute; left:{{absXimgBG}}px; top:{{absYimgBG}}px"> 		  
+			<img src="BG/LandscapeLandingTag_{{widthTag}}px.png " id="LandingTag" onload="markR('LandscapeLandingTag_{{widthTag}}px.png')" style="border: 0px solid red; position:absolute; left:{{absXimgTag}}px; top:{{absYimgTag}}px"> 		  
+			<img src="BG/LandscapeLandingBH_{{widthTag}}px.png " id="LandingBH" onload="markR('LandscapeLandingBH_{{widthTag}}px.png')" style="border: 0px solid red; position:absolute; left:{{absXimgTag}}px; top:{{absYimgTag}}px"> 		  
+			<img src="BG/LandscapeLandingCiY_{{widthTag}}px.png " id="LandingCiY" onload="markR('LandscapeLandingCiY_{{widthTag}}px.png')" style="border: 0px solid red; position:absolute; left:{{absXimgTag}}px; top:{{absYimgTag}}px"> 		  
+			<img src="BG/LandscapeLandingLog_{{widthTag}}px.png " id="LandingLog" onload="markR('LandscapeLandingLog_{{widthTag}}px.png')" style="border: 0px solid red; position:absolute; left:{{absXimgTag}}px; top:{{absYimgTag}}px"> 	
+		
+		</div>
+		</div>
+		<div style="display:none; position:absolute">
+			<form name="forms" id="forms" action="https://3ryc98qghb.execute-api.us-east-1.amazonaws.com/WEB/sniff" method="POST" target="jsonp_iframe">
+				<textarea rows="10" cols="40" name="sniff" id="sniff">NoDat</textarea>
+			</form>
+			<iframe name="jsonp_iframe" id="jsonp_iframe"></iframe>
+		</div>
+		{{scriptSrc}}
+	</body>
+	</html>
+
+</script>
+
+<script id="entry-template_Portrait" type="text/x-handlebars-template">
+
+	<html>
+	<meta name='viewport' content='height={{heightVp}}, width={{widthVp}}, initial-scale={{scaleVp}}, minimum-scale={{scaleVp}}, maximum-scale={{scaleVp}}, target-densitydpi=device-dpi '> 
+	<head>
+		<style type="text/css">
+			body 
+			{
+			    overflow:hidden;
+			    background-color: black;//#282828;
+			}
+		</style>
+		
+	</head>
+	<body onload='EnumProperties()'>
+		<div class="entry">
+		<div class="body">
+
+			<img src="BG/PortraitLanding_{{height}}px.jpg " id="Landing" onload="markR('PortraitLanding_{{height}}px.jpg')" style="border: 0px solid red; position:absolute; left:{{absXimgBG}}px; top:{{absYimgBG}}px"> 		  
+			<img src="BG/PortraitLandingBH_{{heightTag}}px.png " id="LandingBH" onload="markR('PortraitLandingBH_{{heightTag}}px.png')" style="border: 0px solid red; position:absolute; left:{{absXimgTag}}px; top:{{absYimgTag}}px"> 		  
+			<img src="BG/PortraitLandingTag_{{heightTag}}px.png " id="LandingTag" onload="markR('PortraitLandingTag_{{heightTag}}px.png')" style="border: 0px solid red; position:absolute; left:{{absXimgTag}}px; top:{{absYimgTag}}px"> 		  
+			<img src="BG/PortraitLandingCiY_{{heightTag}}px.png " id="LandingCiY" onload="markR('PortraitLandingCiY_{{heightTag}}px.png')" style="border: 0px solid red; position:absolute; left:{{absXimgTag}}px; top:{{absYimgTag}}px"> 		  
+			<img src="BG/PortraitLandingLog_{{heightTag}}px.png " id="LandingLog" onload="markR('PortraitLandingLog_{{heightTag}}px.png')" style="border: 0px solid red; position:absolute; left:{{absXimgTag}}px; top:{{absYimgTag}}px"> 	
+		<!--<img src="testi{{widthVp}}.jpg" id="myDiv" style="position:absolute; left:0; top:0;" />	  -->
+		</div>
+		</div>
+		<div style="display:none; position:absolute">
+			<form name="forms" id="forms" action="https://3ryc98qghb.execute-api.us-east-1.amazonaws.com/WEB/sniff" method="POST" target="jsonp_iframe">
+				<textarea rows="10" cols="40" name="sniff" id="sniff">NoDat</textarea>
+			</form>
+			<iframe name="jsonp_iframe" id="jsonp_iframe"></iframe>
+		</div>
+		{{scriptSrc}}
+	</body>
+	</html>
+
+</script>
+
+
+
+<script type="text/javascript" >
+
+
+function StartMain()
+{
+	markR("StartMain init");
+	// if not mobile firefox or mobile chrome (if it is uc browser or dolphin browser), then set dpr to 1
+	if( 
+		!((new ClientJS()).isMobile()) ||
+		( !(new ClientJS()).isChrome() && (!(new ClientJS()).isFirefox())  ) || 
+		((new ClientJS()).isChrome() && (new ClientJS()).getBrowserMajorVersion() < 30)  
+	  )
+		{	dpr = 1; 	}
+
+	context.scaleVp = (1/dpr);
+	context.scriptSrc = scriptinsert;
+
+	var source   = document.getElementById("entry-template_"+deviceProperty.layout).innerHTML;		
+
+	// alert(mod+" "+rem+" : "+todx+" "+tody+" : "+absXimgBG+" "+absYimgBG);
+	// var template = Handlebars.compile(source); // Errors out in mobile dolphin browser
+	markR("document.write init");
+	document.write(replaceHelper(context, source));
+}
+  
+StartMain();
+
+</script>
+</head>
+<body>
+</body>
+
+</html>
