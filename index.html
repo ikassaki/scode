@@ -73,7 +73,6 @@
 		// END******************** markr.js ************************
 
 		window.onbeforeunload=function () {
-			// console.log("unloadevent4-"+window.pageid);
 			markR("unloadevent4-"+window.pageid);
 			window["dataLayer"]=window["dataLayer"]||[];
 			window["dataLayer"].push ({ 
@@ -498,7 +497,7 @@
 		try { tnow = window.performance.now(); } catch(e) {;}
 
 		dbgGTMpush('Dbg.deviceProperty.actualResolution',height+"x"+width);
-
+ 
 
 		height = dpr * height;
 		width = dpr * width;
@@ -681,8 +680,7 @@
 	<script type="text/javascript">customGTM(window,document,'script','dataLayer','GTM-52PTN3')</script>
 	<!-- End Google Tag Manager -->
 	<div style="text-align:center; width:100%;"><div id="browserunsupporteddiv" style="text-align:center; color:white; display:block;">
-			This website is designed to be an interactive website, which, unfortunately this browser is incapable of displaying. You may consider visitng this site using other capable browsers such as firefox or chrome.
-It is recommended to view this website on a dekstop browser for best experience.
+			This website is designed to be an interactive website, which, unfortunately this browser is incapable of displaying. You may consider visiting this site using other capable browsers such as firefox or chrome. It is recommended to view this website on a dekstop browser for best experience.
 	</div>
 <script type="text/javascript">
 		if (navigator.userAgent.indexOf('Opera Mini') == -1)
