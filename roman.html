@@ -6,7 +6,6 @@
 	var g_t = 0; try { g_t = new Date().getTime();   } catch(e) {;} 
 
 	// START******************** markr.js ************************
-	// https://gist.github.com/pmeenan/5902672; https://github.com/nicjansma/usertiming.js/blob/master/src/usertiming.js
 	try
 	{
 		window.marks || (window.marks = []);
@@ -20,13 +19,25 @@
 		      s = performance.timing.navigationStart;
 		    window.performance.now = (function(){
 		      	var n = Date.now ? Date.now() : +(new Date());
-		      	return n-s;  // will this "s" be captured in closure throughout the web page ?
+		      	return n-s;  
 		      });
 		  }
 	} catch(e) {;}
 
 	function markR(label) {
-		try { marks.push( { name:label, time:window.performance.now() } ); } catch(e) {alert("<<"+e.message);;}
+		try { 
+			marks.push( { name:label, time:window.performance.now() } ); 
+			window["dataLayer"]=window["dataLayer"]||[];
+			window["dataLayer"].push ({ 
+				'event': 'CEvent', 
+				'ceLabel':"roman.html", 
+				'ceValue':window.performance.now(), 
+				'ceCategory': 'PageLoadSeq', 
+				'ceAction': label,
+				'isInteractive': 0
+			}); 
+
+		} catch(e) {;}
 	}
 	markR("markR init");
 	// END******************** markr.js ************************
@@ -35,7 +46,6 @@
 
 
 
-	//http://stackoverflow.com/a/3855394/1339233
 	var qs = (function(a) {
     if (a == "") return {};
     var b = {};
@@ -63,7 +73,6 @@
 
 
 	var dpr = qs["dpi"];
-	// if desktop browser, set dpr to 1. depending on zoom, firefox craps the dpi value....
 	var height = dpr * qs["yrsln"];
 	var width = dpr * qs["xrsln"];
 	var indext = dpr * qs["t"];
@@ -74,6 +83,7 @@
 		pxRatio:(height>width)?height/width:width/height, 
 		layout:(width < height?"Portrait":"Landscape")
 	};
+	markR('Dbg.deviceProperty:'+height+"x"+width+" "+dpr+" "+indext+" "+deviceProperty.layout+" "+deviceProperty.pxRatio);
 
 
 	var context = {};
@@ -146,8 +156,6 @@
 		absYimgBG = Math.round(deviceProperty.browserHeight - tody)/2;
 		absXimgBG = Math.round(deviceProperty.browserWidth - todx)/2;
 
-		/* context = {absXimgBG: absXimgBG, absYimgBG: absYimgBG, height : tody, absXimgTag: absXimgTag, absYimgTag: absYimgTag, heightTag : todyTag
-		  };*/
 		context = {absXimgBG: absXimgBG, absYimgBG: absYimgBG, height : tody, absXimgTag: absXimgTag, absYimgTag: absYimgTag, heightTag : todyTag, heightVp : deviceProperty.browserHeight, widthVp : deviceProperty.browserWidth, scaleVp:(1/dpr) };
 		/*depending on version of the chrome browser, either set the scaleVp to 1 or 1/dpr. looks like for version 537.36, it needs to be set to 1/dpr...version 535.19 and before needs only 1.		*/
 		
@@ -166,18 +174,25 @@
 
 <script type="text/javascript">
 
-	var scriptinsert = "<script src=\"markr.js\"  type=\"text/javascript\"><\/script>";
-	scriptinsert += "<script src=\"https://zvncyxu6t5.execute-api.us-east-1.amazonaws.com/WEB/getUQ\"  id=\"getUQresponse\" type=\"text/javascript\"><\/script>";
-	scriptinsert += "<script src=\"client.min.js\"  type=\"text/javascript\"><\/script>";
-	scriptinsert += "<script type=\"text/javascript\">markR('client.min.js script loaded');<\/script>";
-	scriptinsert += "<script src=\"plugin-detect-0.6.3.js\"  type=\"text/javascript\"><\/script>";
-	scriptinsert += "<script type=\"text/javascript\">markR('plugin-detect-0.6.3.js script loaded');<\/script>";
-	scriptinsert += "<script src=\"base64.js\"  type=\"text/javascript\"><\/script>";
-	scriptinsert += "<script type=\"text/javascript\">markR('base64.js script loaded');<\/script>";
-	scriptinsert += "<script src=\"sniff.js\"  type=\"text/javascript\"><\/script>";
-	scriptinsert += "<script type=\"text/javascript\">markR('sniff.js script loaded');<\/script>";
-	scriptinsert += "<script src=\"http://cdnjs.cloudflare.com/ajax/libs/gsap/1.17.0/TweenMax.min.js\"  type=\"text/javascript\"><\/script>";
-	scriptinsert += "<script type=\"text/javascript\">markR('tweenlite.js script loaded');<\/script>";
+	var scriptinsert = "<script type=\"text/javascript\">markR('script starting');<\/script>";
+
+	scriptinsert += "<script src=\"https://zvncyxu6t5.execute-api.us-east-1.amazonaws.com/WEB/getUQ\"  id=\"getUQresponse\" type=\"text/javascript\" onload=\"";
+	scriptinsert += "markR('guid loaded: '+g_uid);\"><\/script>";
+	
+	scriptinsert += "<script src=\"client.min.js\"  type=\"text/javascript\" onload=\"";
+	scriptinsert += "markR('client.min.js script loaded');\"><\/script>";
+	
+	scriptinsert += "<script src=\"plugin-detect-0.6.3.js\"  type=\"text/javascript\" onload=\"";
+	scriptinsert += "markR('plugin-detect-0.6.3.js script loaded');\"><\/script>";
+	
+	scriptinsert += "<script src=\"base64.js\"  type=\"text/javascript\" onload=\"";
+	scriptinsert += "markR('base64.js script loaded');\"><\/script>";
+
+	scriptinsert += "<script src=\"sniff.js\"  type=\"text/javascript\" onload=\"";
+	scriptinsert += "markR('sniff.js script loaded');\"><\/script>";
+	
+	scriptinsert += "<script src=\"http://cdnjs.cloudflare.com/ajax/libs/gsap/1.18.0/TweenMax.min.js\"  type=\"text/javascript\" onload=\"";
+	scriptinsert += "markR('tweenlite.js script loaded');\"><\/script>";
 
 
 </script>
@@ -266,21 +281,19 @@
 function StartMain()
 {
 	markR("StartMain init");
-	// if not mobile firefox or mobile chrome (if it is uc browser or dolphin browser), then set dpr to 1
-	if( 
-		!((new ClientJS()).isMobile()) ||
-		( !(new ClientJS()).isChrome() && (!(new ClientJS()).isFirefox())  ) || 
-		((new ClientJS()).isChrome() && (new ClientJS()).getBrowserMajorVersion() < 30)  
-	  )
-		{	dpr = 1; 	}
+		if  (dpr > 1) 
+		{
+				{
+					if (navigator.vendor.indexOf("UCWEB") > -1)  
+						{ dpr = 1; }
+				}
+		}
 
 	context.scaleVp = (1/dpr);
 	context.scriptSrc = scriptinsert;
 
 	var source   = document.getElementById("entry-template_"+deviceProperty.layout).innerHTML;		
 
-	// alert(mod+" "+rem+" : "+todx+" "+tody+" : "+absXimgBG+" "+absYimgBG);
-	// var template = Handlebars.compile(source); // Errors out in mobile dolphin browser
 	markR("document.write init");
 	document.write(replaceHelper(context, source));
 }
@@ -290,6 +303,18 @@ StartMain();
 </script>
 </head>
 <body>
+
+<!-- Google Tag Manager -->
+<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-PDNKG3"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-PDNKG3');</script>
+<!-- End Google Tag Manager -->
+
+
 </body>
 
 </html>
