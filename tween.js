@@ -242,13 +242,94 @@ function tween4()
 }
 
 
+window.repeatAdFns = [ITEvolution, ads1, ads2, ads3, ads4, ads5, ads6, ads7, ads8, ads9, ads10, ads11, ads12];
+window.repeatAdCtr = 0;
 window.tweenclickToggle = false;
 function tweenclick()
 {
   GTMpush("PlayTween.LogoClick", 1);
 
-  tweenclickToggle?MoveUp():ITEvolution(); 
-  tweenclickToggle = !tweenclickToggle;
+  // tweenclickToggle?MoveUp():_mgunText.createKT(); 
+  // tweenclickToggle?MoveUp():StartFocusRectinLandingPgMgun(); 
+
+  
+  // tweenclickToggle?MoveUp():ITEvolution(); 
+  // tweenclickToggle = !tweenclickToggle;
+
+  if (repeatAdCtr > repeatAdFns.length)
+    {   repeatAdCtr = 0;  }
+  repeatAdFns[repeatAdCtr++]();
+
+}
+
+function gettodx()
+{
+  var reqWd = deviceProperty.browserWidth ; 
+  var mod = reqWd % 250;
+  var rem = Math.floor(reqWd / 250);
+  var todx = (mod>0)?250*(rem+1):reqWd;
+  return todx;
+}
+
+function ads1()
+{
+  var focusrects = [[0,0,0,0],[1259,401,3867,2127],[0,0,3920,2613],[0,0,3920,2613]]; //the final element is image size at which the area points were generated.
+  StartFocusRectinLandingPg("Ads", "IMG/rediscoverit_"+gettodx()+".jpg", focusrects);   
+}
+function ads2()
+{
+  var focusrects = [[0,0,0,0],[701,213,3869,2487],[0,0,4908,2571],[0,0,4908,2571]]; 
+  StartFocusRectinLandingPg("Ads", "IMG/kickstartit_"+gettodx()+".jpg", focusrects);   
+}
+function ads3()
+{
+  var focusrects = [[0,0,0,0],[659,281,3647,1847],[0,0,3900,2368],[0,0,3900,2368]]; 
+  StartFocusRectinLandingPg("Ads", "IMG/exploreit_"+gettodx()+".jpg", focusrects);   
+}
+function ads4()
+{
+  var focusrects = [[0,0,0,0],[859,289,2967,1427],[0,0,3008,1544],[0,0,3008,1544]]; 
+  StartFocusRectinLandingPg("Ads", "IMG/gameforit_"+gettodx()+".jpg", focusrects);   
+}
+function ads5()
+{
+  var focusrects = [[0,0,0,0],[129,413,2267,1527],[0,0,2507,1673],[0,0,2507,1673]]; 
+  StartFocusRectinLandingPg("Ads", "IMG/getreadyforit_"+gettodx()+".jpg", focusrects);   
+}
+function ads6()
+{
+  var focusrects = [[0,0,0,0],[529,17,2467,887],[0,0,2500,1244],[0,0,2500,1244]]; 
+  StartFocusRectinLandingPg("Ads", "IMG/gettothtopofIT_"+gettodx()+".jpg", focusrects);   
+}
+function ads7()
+{
+  var focusrects = [[0,0,0,0],[53,493,3067,1577],[0,0,3115,2079],[0,0,3115,2079]]; 
+  StartFocusRectinLandingPg("Ads", "IMG/highwaytakeit_"+gettodx()+".jpg", focusrects);   
+}
+function ads8()
+{
+  var focusrects = [[0,0,0,0],[617,117,4093,2405],[0,0,5500,3273],[0,0,5500,3273]]; 
+  StartFocusRectinLandingPg("Ads", "IMG/itisallaboutyou_"+gettodx()+".jpg", focusrects);   
+}
+function ads9()
+{
+  var focusrects = [[0,0,0,0],[75,279,2101,1996],[0,0,3000,1996],[0,0,3000,1996]]; 
+  StartFocusRectinLandingPg("Ads", "IMG/launchit_"+gettodx()+".jpg", focusrects);   
+}
+function ads10()
+{
+  var focusrects = [[0,0,0,0],[357,601,3413,3456],[0,0,3456,3456],[0,0,3456,3456]]; 
+  StartFocusRectinLandingPg("Ads", "IMG/stepuptoit_"+gettodx()+".jpg", focusrects);   
+}
+function ads11()
+{
+  var focusrects = [[0,0,0,0],[509,449,2825,1893],[0,0,2976,1947],[0,0,2976,1947]]; 
+  StartFocusRectinLandingPg("Ads", "IMG/swiminIT_"+gettodx()+".jpg", focusrects);   
+}
+function ads12()
+{
+  var focusrects = [[0,0,0,0],[0,0,3599,1960],[0,0,3599,1960]]; 
+  StartFocusRectinLandingPg("Ads", "IMG/trainforit_"+gettodx()+".jpg", focusrects);   
 }
 
 function MoveUp()
@@ -587,6 +668,102 @@ window._focusRectAnimation =
                 }
         };
 
+texts = [
+    [0.9, "FIRST TEXT"],
+    [3.0, "IS TEXT."],
+    [0.9, "First text"],
+    [1.0, "is text."],
+    [0.5, "Second text is"],
+    [2.9, "Ag AaBbCc"],
+    [2.9, "YOU you"],
+    [2.9, "WAR war"],
+    [5.0, "zero. hero?"]
+    ];
+window._mgunText = 
+        {
+          createKT : function()
+                {
+                  alert();
+                  // return;
+                      var tl = new TimelineMax({delay:0.6, repeat:-1, repeatDelay:4}), time = 0, word, element, duration, i;
+                      var container = document.getElementById("demo");
+// debugger;
+tl.to([container],0.01,{scale:0.01, ease:SlowMo.ease.config(0.25, 0.9)})
+.to([container],5,{scale:1.2, ease:SlowMo.ease.config(0.25, 0.9)});
+// tl.to([container],5,{fontSize:200});
+
+return;
+
+//http://greensock.com/forums/topic/9173-scaling-an-element-becomes-pixelated/
+// http://caniuse.com/#feat=svg-fonts   svg fonts are deprecated
+// http://caniuse.com/#search=svg
+//http://greensock.com/forums/topic/11895-issue-with-firefox-scroll-performance-and-chrome-svg-rendering/
+//    how to throttle events
+
+                      for(i = 0; i < texts.length; i++)
+                      {
+                          var word = texts[i][1];
+                          element = document.createElement("h3");
+                          container.appendChild(element);
+                          element.appendChild(document.createTextNode(word));
+
+                          duration = Math.max(texts[i][0], word.length * 0.05); //longer words take longer to read, so adjust timing. Minimum of 0.5 seconds.
+                          TweenLite.set(element, {autoAlpha:0, scale:0, z:0.01});
+                          tl.to(element, duration, {scale:1.2,  ease:SlowMo.ease.config(0.25, 0.9)}, time)
+                          .to(element, duration, {autoAlpha:1, ease:SlowMo.ease.config(0.25, 0.9, true)}, time);
+                      
+                          time += duration - 0.05;
+
+                        // alert(texts[i]);
+                      }
+                }
+
+        }
 
 
+function StartFocusRectinLandingPgMgun()
+{
+  var lroot = document.getElementById("landingroot");
+  var pstr = document.getElementById("poster");
+  var im = document.getElementById("theim");
 
+  var dualcall =  new function()
+                      {
+                        this.call = function ()
+                        {       
+                          {        
+                            lroot.style.display = "none";
+                            tForeverCircleSpin.pause();
+                            document.body.style.backgroundImage = "none"; 
+                        pstr.style.display = "block";                        
+
+                            alert("now is the time");
+                            _mgunText.createKT();
+                          }
+                        }
+                      };
+
+  var backToLanding = function()
+                      {
+                        lroot.style.display = "block";
+                        pstr.style.display = "none";                        
+                        tForeverCircleSpin.resume();
+                        tweenclickActive=true;
+                        var tmx2 = GetFadeInFadeOut(false);
+                        tmx2.play();
+                        _clickCallbacks = null;
+                      }
+
+  
+  tweenclickActive=true;
+  var tmx1 = GetFadeInFadeOut(true);
+  tmx1.tweenFromTo( "start",
+                    "finish", 
+                    { onComplete:function()
+                                  {
+                                    document.body.style.backgroundImage = "url('IMG/loading.gif')"; 
+                                    dualcall.call();
+                                  }
+                    }
+                  );
+}
