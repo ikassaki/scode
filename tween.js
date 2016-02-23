@@ -274,62 +274,62 @@ function gettodx()
 function ads1()
 {
   var focusrects = [[0,0,0,0],[1259,401,3867,2127],[0,0,3920,2613],[0,0,3920,2613]]; //the final element is image size at which the area points were generated.
-  StartFocusRectinLandingPg("Ads", "IMG/rediscoverit_"+gettodx()+".jpg", focusrects);   
+  StartFocusRectinLandingPg("Ads.rediscoverit", "IMG/rediscoverit_"+gettodx()+".jpg", focusrects);   
 }
 function ads2()
 {
   var focusrects = [[0,0,0,0],[701,213,3869,2487],[0,0,4908,2571],[0,0,4908,2571]]; 
-  StartFocusRectinLandingPg("Ads", "IMG/kickstartit_"+gettodx()+".jpg", focusrects);   
+  StartFocusRectinLandingPg("Ads.kickstartit", "IMG/kickstartit_"+gettodx()+".jpg", focusrects);   
 }
 function ads3()
 {
   var focusrects = [[0,0,0,0],[659,281,3647,1847],[0,0,3900,2368],[0,0,3900,2368]]; 
-  StartFocusRectinLandingPg("Ads", "IMG/exploreit_"+gettodx()+".jpg", focusrects);   
+  StartFocusRectinLandingPg("Ads.exploreit", "IMG/exploreit_"+gettodx()+".jpg", focusrects);   
 }
 function ads4()
 {
   var focusrects = [[0,0,0,0],[859,289,2967,1427],[0,0,3008,1544],[0,0,3008,1544]]; 
-  StartFocusRectinLandingPg("Ads", "IMG/gameforit_"+gettodx()+".jpg", focusrects);   
+  StartFocusRectinLandingPg("Ads.gameforit", "IMG/gameforit_"+gettodx()+".jpg", focusrects);   
 }
 function ads5()
 {
   var focusrects = [[0,0,0,0],[129,413,2267,1527],[0,0,2507,1673],[0,0,2507,1673]]; 
-  StartFocusRectinLandingPg("Ads", "IMG/getreadyforit_"+gettodx()+".jpg", focusrects);   
+  StartFocusRectinLandingPg("Ads.getreadyforit", "IMG/getreadyforit_"+gettodx()+".jpg", focusrects);   
 }
 function ads6()
 {
   var focusrects = [[0,0,0,0],[529,17,2467,887],[0,0,2500,1244],[0,0,2500,1244]]; 
-  StartFocusRectinLandingPg("Ads", "IMG/gettothtopofIT_"+gettodx()+".jpg", focusrects);   
+  StartFocusRectinLandingPg("Ads.gettothtopofIT", "IMG/gettothtopofIT_"+gettodx()+".jpg", focusrects);   
 }
 function ads7()
 {
   var focusrects = [[0,0,0,0],[53,493,3067,1577],[0,0,3115,2079],[0,0,3115,2079]]; 
-  StartFocusRectinLandingPg("Ads", "IMG/highwaytakeit_"+gettodx()+".jpg", focusrects);   
+  StartFocusRectinLandingPg("Ads.highwaytakeit", "IMG/highwaytakeit_"+gettodx()+".jpg", focusrects);   
 }
 function ads8()
 {
   var focusrects = [[0,0,0,0],[617,117,4093,2405],[0,0,5500,3273],[0,0,5500,3273]]; 
-  StartFocusRectinLandingPg("Ads", "IMG/itisallaboutyou_"+gettodx()+".jpg", focusrects);   
+  StartFocusRectinLandingPg("Ads.itisallaboutyou", "IMG/itisallaboutyou_"+gettodx()+".jpg", focusrects);   
 }
 function ads9()
 {
   var focusrects = [[0,0,0,0],[75,279,2101,1996],[0,0,3000,1996],[0,0,3000,1996]]; 
-  StartFocusRectinLandingPg("Ads", "IMG/launchit_"+gettodx()+".jpg", focusrects);   
+  StartFocusRectinLandingPg("Ads.launchit", "IMG/launchit_"+gettodx()+".jpg", focusrects);   
 }
 function ads10()
 {
   var focusrects = [[0,0,0,0],[357,601,3413,3456],[0,0,3456,3456],[0,0,3456,3456]]; 
-  StartFocusRectinLandingPg("Ads", "IMG/stepuptoit_"+gettodx()+".jpg", focusrects);   
+  StartFocusRectinLandingPg("Ads.stepuptoit", "IMG/stepuptoit_"+gettodx()+".jpg", focusrects);   
 }
 function ads11()
 {
   var focusrects = [[0,0,0,0],[509,449,2825,1893],[0,0,2976,1947],[0,0,2976,1947]]; 
-  StartFocusRectinLandingPg("Ads", "IMG/swiminIT_"+gettodx()+".jpg", focusrects);   
+  StartFocusRectinLandingPg("Ads.swiminIT", "IMG/swiminIT_"+gettodx()+".jpg", focusrects);   
 }
 function ads12()
 {
   var focusrects = [[0,0,0,0],[0,0,3599,1960],[0,0,3599,1960]]; 
-  StartFocusRectinLandingPg("Ads", "IMG/trainforit_"+gettodx()+".jpg", focusrects);   
+  StartFocusRectinLandingPg("Ads.trainforit", "IMG/trainforit_"+gettodx()+".jpg", focusrects);   
 }
 
 function MoveUp()
