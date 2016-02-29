@@ -244,9 +244,9 @@ body{
 /*font-family: 'Special Elite' ; good shaky font for war*/
 /*font-family: 'Vast Shadow' ; */
 /*font-family: 'Yantramanav' ; */
-font-family: 'Six Caps' ; 
 font-family: 'Monoton' ; 
-font-family: 'Vast Shadow';
+font-family: 'Six Caps' ; 
+font-family: 'Mate SC' ;
 
 /*
 matrix font style
@@ -295,6 +295,11 @@ left:50%; top:50%; width:100%;
 </div>
 
 <script type="text/javascript">
+
+//patua one, mate sc (camel casing), monoton, ultra, mystery quest,  graduate (small caps), plaster (s), julius sans(s caps), yesteryear (s), iceland (s), kameron(s), IM fell great primer (small), mr bedfort (s), electrolize, lancelot (s), sacramento (s), rokkitt(s), nixie one (s), flavors (s), geostar fill (s), lifesavers (s), orbitron, sarpanch, slabo 27px, special elite,  
+
+// rationale (small case), montez (small), waiting for sunrise(small), audiowide (s), capriola (s), black ops, swanky and moo moo (small, funny), wellfleet (s), mrs saint (s), russo one, cody star/raleway dots, coustard (s), share tech mono (s).
+
 var fontlst = [   'Asap', 
    'Mate SC',
    'Tulpen One', 
@@ -422,16 +427,29 @@ var fz = document.body.clientWidth*(70/900) + "px";
 ct.style[ "font-size" ] = fz;
 alert(document.body.clientWidth+" "+fz);
 
+// texts = [
+// 		[0.9, "There is a war going on...."],
+// 		[0.9, "FIRST TEXT"],
+// 		[3.0, "IS TEXT."],
+// 		[0.9, "First text"],
+// 		[1.0, "is text."],
+// 		[0.5, "Second text is"],
+// 		[2.9, "Ag AaBbCc"],
+// 		[2.9, "YOU you"],
+// 		[2.9, "WAR war"],
+// 		[5.0, "zero. hero?"]
+// 		];
+
 texts = [
-		[0.9, "FIRST TEXT"],
-		[3.0, "IS TEXT."],
-		[0.9, "First text"],
-		[1.0, "is text."],
-		[0.5, "Second text is"],
-		[2.9, "Ag AaBbCc"],
-		[2.9, "YOU you"],
-		[2.9, "WAR war"],
-		[5.0, "zero. hero?"]
+		[5.0, "There is a War going On..."], /*  mate sc */
+		[2.5, " "],
+		[5.0, "A war for Talent"],
+		[5.0, "and, This is your battle"],
+		[5.0, "the question is..."],
+		[5.0, "are you Battle Ready?"],
+		[5.0, "So, are you ready for battle?"],
+		[2.9, "So, what is your plan to win Your battle?"]  /*yesteryear looks good here*/
+		[2.9, "and your plan to win your battle is by flaunting your degree certificate? "]  
 		];
 
 function createKT()
@@ -504,7 +522,7 @@ function machineGun(text) {
 
 createKT();
 
-// machineGun("There is a war going on... A war for talent.... And whether you like it or not, you are already a pawn in the battle. And, your plan is to win by waving/flaunting your degree certificate?");
+// machineGun("There is a war going on... A war for talent.... And whether you like it or not, you are already a (freshly minted rookie) pawn in t he battle. And, your plan is to win by waving/flaunting your degree certificate?");
 // battle cry. get real. 
 //https://greensock.com/css3/
 
