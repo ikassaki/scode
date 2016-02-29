@@ -246,7 +246,7 @@ body{
 /*font-family: 'Yantramanav' ; */
 font-family: 'Six Caps' ; 
 font-family: 'Monoton' ; 
-
+font-family: 'Vast Shadow';
 
 /*
 matrix font style
@@ -282,6 +282,7 @@ left:50%; top:50%; width:100%;
 </head>
 <body>
 <div id="demo">
+<input id="bttn" type="button" value="Next font please" onclick="changefont()" />
 
 	<table align="center" style="border:1px solid green" width="100%" height="100%">
 	<tbody  align="center"  valign="middle">
@@ -294,12 +295,129 @@ left:50%; top:50%; width:100%;
 </div>
 
 <script type="text/javascript">
-	
+var fontlst = [   'Asap', 
+   'Mate SC',
+   'Tulpen One', 
+   'Ultra', 
+   'Mystery Quest', 
+   'Rationale', 
+   'Akronim', 
+   'Montez',
+	 'Waiting for the Sunrise',
+	 'Julius Sans One', 
+	 'Medula One', 
+	 'Unica One', 
+	 'Audiowide',
+	 'Share Tech Mono',
+	 'Economica', 
+	 'Graduate', 
+	 'Keania One', 
+	 'Squada One', 
+	 'Rum Raisin',
+	 'Archivo Black',
+	 'Lobster Two', 
+	 'Mrs Sheppards', 
+	 'Almendra SC',
+	 'Coda', 
+	 'Capriola' , 
+	 'Engagement' , 
+	 'Macondo Swash Caps',
+ 'Cabin Sketch' , 
+ 'Gloria Hallelujah' , 
+ 'Jim Nightshade' , 
+ 'Patua One' , 
+ 'IM Fell Double Pica', 
+ 'Plaster', 
+ 'Julius Sans One', 
+ 'Yesteryear' , 
+ 'Iceland' ,
+ 'Kameron' , 
+ 'Poiret One' , 
+ 'Redressed' , 
+ 'Black Ops One', 
+ 'Bilbo Swash Caps ', 
+ 'Patrick Hand SC', 
+ 'Swanky and Moo Moo', 
+ 'Amarante' , 
+ 'IM Fell Great Primer', 
+ 'Audiowide' , 
+ 'Sue Ellen Francisco', 
+ 'Wellfleet' , 
+ 'Mr Bedfort' , 
+ 'Kristi' , 
+ 'Monoton' ,
+ 'Electrolize' , 
+ 'Righteous' , 
+ 'Herr Von Muellerhoff', 
+ 'Bigshot One' , 
+ 'Averia Sans Libre',
+ 'Mrs Saint Delafield',
+ 'Fascinate Inline' , 
+ 'Underdog' , 
+ 'Offside' , 
+ 'Glass Antiqua' , 
+ 'Bubbler One' , 
+ 'Mouse Memoirs', 
+ 'Just Another Hand', 
+ 'Lancelot' , 
+ 'Petit Formal Script', 
+ 'Playfair Display SC', 
+ 'Annie Use Your Telescope', 
+ 'Amatic SC' , 
+ 'Ceviche One' ,
+ 'Revalia' ,
+ 'Tangerine' ,
+ 'Sacramento' , 
+ 'Qwigley' , 
+ 'Russo One' , 
+ 'Codystar' , 
+ 'UnifrakturMaguntia' , 
+ 'Coustard' , 
+ 'Rokkitt' , 
+ 'Changa One' ,
+ 'Nixie One' , 
+ 'Aubrey' , 
+ 'Flavors' ,
+ 'Fredericka the Great' ,
+ 'Geostar Fill' ,
+ 'Geostar' , 
+ 'Give You Glory' , 
+ 'IM FELL English SC' , 
+ 'Life Savers' ,
+ 'Lovers Quarrel' ,
+ 'Orbitron' ,
+ 'Parisienne' , 
+ 'Raleway Dots' , 
+ 'Sarpanch' , 
+ 'Slabo 27px' , 
+ 'Special Elite' ,
+ 'Vast Shadow' , 
+ 'Yantramanav' , 
+ 'Six Caps' , 
+ 'Monoton' , 
+ 'Vast Shadow'];
+ var fontlstctr = 0;
+
+var ct = document.getElementById('cntnt');
+
+function changefont()
+{
+	// alert( document.querySelector("#demo h3").innerHTML );
+	// document.querySelector("#demo h3").style[ "font-family" ] = "Geostar";
+	var list = document.querySelectorAll("#demo h3");
+	// alert(list.length); debugger;
+	for (var i =0; i<list.length; i++) {
+  		list[i].style[ "font-family" ] = fontlst[fontlstctr]; // "Geostar"; 
+		}
+	document.getElementById('bttn').value = "Next font please - "+ fontlst[fontlstctr]
+	if (++fontlstctr > fontlst.length)
+		fontlstctr = 0;
+}
+
 var container = document.getElementById('demo');
 var _sentenceEndExp = /(\.|\?|!)$/g; //regular expression to sense punctuation that indicates the end of a sentence so that we can adjust timing accordingly
 
 
-var ct = document.getElementById('cntnt');
 var fz = document.body.clientWidth*(70/900) + "px";
 ct.style[ "font-size" ] = fz;
 alert(document.body.clientWidth+" "+fz);
@@ -395,3 +513,8 @@ createKT();
 </script>
 </body>
 </html>
+
+
+
+
+
