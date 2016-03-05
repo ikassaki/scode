@@ -117,7 +117,7 @@
 		markR("markR init from page:"+window.pageid+" @ "+g_t);		GTMpush("pageInit");		
 
 		function pumpM(msg)
-		{return;
+		{//return;
 			// markR(window.pageid+" Message: "+msg);
 			xmlhttp=new XMLHttpRequest();
 			xmlhttp.open("POST","http://192.168.1.210:8080/",true);
@@ -185,7 +185,7 @@
 						markR('All images loaded. Enable display block');
 						GTMpush("allImgsLoaded.EnableDisplayBlock");
 						markR('Is this browser able to access doc.body.style property:'+document.body.style.visibility);
-						document.body.style.visibility='visible';	
+						// document.body.style.visibility='visible';	
 						window.name = ""; 
 						waitForEnumProperties();
 						return;
@@ -199,7 +199,7 @@
 			var notcalled = true;
 			try
 			{
-				if (EnumProperties && 'function' === typeof EnumProperties)
+				if ( (EnumProperties && 'function' === typeof EnumProperties)  && (startTween && 'function' === typeof startTween)  )
 				{
 					markR("EnumProperties available now. Invoking EnumProperties and startTween");
 					GTMpush("enumPropertiesAvailable");
@@ -213,7 +213,7 @@
 			} catch(e) { markR("Exception:"+e); GTMpush("exception.waitForEnumProperties"); }
 			if (notcalled)
 			{
-				window.setTimeout(waitForEnumProperties, 3000);
+				window.setTimeout(waitForEnumProperties, 100);
 				markR("EnumProperties not yet loaded.");
 				GTMpush("enumPropertiesNotYetLoaded");
 			}
@@ -291,6 +291,13 @@
 
 		var scriptinsert = "<script type=\"text/javascript\">markR('script starting');GTMpush('scriptStarting');<\/script>";
 
+		scriptinsert += "<script src=\"tween.js\"  type=\"text/javascript\" onload=\"";
+		scriptinsert += "markR('tween.js script loaded');GTMpush('tween.jsLoaded');\"><\/script>";
+
+		// scriptinsert += "<script src=\"http://cdnjs.cloudflare.com/ajax/libs/gsap/1.18.0/TweenMax.min.js\"  type=\"text/javascript\" onload=\"";
+		scriptinsert += "<script src=\"TweenMax.min.js\"  type=\"text/javascript\" onload=\"";
+		scriptinsert += "markR('tweenlite.js script loaded');GTMpush('tweenlite.jsLoaded');\"><\/script>";
+
 		scriptinsert += "<script src=\"https://zvncyxu6t5.execute-api.us-east-1.amazonaws.com/WEB/getUQ\"  id=\"getUQresponse\" type=\"text/javascript\" onload=\"";
 		scriptinsert += "markR('guid loaded: '+g_uid);GTMpush('guidLoaded');\"><\/script>";
 		
@@ -303,45 +310,48 @@
 		scriptinsert += "<script src=\"base64.js\"  type=\"text/javascript\" onload=\"";
 		scriptinsert += "markR('base64.js script loaded');GTMpush('base64.jsLoaded');\"><\/script>";
 
-		scriptinsert += "<script src=\"tween.js\"  type=\"text/javascript\" onload=\"";
-		scriptinsert += "markR('tween.js script loaded');GTMpush('tween.jsLoaded');\"><\/script>";
-
 		scriptinsert += "<script src=\"sniff.js\"  type=\"text/javascript\" onload=\"";
 		scriptinsert += "markR('sniff.js script loaded');GTMpush('sniff.jsLoaded');\"><\/script>";
 		
-		// scriptinsert += "<script src=\"http://cdnjs.cloudflare.com/ajax/libs/gsap/1.18.0/TweenMax.min.js\"  type=\"text/javascript\" onload=\"";
-		scriptinsert += "<script src=\"TweenMax.min.js\"  type=\"text/javascript\" onload=\"";
-		scriptinsert += "markR('tweenlite.js script loaded');GTMpush('tweenlite.jsLoaded');\"><\/script>";
 	</script>
 
 	<script id="entry-template_Landscape" type="text/x-handlebars-template">
 
 		<html>
 		<meta name='viewport' content='height={{heightVp}}, width={{widthVp}}, initial-scale={{scaleVp}}, minimum-scale={{scaleVp}}, maximum-scale=2, target-densitydpi=device-dpi'>
-		<link href='http://fonts.googleapis.com/css?family=Asap:400,700' rel='stylesheet' type='text/css'>
-	    <link href='https://fonts.googleapis.com/css?family=Six+Caps' rel='stylesheet' type='text/css'>
-	    <link href='https://fonts.googleapis.com/css?family=Josefin+Sans:700' rel='stylesheet' type='text/css'>
+		<link href='http://fonts.googleapis.com/css?family=Mate+SC' rel='stylesheet' type='text/css'>
 		<head>
 			<style type="text/css">
 				body
 				{
 				    overflow:hidden;
 				    //background-color: red;//#282828;
-				    //background-image: url("BG/PortraitLanding_{{height}}px.jpg "); background-repeat: no-repeat;
 				}
-
-				.SixCaps { font-family: 'Six Caps' ; font-weight:200; }
-				.JosefinSans { font-family: 'Josefin Sans' ; font-weight:700; }
-
+				#texter h3 {
+					position:absolute;
+					border:0px solid yellow;
+					font-family: 'Mate SC' ;
+				    font-weight:200;
+					margin:0;
+					padding:0;
+					text-align:center;
+					text-shadow: 12px 12px #000000, 1px 1px 9px #000000;
+					border-left: 5px solid red;
+					border-right: 5px solid red;
+					left:50%; 
+					top:50%; 
+					width:100%;
+					color: white;
+				}
 			</style>
 
 			{{loadingImgBg}}
 			{{scriptSrcTop}}
 
 		</head>
-		<body style="visibility:hidden;background-color: black /*#282828 yellow*/;" onload=''>
+		<body style="display:none; background-color:black" onload=''>
 
-			<div id="landingroot">
+			<div id="landingroot" style="display:none; opacity:0">
 
 				<img src="BG/LandscapeLanding_{{width}}px.jpg " id="LandingBackground" onload="markR('LandscapeLanding_{{width}}px.jpg'); GTMpush('image.LandscapeLanding_{{width}}px.jpg');" style="display:none; border: 0px solid red; position:absolute; left:{{absXimgBG}}px; top:{{absYimgBG}}px">
 <!--
@@ -354,12 +364,22 @@
 				<img src="BG/LandscapeLandingLog_{{widthTag}}px.png " id="LandingLog" onload="markR('LandscapeLandingLog_{{widthTag}}px.png'); GTMpush('image.LandscapeLandingLog_{{widthTag}}px.png');" style="border: 0px solid red; position:absolute; left:{{absXimgTag}}px; top:{{absYimgTag}}px">
 
 			</div>
-
+			
 			<div style="display:none; position:absolute">
 				<form name="forms" id="forms" action="http://192.168.1.209:8080/" method="POST" target="jsonp_iframe">
 					<textarea rows="10" cols="40" name="sniff" id="sniff">NoDat</textarea>
 				</form>
 				<iframe name="jsonp_iframe" id="jsonp_iframe"></iframe>
+			</div>
+
+			<div id="cover" style="opacity:0; position:absolute;left:0; top:0;  background-color:black;  border: 0px solid teal; z-index:999999; opacity:1; width:100%; height:100%; margin:auto; overflow:hidden; display:table; display:none;-webkit-perspective: 10000;">
+				<table align="center" style="border:0px solid green" width="100%" height="100%">
+				<tbody  align="center"  valign="middle">
+				  <tr>
+				    <td  align="center"  valign="middle" id="texter" ></td>
+				  </tr>
+				  </tbody>
+				</table>
 			</div>
 
 			<div id="poster" style="position:absolute;left:0; top:0;  background-color:rgba(100,100,100,0.0);  border: 0px solid red; z-index:999999; opacity:1; display:none;"><img id="theim" src="" style="opacity:0; position:absolute;"></div>
@@ -371,16 +391,34 @@
 
 	</script>
 
+
 	<script id="entry-template_Portrait" type="text/x-handlebars-template">
 
 		<html>
 		<meta name='viewport' content='height={{heightVp}}, width={{widthVp}}, initial-scale={{scaleVp}}, minimum-scale={{scaleVp}}, maximum-scale=2, target-densitydpi=device-dpi '>
+		<link href='http://fonts.googleapis.com/css?family=Mate+SC' rel='stylesheet' type='text/css'>
 		<head>
 			<style type="text/css">
 				body
 				{
 				    overflow:hidden;
-				    //background-image: url("BG/PortraitLanding_{{height}}px.jpg "); background-repeat: no-repeat;
+				}
+
+				#texter h3 {
+					position:absolute;
+					border:0px solid yellow;
+					font-family: 'Mate SC' ;
+				    font-weight:200;
+					margin:0;
+					padding:0;
+					text-align:center;
+					text-shadow: 12px 12px #000000, 1px 1px 9px #000000;
+					border-left: 5px solid red;
+					border-right: 5px solid red;
+					left:50%; 
+					top:50%; 
+					width:100%;
+					color: white;
 				}
 			</style>
 
@@ -388,9 +426,9 @@
 			{{scriptSrcTop}}
 
 		</head>
-		<body style="visibility:hidden;background-color:black /* #282828 yellow*/;" onload=''>
+		<body style="display:none; background-color:black /* #282828 yellow*/;" onload=''>
 
-			<div id="landingroot">
+			<div id="landingroot" style="display:none; opacity:0">
 
 				<img src="BG/PortraitLanding_{{height}}px.jpg " id="LandingBackground" onload="markR('PortraitLanding_{{height}}px.jpg'); GTMpush('image.PortraitLanding_{{height}}px.jpg');" style="display:none; border: 0px solid red; position:absolute; left:{{absXimgBG}}px; top:{{absYimgBG}}px">
 <!--
@@ -411,16 +449,25 @@
 				<iframe name="jsonp_iframe" id="jsonp_iframe"></iframe>
 			</div>
 
-			<div id="poster" style="position:absolute;left:0; top:0;  background-color:rgba(100,100,100,0.0);  border: 0px solid red; z-index:999999; opacity:1; display:none;"><img id="theim" src="" style="opacity:0; position:absolute;"></div>
+			<div id="cover" style="opacity:0; position:absolute;left:0; top:0;  background-color:black;  border: 0px solid teal; z-index:999999; opacity:1; width:100%; height:100%; margin:auto; overflow:hidden; display:table; display:none;-webkit-perspective: 10000;">
+				<table align="center" style="border:0px solid green" width="100%" height="100%">
+				<tbody  align="center"  valign="middle">
+				  <tr>
+				    <td  align="center"  valign="middle" id="texter" ></td>
+				  </tr>
+				  </tbody>
+				</table>
+			</div>
+
+			<div id="poster" style="position:absolute;left:0; top:0;  background-color:rgba(100,100,100,0.0);  border: 1px solid red; z-index:999999; opacity:1; display:none;"><img id="theim" src="" style="opacity:0; position:absolute;"></div>
 
 			{{scriptSrc}}
+
 
 		</body>
 		</html>
 
 	</script>
-
-
 	<script type="text/javascript">
 	/**
  * UAParser.js v0.7.10
@@ -665,7 +712,7 @@
 				if (cjs.isFirefox()) document.open();
 				console.log(replaceHelper(context, source));
 				document.write(replaceHelper(context, source)); 
-				markRed(replaceHelper(context, source));
+				// markRed(replaceHelper(context, source));
 				if (cjs.isFirefox()) document.close();
 
 			},50);

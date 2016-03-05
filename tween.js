@@ -29,7 +29,7 @@ function TweenLite_onOverwrite(overwritten, overwriting, target, overwrittenProp
   }
 }
 
-window._LogTweenExecutionSeq = false;
+window._LogTweenExecutionSeq = true;
 function TweenStartOrComplete(twnobj, isStart, cback)
 {
   if (cback)
@@ -140,7 +140,7 @@ function startTween()
     catch(e) 
     {
       markR("Tween not ready"); GTMpush("TweenNotReady");
-      window.setTimeout("startTween()", 3100);
+      window.setTimeout("startTween()", 300);
       return;
     }
 
@@ -166,11 +166,13 @@ function startTween()
                             }
     document.body.onmousemove = function(e)
                             {
+                              try {
                               var eve = e || window.event;
                               x = eve.pageX || eve.clientX;
                               y = eve.pageY ||  eve.clientY;
                               if (window.tweenclickActive != true) 
-                                animatecircleCall.callm(x,y);
+                                animatecircleCall.callm(x,y); 
+                            }catch(e){console.log(e);}
                             }
     tween4();
 
@@ -222,6 +224,8 @@ function startTween()
                                             TweenMax.to([b],2.5,{scale:sca1, rotationX:(10 - (10*disty) ), rotationY:(-10 + (10*distx) ) });
                                           }      
                             };
+      tweenclick();
+
   } catch(e) { markR("Exception:"+e); GTMpush("exception.startTween"); }
 }
 
@@ -242,12 +246,15 @@ function tween4()
 }
 
 
-window.repeatAdFns = [ITEvolution, ads1, ads2, ads3, ads4, ads5, ads6, ads7, ads8, ads9, ads10, ads11, ads12];
+window.repeatAdFns = [createKT, ads1, ads12];
+// window.repeatAdFns = [createKT, ITEvolution, ads1, ads2, ads3, ads4, ads5, ads6, ads7, ads8, ads9, ads10, ads11, ads12];
 window.repeatAdCtr = 0;
 window.tweenclickToggle = false;
 function tweenclick()
 {
   GTMpush("PlayTween.LogoClick", 1);
+
+
 
   // tweenclickToggle?MoveUp():_mgunText.createKT(); 
   // tweenclickToggle?MoveUp():StartFocusRectinLandingPgMgun(); 
@@ -256,7 +263,7 @@ function tweenclick()
   // tweenclickToggle?MoveUp():ITEvolution(); 
   // tweenclickToggle = !tweenclickToggle;
 
-  if (repeatAdCtr > repeatAdFns.length)
+  if (repeatAdCtr >= repeatAdFns.length)
     {   repeatAdCtr = 0;  }
   repeatAdFns[repeatAdCtr++]();
 
@@ -424,8 +431,14 @@ function GetFadeInFadeOut(boolFadeIn)
   var mt01 = document.getElementById("LandingBackgroundMsg01");
   var m01 = document.getElementById("LandingMsgPane01");
 
-  var tbigbangClick = new TimelineMax( { paused:true, onStart: function(){tweenclickActive=true;} , onComplete: function(){tweenclickActive=false;} } );
-  
+  var tbigbangClick = new TimelineMax( { 
+                          data:["FadeInFadeOut-"+boolFadeIn], 
+                          onComplete:TlineStartOrComplete, 
+                          onCompleteParams:["{self}", false, function(){tweenclickActive=false;}], 
+                          onStart:TlineStartOrComplete, 
+                          onStartParams:["{self}", true, function(){tweenclickActive=true;}], 
+                          paused:true
+                        } );
   var induration = 0.25; outduration = .25;
   
   if (boolFadeIn)
@@ -454,6 +467,20 @@ function GetFadeInFadeOut(boolFadeIn)
       .to([yel, bh, bl, bt], 0.9, { opacity:1, ease: Back.easeIn.config(1.4) }, "loadingblack+=1.5")
       .to(b, .1, { scale:1, ease: Linear.easeOut }, "loadingblack+=2.101")
       .to(b, 1.4, { opacity:1, ease: Linear.easeOut }, "loadingblack+=2.301")
+
+    // tbigbangClick
+    //   .addLabel("loadingblack")
+    //   // .to([b], 0, { scale:1, opacity:0, force3D:true,  ease: Linear.easeNone }, "loadingblack")
+    //   // .to(b0, 1.0, { scale:1.5, opacity:0.3, force3D:true,  ease: Linear.easeNone }, "loadingblack+=.55")
+    //   // .to([yel, bh, bl, bt], .9, { opacity:1, ease: Back.easeIn.config(1.4) }, "loadingblack+=1.5")
+    //   .fromTo([yel, bh, bl, bt], 0.9, {opacity:0}, {opacity:1}, "loadingblack+=1.5");
+
+    // tbigbangClick
+    //   .addLabel("loadingblack")
+    //   .fromTo([b], 0, { scale:1.5, opacity:0, force3D:true,  ease: Linear.easeNone }, { scale:1, opacity:0, force3D:true,  ease: Linear.easeNone }, "loadingblack")
+    //   .fromTo([yel, bh, bl, bt], 0.9, { opacity:0, ease: Back.easeIn.config(1.4), { opacity:1, ease: Back.easeIn.config(1.4) }, "loadingblack+=1.5")
+    //   .fromTo(b, .1, { scale:1.5, ease: Linear.easeOut }, { scale:1, ease: Linear.easeOut }, "loadingblack+=2.101")
+    //   .to(b, 1.4, { opacity:1, ease: Linear.easeOut }, "loadingblack+=2.301")
   }
   return tbigbangClick;
 }
@@ -668,102 +695,149 @@ window._focusRectAnimation =
                 }
         };
 
+
+
 texts = [
-    [0.9, "FIRST TEXT"],
-    [3.0, "IS TEXT."],
-    [0.9, "First text"],
-    [1.0, "is text."],
-    [0.5, "Second text is"],
-    [2.9, "Ag AaBbCc"],
-    [2.9, "YOU you"],
-    [2.9, "WAR war"],
-    [5.0, "zero. hero?"]
+    [5.0, "There is a War going On..."], /*  mate sc */
+    [0.7, "a"],
+    [1.5, "War"],
+    [0.7, "for"],
+    [2.0, "Talent"],
+    // [5.0, "A war for Talent"],
+    // [5.0, "and, This is Your battle"],
+    // [5.0, "the Question is..."],
+    [1.0, "are"],
+    [1.0, "You"],
+    [5.0, "Battle Ready ?"]
+    // [5.0, "So, are you ready/(trained enough/well) for this battle?"],
+    // [2.9, "So, what is your plan to win Your battle?"]  /*yesteryear looks good here*/
+    // [9.9, "and your plan to win your battle is by flaunting your degree certificate? "]  /*when the time comes for you to face the battle / you are going to face a battle for talent. at the cusp of battle*/
     ];
-window._mgunText = 
-        {
-          createKT : function()
-                {
-                  alert();
-                  // return;
-                      var tl = new TimelineMax({delay:0.6, repeat:-1, repeatDelay:4}), time = 0, word, element, duration, i;
-                      var container = document.getElementById("demo");
-// debugger;
-tl.to([container],0.01,{scale:0.01, ease:SlowMo.ease.config(0.25, 0.9)})
-.to([container],5,{scale:1.2, ease:SlowMo.ease.config(0.25, 0.9)});
-// tl.to([container],5,{fontSize:200});
 
-return;
+t1exts = [
+    [5.0, "There is a War going On..."], /*  mate sc */
+    // [2.5, " "],
+    [2.0, "A war"],
+    // [1.0, "war"],
+    // [1.0, "for"],
+    [2.0, "for Talent"],
+    // [5.0, "A war for Talent"],
+    // [5.0, "and, This is Your battle"],
+    // [5.0, "the Question is..."],
+    [1.0, "are"],
+    [1.0, "YOUyou"],
+    [5.0, "Battle Ready ?"]
+    // [5.0, "So, are you ready/(trained enough/well) for this battle?"],
+    // [2.9, "So, what is your plan to win Your battle?"]  /*yesteryear looks good here*/
+    // [9.9, "and your plan to win your battle is by flaunting your degree certificate? "]  /*when the time comes for you to face the battle / you are going to face a battle for talent. at the cusp of battle*/
+    ];
 
-//http://greensock.com/forums/topic/9173-scaling-an-element-becomes-pixelated/
-// http://caniuse.com/#feat=svg-fonts   svg fonts are deprecated
-// http://caniuse.com/#search=svg
-//http://greensock.com/forums/topic/11895-issue-with-firefox-scroll-performance-and-chrome-svg-rendering/
-//    how to throttle events
-
-                      for(i = 0; i < texts.length; i++)
-                      {
-                          var word = texts[i][1];
-                          element = document.createElement("h3");
-                          container.appendChild(element);
-                          element.appendChild(document.createTextNode(word));
-
-                          duration = Math.max(texts[i][0], word.length * 0.05); //longer words take longer to read, so adjust timing. Minimum of 0.5 seconds.
-                          TweenLite.set(element, {autoAlpha:0, scale:0, z:0.01});
-                          tl.to(element, duration, {scale:1.2,  ease:SlowMo.ease.config(0.25, 0.9)}, time)
-                          .to(element, duration, {autoAlpha:1, ease:SlowMo.ease.config(0.25, 0.9, true)}, time);
-                      
-                          time += duration - 0.05;
-
-                        // alert(texts[i]);
-                      }
-                }
-
-        }
-
-
-function StartFocusRectinLandingPgMgun()
+window._g_createKT_FirstTime = true;
+function createKT()
 {
   var lroot = document.getElementById("landingroot");
   var pstr = document.getElementById("poster");
-  var im = document.getElementById("theim");
+  var cover = document.getElementById('cover');
 
-  var dualcall =  new function()
-                      {
-                        this.call = function ()
-                        {       
-                          {        
-                            lroot.style.display = "none";
-                            tForeverCircleSpin.pause();
-                            document.body.style.backgroundImage = "none"; 
-                        pstr.style.display = "block";                        
+  tweenclickActive=true;
+  _clickCallbacks = function(){};
 
-                            alert("now is the time");
-                            _mgunText.createKT();
-                          }
-                        }
-                      };
+  var getDummyTween = function(seconds)
+                {
+                  var ctr = {val:0};
+                  var thetimeline = new TimelineMax( {data:["dummytween"], onComplete:TlineStartOrComplete, onCompleteParams:["{self}", false], onStart:TlineStartOrComplete, onStartParams:["{self}", true]} );
+                  thetimeline.to(ctr, seconds, {val:1});
+                  return thetimeline;
+                }
 
   var backToLanding = function()
                       {
-                        lroot.style.display = "block";
+                        if (window._g_createKT_FirstTime)
+                        {
+                          lroot.style.display = "block";
+                          var btl = "";
+                          btl = new TimelineMax( { data:["warplanKTShowLanding"], 
+                                                  onComplete:TlineStartOrComplete, 
+                                                  onCompleteParams:["{self}", false], 
+                                                  onStart:TlineStartOrComplete, 
+                                                  onStartParams:["{self}", true],
+                                                 }
+                                              ); 
+                          btl.to(lroot, 5, {opacity:1});
+                          window._g_createKT_FirstTime = false;
+                        }
+                        else
+                        {
+                          var tmx2 = GetFadeInFadeOut(false);
+                          tmx2.play();
+                        }
                         pstr.style.display = "none";                        
+                        cover.style.display = "none";                        
                         tForeverCircleSpin.resume();
-                        tweenclickActive=true;
-                        var tmx2 = GetFadeInFadeOut(false);
-                        tmx2.play();
+                        tweenclickActive=false;
                         _clickCallbacks = null;
                       }
 
-  
-  tweenclickActive=true;
-  var tmx1 = GetFadeInFadeOut(true);
-  tmx1.tweenFromTo( "start",
-                    "finish", 
-                    { onComplete:function()
-                                  {
-                                    document.body.style.backgroundImage = "url('IMG/loading.gif')"; 
-                                    dualcall.call();
-                                  }
-                    }
-                  );
+  var whatsyourplan = function()
+                      {
+                        var tl = "";
+                        tl = new TimelineMax( { data:["warplanKT"], 
+                                                onComplete:TlineStartOrComplete, 
+                                                onCompleteParams:["{self}", false, backToLanding], 
+                                                onStart:TlineStartOrComplete, 
+                                                onStartParams:["{self}", true],
+                                                delay:0.6}
+                                            ); 
+                        var time = 0, word, element, duration, i;
+                        var container = document.getElementById('texter');
+
+                        var fz = window.deviceProperty.browserWidth * (70/900) + "px";
+
+                        tl.to([cover], 2, {backgroundColor:"#111"}, time);
+                        for(i = 0; i < texts.length; i++)
+                        {
+                            var word = texts[i][1];
+
+                            element = document.createElement("h3");
+                            container.appendChild(element);
+                            element.appendChild(document.createTextNode(word));
+                            element.style[ "font-size" ] = fz; 
+                          
+
+                            duration = Math.max(texts[i][0], word.length * 0.05); //longer words take longer to read, so adjust timing. Minimum of 0.5 seconds.
+                            // tl.to([element], duration, {x:500, y:500,  ease:SlowMo.ease.config(0.25, 0.9)}, time)
+                            TweenLite.set([element], {autoAlpha:0, scale:0, z:0.01});
+                            TweenLite.set([element], {xPercent:-50, yPercent:-50} );
+                            tl.to([element], duration, {scale:1.2,  ease:SlowMo.ease.config(0.25, 0.9)}, time)
+                              // .to([element], duration, {borderRightWidth:30}, time)
+                              // .to([element], duration, {borderLeftWidth:30}, time)
+                              .fromTo([element], duration, {lineHeight:"90%", ease:Back.easeInOut}, {lineHeight:"104%", ease:Back.easeInOut}, time)
+                              .to([element], duration, {autoAlpha:1, ease:SlowMo.ease.config(0.25, 0.9, true)}, time);
+                        
+                            time += duration - 0.05;
+
+                        }
+                        tl.add(getDummyTween(1));
+                        tl.to([cover], 2, {backgroundColor:"#000000", ease: Circ.easeIn}, time);
+                        
+                        cover.style.display = "table";
+                      }
+  if (window._g_createKT_FirstTime)
+  {
+      whatsyourplan();
+  }
+  else
+  {
+    var tmx1 = GetFadeInFadeOut(true);
+    tmx1.tweenFromTo( "start",
+                      "finish", 
+                      { onComplete:function()
+                                    {
+                                      // document.body.style.backgroundImage = "url('IMG/loading.gif')"; 
+                                      whatsyourplan();
+                                    }
+                      }
+                    );
+  }
+
 }
