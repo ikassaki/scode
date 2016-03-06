@@ -246,8 +246,8 @@ function tween4()
 }
 
 
-window.repeatAdFns = [createKT, ads1, ads12];
-// window.repeatAdFns = [createKT, ITEvolution, ads1, ads2, ads3, ads4, ads5, ads6, ads7, ads8, ads9, ads10, ads11, ads12];
+//window.repeatAdFns = [createKT, ads1, ads12];
+window.repeatAdFns = [createKT, ITEvolution, ads1, ads2, ads3, ads4, ads5, ads6, ads7, ads8, ads9, ads10, ads11, ads12];
 window.repeatAdCtr = 0;
 window.tweenclickToggle = false;
 function tweenclick()
@@ -703,12 +703,14 @@ texts = [
     [1.5, "War"],
     [0.7, "for"],
     [2.0, "Talent"],
+    [1.5, " "],
     // [5.0, "A war for Talent"],
     // [5.0, "and, This is Your battle"],
     // [5.0, "the Question is..."],
-    [1.0, "are"],
-    [1.0, "You"],
-    [5.0, "Battle Ready ?"]
+    [1.5, "So,"],
+    [1.0, "What"],
+    [0.7, "is"],
+    [5.0, "Your battle plan ?"]
     // [5.0, "So, are you ready/(trained enough/well) for this battle?"],
     // [2.9, "So, what is your plan to win Your battle?"]  /*yesteryear looks good here*/
     // [9.9, "and your plan to win your battle is by flaunting your degree certificate? "]  /*when the time comes for you to face the battle / you are going to face a battle for talent. at the cusp of battle*/
