@@ -430,6 +430,7 @@ function GetFadeInFadeOut(boolFadeIn)
   var tp01 = document.getElementById("LandingTagPane01");
   var mt01 = document.getElementById("LandingBackgroundMsg01");
   var m01 = document.getElementById("LandingMsgPane01");
+  var svgicos = document.getElementById("svgTechIcons_Layer_1"); 
 
   var tbigbangClick = new TimelineMax( { 
                           data:["FadeInFadeOut-"+boolFadeIn], 
@@ -452,7 +453,7 @@ function GetFadeInFadeOut(boolFadeIn)
       .to(b, outduration, { scale:1, ease: Back.easeOut.config(1.4) }, "end")
       .to([yel, bl], outduration, { scale:1, ease: Linear.easeNone }, "end")
       .addLabel("vanishLogo")
-      .to([yel, bl, bt, bh], 1, { opacity:0, force3D:true, ease: Linear.easeNone }, "vanishLogo")
+      .to([yel, bl, bt, bh, svgicos], 1, { opacity:0, force3D:true, ease: Linear.easeNone }, "vanishLogo")
       // .to(b0, 0.1, { scale:0.2, opacity:0, force3D:true, ease: Linear.easeNone }, "vanishLogo")
       .to(b, 1.5, { scale:1.5, opacity:0, force3D:true,  ease: Linear.easeNone }, "vanishLogo+=1.05")
       .addLabel("loadingblack2")
@@ -464,7 +465,7 @@ function GetFadeInFadeOut(boolFadeIn)
       .addLabel("loadingblack")
       .to([b], 0, { scale:1, opacity:0, force3D:true,  ease: Linear.easeNone }, "loadingblack")
       // .to(b0, 1.0, { scale:1.5, opacity:0.3, force3D:true,  ease: Linear.easeNone }, "loadingblack+=.55")
-      .to([yel, bh, bl, bt], 0.9, { opacity:1, ease: Back.easeIn.config(1.4) }, "loadingblack+=1.5")
+      .to([yel, bh, bl, bt, svgicos], 0.9, { opacity:1, ease: Back.easeIn.config(1.4) }, "loadingblack+=1.5")
       .to(b, .1, { scale:1, ease: Linear.easeOut }, "loadingblack+=2.101")
       .to(b, 1.4, { opacity:1, ease: Linear.easeOut }, "loadingblack+=2.301")
 
@@ -824,6 +825,7 @@ function createKT()
                         
                         cover.style.display = "table";
                       }
+  tForeverCircleSpin.pause();
   if (window._g_createKT_FirstTime)
   {
       whatsyourplan();
