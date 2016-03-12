@@ -1,0 +1,394 @@
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <!-- http://www.quirksmode.org/blog/archives/2013/10/initialscale1_m.html -->
+  <meta name='viewport' content='height=device-height, width=device-width, initial-scale=1' > 
+<script type="text/javascript">
+	window.g_t = 0; try { g_t = new Date().getTime();   } catch(e) {;} 
+
+	// START******************** markr.js ************************
+	// https://gist.github.com/pmeenan/5902672; https://github.com/nicjansma/usertiming.js/blob/master/src/usertiming.js
+	try
+	{
+		window.marks || (window.marks = []);
+		window.performance || (window.performance = {});
+		window._perfRefForUserTimingPolyfill = window.performance;
+		window.performance.now || (window.performance.now = performance.now || performance.webkitNow || performance.msNow || performance.mozNow);
+		if (!window.performance.now)
+		  {
+		    var s = Date.now ? Date.now() : +(new Date());
+		    if (performance.timing && performance.timing.navigationStart)
+		      s = performance.timing.navigationStart;
+		    window.performance.now = (function(){
+		      	var n = Date.now ? Date.now() : +(new Date());
+		      	return n-s;  // will this "s" be captured in closure throughout the web page ?
+		      });
+		  }
+	} catch(e) {;}
+
+	function markR(label) {
+		try { marks.push( { name:label, time:window.performance.now() } ); } catch(e) {alert("<<"+e.message);;}
+	}
+	markR("markR init");
+	// END******************** markr.js ************************
+
+
+
+
+
+
+	function replaceHelper(cntxt, source)
+	{
+		var retval = source;
+		for (var key in cntxt)
+		{
+			retval = retval.split("{{"+key+"}}").join(""+cntxt[key]);
+		}
+		return (retval);
+	}
+
+
+</script>
+
+
+<script type="text/javascript">
+
+	var scriptinsert = "<script src=\"markr.js\"  type=\"text/javascript\"><\/script>";
+	scriptinsert += "<script src=\"https://zvncyxu6t5.execute-api.us-east-1.amazonaws.com/WEB/getUQ\"  id=\"getUQresponse\" type=\"text/javascript\"><\/script>";
+	scriptinsert += "<script src=\"client.min.js\"  type=\"text/javascript\"><\/script>";
+	scriptinsert += "<script type=\"text/javascript\">markR('client.min.js script loaded');<\/script>";
+	scriptinsert += "<script src=\"plugin-detect-0.6.3.js\"  type=\"text/javascript\"><\/script>";
+	scriptinsert += "<script type=\"text/javascript\">markR('plugin-detect-0.6.3.js script loaded');<\/script>";
+	scriptinsert += "<script src=\"base64.js\"  type=\"text/javascript\"><\/script>";
+	scriptinsert += "<script type=\"text/javascript\">markR('base64.js script loaded');<\/script>";
+	scriptinsert += "<script src=\"sniff.js\"  type=\"text/javascript\"><\/script>";
+	scriptinsert += "<script type=\"text/javascript\">markR('sniff.js script loaded');<\/script>";
+	scriptinsert += "<script src=\"http://cdnjs.cloudflare.com/ajax/libs/gsap/1.17.0/TweenMax.min.js\"  type=\"text/javascript\"><\/script>";
+	scriptinsert += "<script type=\"text/javascript\">markR('tweenlite.js script loaded');<\/script>";
+
+
+</script>
+
+<script id="entry-template_Landscape" type="text/x-handlebars-template">
+
+	<html>
+	<meta name='viewport' content='height={{heightVp}}, width={{widthVp}}, initial-scale={{scaleVp}}, minimum-scale={{scaleVp}}, maximum-scale={{scaleVp}}, target-densitydpi=device-dpi'> 
+	<head>
+		<style type="text/css">
+			body 
+			{
+			    overflow:hidden;
+			    background-color: black;//#282828;
+			}
+		</style>
+		
+	</head>
+	<body onload='EnumProperties()'>
+		<div class="entry">
+		<div class="body">
+		
+			<img src="BG/LandscapeLanding_{{width}}px.jpg " id="Landing" onload="markR('LandscapeLanding_{{width}}px.jpg')" style="border: 0px solid red; position:absolute; left:{{absXimgBG}}px; top:{{absYimgBG}}px"> 		  
+			<img src="BG/LandscapeLandingTag_{{widthTag}}px.png " id="LandingTag" onload="markR('LandscapeLandingTag_{{widthTag}}px.png')" style="border: 0px solid red; position:absolute; left:{{absXimgTag}}px; top:{{absYimgTag}}px"> 		  
+			<img src="BG/LandscapeLandingBH_{{widthTag}}px.png " id="LandingBH" onload="markR('LandscapeLandingBH_{{widthTag}}px.png')" style="border: 0px solid red; position:absolute; left:{{absXimgTag}}px; top:{{absYimgTag}}px"> 		  
+			<img src="BG/LandscapeLandingCiY_{{widthTag}}px.png " id="LandingCiY" onload="markR('LandscapeLandingCiY_{{widthTag}}px.png')" style="border: 0px solid red; position:absolute; left:{{absXimgTag}}px; top:{{absYimgTag}}px"> 		  
+			<img src="BG/LandscapeLandingLog_{{widthTag}}px.png " id="LandingLog" onload="markR('LandscapeLandingLog_{{widthTag}}px.png')" style="border: 0px solid red; position:absolute; left:{{absXimgTag}}px; top:{{absYimgTag}}px"> 	
+		
+		</div>
+		</div>
+		<div style="display:none; position:absolute">
+			<form name="forms" id="forms" action="https://3ryc98qghb.execute-api.us-east-1.amazonaws.com/WEB/sniff" method="POST" target="jsonp_iframe">
+				<textarea rows="10" cols="40" name="sniff" id="sniff">NoDat</textarea>
+			</form>
+			<iframe name="jsonp_iframe" id="jsonp_iframe"></iframe>
+		</div>
+		{{scriptSrc}}
+	</body>
+	</html>
+
+</script>
+
+<script id="entry-template_Portrait" type="text/x-handlebars-template">
+
+	<html>
+	<meta name='viewport' content='height={{heightVp}}, width={{widthVp}}, initial-scale={{scaleVp}}, minimum-scale={{scaleVp}}, maximum-scale={{scaleVp}}, target-densitydpi=device-dpi '> 
+	<head>
+		<style type="text/css">
+			body 
+			{
+			    overflow:hidden;
+			    background-color: black;//#282828;
+			}
+		</style>
+		
+	</head>
+	<body onload='EnumProperties()'>
+		<div class="entry">
+		<div class="body">
+
+			<img src="BG/PortraitLanding_{{height}}px.jpg " id="Landing" onload="markR('PortraitLanding_{{height}}px.jpg')" style="border: 0px solid red; position:absolute; left:{{absXimgBG}}px; top:{{absYimgBG}}px"> 		  
+			<img src="BG/PortraitLandingBH_{{heightTag}}px.png " id="LandingBH" onload="markR('PortraitLandingBH_{{heightTag}}px.png')" style="border: 0px solid red; position:absolute; left:{{absXimgTag}}px; top:{{absYimgTag}}px"> 		  
+			<img src="BG/PortraitLandingTag_{{heightTag}}px.png " id="LandingTag" onload="markR('PortraitLandingTag_{{heightTag}}px.png')" style="border: 0px solid red; position:absolute; left:{{absXimgTag}}px; top:{{absYimgTag}}px"> 		  
+			<img src="BG/PortraitLandingCiY_{{heightTag}}px.png " id="LandingCiY" onload="markR('PortraitLandingCiY_{{heightTag}}px.png')" style="border: 0px solid red; position:absolute; left:{{absXimgTag}}px; top:{{absYimgTag}}px"> 		  
+			<img src="BG/PortraitLandingLog_{{heightTag}}px.png " id="LandingLog" onload="markR('PortraitLandingLog_{{heightTag}}px.png')" style="border: 0px solid red; position:absolute; left:{{absXimgTag}}px; top:{{absYimgTag}}px"> 	
+		<!--<img src="testi{{widthVp}}.jpg" id="myDiv" style="position:absolute; left:0; top:0;" />	  -->
+		</div>
+		</div>
+		<div style="display:none; position:absolute">
+			<form name="forms" id="forms" action="https://3ryc98qghb.execute-api.us-east-1.amazonaws.com/WEB/sniff" method="POST" target="jsonp_iframe">
+				<textarea rows="10" cols="40" name="sniff" id="sniff">NoDat</textarea>
+			</form>
+			<iframe name="jsonp_iframe" id="jsonp_iframe"></iframe>
+		</div>
+		{{scriptSrc}}
+	</body>
+	</html>
+
+</script>
+
+
+<script type="text/javascript">
+
+/**
+* UAParser.js v0.7.3
+* Lightweight JavaScript-based User-Agent string parser
+* https://github.com/faisalman/ua-parser-js
+*
+* Copyright © 2012-2014 Faisal Salman <fyzlman@gmail.com>
+* Dual licensed under GPLv2 & MIT
+*/
+(function(window,undefined){"use strict";var LIBVERSION="0.7.3",EMPTY="",UNKNOWN="?",FUNC_TYPE="function",UNDEF_TYPE="undefined",OBJ_TYPE="object",MAJOR="major",MODEL="model",NAME="name",TYPE="type",VENDOR="vendor",VERSION="version",ARCHITECTURE="architecture",CONSOLE="console",MOBILE="mobile",TABLET="tablet",SMARTTV="smarttv",WEARABLE="wearable",EMBEDDED="embedded";var util={extend:function(regexes,extensions){for(var i in extensions){if("browser cpu device engine os".indexOf(i)!==-1&&extensions[i].length%2===0){regexes[i]=extensions[i].concat(regexes[i])}}return regexes},has:function(str1,str2){if(typeof str1==="string"){return str2.toLowerCase().indexOf(str1.toLowerCase())!==-1}},lowerize:function(str){return str.toLowerCase()}};var mapper={rgx:function(){var result,i=0,j,k,p,q,matches,match,args=arguments;while(i<args.length&&!matches){var regex=args[i],props=args[i+1];if(typeof result===UNDEF_TYPE){result={};for(p in props){q=props[p];if(typeof q===OBJ_TYPE){result[q[0]]=undefined}else{result[q]=undefined}}}j=k=0;while(j<regex.length&&!matches){matches=regex[j++].exec(this.getUA());if(!!matches){for(p=0;p<props.length;p++){match=matches[++k];q=props[p];if(typeof q===OBJ_TYPE&&q.length>0){if(q.length==2){if(typeof q[1]==FUNC_TYPE){result[q[0]]=q[1].call(this,match)}else{result[q[0]]=q[1]}}else if(q.length==3){if(typeof q[1]===FUNC_TYPE&&!(q[1].exec&&q[1].test)){result[q[0]]=match?q[1].call(this,match,q[2]):undefined}else{result[q[0]]=match?match.replace(q[1],q[2]):undefined}}else if(q.length==4){result[q[0]]=match?q[3].call(this,match.replace(q[1],q[2])):undefined}}else{result[q]=match?match:undefined}}}}i+=2}return result},str:function(str,map){for(var i in map){if(typeof map[i]===OBJ_TYPE&&map[i].length>0){for(var j=0;j<map[i].length;j++){if(util.has(map[i][j],str)){return i===UNKNOWN?undefined:i}}}else if(util.has(map[i],str)){return i===UNKNOWN?undefined:i}}return str}};var maps={browser:{oldsafari:{major:{1:["/8","/1","/3"],2:"/4","?":"/"},version:{"1.0":"/8",1.2:"/1",1.3:"/3","2.0":"/412","2.0.2":"/416","2.0.3":"/417","2.0.4":"/419","?":"/"}}},device:{amazon:{model:{"Fire Phone":["SD","KF"]}},sprint:{model:{"Evo Shift 4G":"7373KT"},vendor:{HTC:"APA",Sprint:"Sprint"}}},os:{windows:{version:{ME:"4.90","NT 3.11":"NT3.51","NT 4.0":"NT4.0",2000:"NT 5.0",XP:["NT 5.1","NT 5.2"],Vista:"NT 6.0",7:"NT 6.1",8:"NT 6.2",8.1:"NT 6.3",10:"NT 6.4",RT:"ARM"}}}};var regexes={browser:[[/(opera\smini)\/((\d+)?[\w\.-]+)/i,/(opera\s[mobiletab]+).+version\/((\d+)?[\w\.-]+)/i,/(opera).+version\/((\d+)?[\w\.]+)/i,/(opera)[\/\s]+((\d+)?[\w\.]+)/i],[NAME,VERSION,MAJOR],[/\s(opr)\/((\d+)?[\w\.]+)/i],[[NAME,"Opera"],VERSION,MAJOR],[/(kindle)\/((\d+)?[\w\.]+)/i,/(lunascape|maxthon|netfront|jasmine|blazer)[\/\s]?((\d+)?[\w\.]+)*/i,/(avant\s|iemobile|slim|baidu)(?:browser)?[\/\s]?((\d+)?[\w\.]*)/i,/(?:ms|\()(ie)\s((\d+)?[\w\.]+)/i,/(rekonq)((?:\/)[\w\.]+)*/i,/(chromium|flock|rockmelt|midori|epiphany|silk|skyfire|ovibrowser|bolt|iron)\/((\d+)?[\w\.-]+)/i],[NAME,VERSION,MAJOR],[/(trident).+rv[:\s]((\d+)?[\w\.]+).+like\sgecko/i],[[NAME,"IE"],VERSION,MAJOR],[/(yabrowser)\/((\d+)?[\w\.]+)/i],[[NAME,"Yandex"],VERSION,MAJOR],[/(comodo_dragon)\/((\d+)?[\w\.]+)/i],[[NAME,/_/g," "],VERSION,MAJOR],[/(chrome|omniweb|arora|[tizenoka]{5}\s?browser)\/v?((\d+)?[\w\.]+)/i,/(uc\s?browser|qqbrowser)[\/\s]?((\d+)?[\w\.]+)/i],[NAME,VERSION,MAJOR],[/(dolfin)\/((\d+)?[\w\.]+)/i],[[NAME,"Dolphin"],VERSION,MAJOR],[/((?:android.+)crmo|crios)\/((\d+)?[\w\.]+)/i],[[NAME,"Chrome"],VERSION,MAJOR],[/version\/((\d+)?[\w\.]+).+?mobile\/\w+\s(safari)/i],[VERSION,MAJOR,[NAME,"Mobile Safari"]],[/version\/((\d+)?[\w\.]+).+?(mobile\s?safari|safari)/i],[VERSION,MAJOR,NAME],[/webkit.+?(mobile\s?safari|safari)((\/[\w\.]+))/i],[NAME,[MAJOR,mapper.str,maps.browser.oldsafari.major],[VERSION,mapper.str,maps.browser.oldsafari.version]],[/(konqueror)\/((\d+)?[\w\.]+)/i,/(webkit|khtml)\/((\d+)?[\w\.]+)/i],[NAME,VERSION,MAJOR],[/(navigator|netscape)\/((\d+)?[\w\.-]+)/i],[[NAME,"Netscape"],VERSION,MAJOR],[/(swiftfox)/i,/(icedragon|iceweasel|camino|chimera|fennec|maemo\sbrowser|minimo|conkeror)[\/\s]?((\d+)?[\w\.\+]+)/i,/(firefox|seamonkey|k-meleon|icecat|iceape|firebird|phoenix)\/((\d+)?[\w\.-]+)/i,/(mozilla)\/((\d+)?[\w\.]+).+rv\:.+gecko\/\d+/i,/(polaris|lynx|dillo|icab|doris|amaya|w3m|netsurf)[\/\s]?((\d+)?[\w\.]+)/i,/(links)\s\(((\d+)?[\w\.]+)/i,/(gobrowser)\/?((\d+)?[\w\.]+)*/i,/(ice\s?browser)\/v?((\d+)?[\w\._]+)/i,/(mosaic)[\/\s]((\d+)?[\w\.]+)/i],[NAME,VERSION,MAJOR]],cpu:[[/(?:(amd|x(?:(?:86|64)[_-])?|wow|win)64)[;\)]/i],[[ARCHITECTURE,"amd64"]],[/(ia32(?=;))/i],[[ARCHITECTURE,util.lowerize]],[/((?:i[346]|x)86)[;\)]/i],[[ARCHITECTURE,"ia32"]],[/windows\s(ce|mobile);\sppc;/i],[[ARCHITECTURE,"arm"]],[/((?:ppc|powerpc)(?:64)?)(?:\smac|;|\))/i],[[ARCHITECTURE,/ower/,"",util.lowerize]],[/(sun4\w)[;\)]/i],[[ARCHITECTURE,"sparc"]],[/((?:avr32|ia64(?=;))|68k(?=\))|arm(?:64|(?=v\d+;))|(?=atmel\s)avr|(?:irix|mips|sparc)(?:64)?(?=;)|pa-risc)/i],[[ARCHITECTURE,util.lowerize]]],device:[[/\((ipad|playbook);[\w\s\);-]+(rim|apple)/i],[MODEL,VENDOR,[TYPE,TABLET]],[/applecoremedia\/[\w\.]+ \((ipad)/],[MODEL,[VENDOR,"Apple"],[TYPE,TABLET]],[/(apple\s{0,1}tv)/i],[[MODEL,"Apple TV"],[VENDOR,"Apple"]],[/(archos)\s(gamepad2?)/i,/(hp).+(touchpad)/i,/(kindle)\/([\w\.]+)/i,/\s(nook)[\w\s]+build\/(\w+)/i,/(dell)\s(strea[kpr\s\d]*[\dko])/i],[VENDOR,MODEL,[TYPE,TABLET]],[/(kf[A-z]+)\sbuild\/[\w\.]+.*silk\//i],[MODEL,[VENDOR,"Amazon"],[TYPE,TABLET]],[/(sd|kf)[0349hijorstuw]+\sbuild\/[\w\.]+.*silk\//i],[[MODEL,mapper.str,maps.device.amazon.model],[VENDOR,"Amazon"],[TYPE,MOBILE]],[/\((ip[honed|\s\w*]+);.+(apple)/i],[MODEL,VENDOR,[TYPE,MOBILE]],[/\((ip[honed|\s\w*]+);/i],[MODEL,[VENDOR,"Apple"],[TYPE,MOBILE]],[/(blackberry)[\s-]?(\w+)/i,/(blackberry|benq|palm(?=\-)|sonyericsson|acer|asus|dell|huawei|meizu|motorola|polytron)[\s_-]?([\w-]+)*/i,/(hp)\s([\w\s]+\w)/i,/(asus)-?(\w+)/i],[VENDOR,MODEL,[TYPE,MOBILE]],[/\(bb10;\s(\w+)/i],[MODEL,[VENDOR,"BlackBerry"],[TYPE,MOBILE]],[/android.+(transfo[prime\s]{4,10}\s\w+|eeepc|slider\s\w+|nexus 7)/i],[MODEL,[VENDOR,"Asus"],[TYPE,TABLET]],[/(sony)\s(tablet\s[ps])/i],[VENDOR,MODEL,[TYPE,TABLET]],[/\s(ouya)\s/i,/(nintendo)\s([wids3u]+)/i],[VENDOR,MODEL,[TYPE,CONSOLE]],[/android.+;\s(shield)\sbuild/i],[MODEL,[VENDOR,"Nvidia"],[TYPE,CONSOLE]],[/(playstation\s[3portablevi]+)/i],[MODEL,[VENDOR,"Sony"],[TYPE,CONSOLE]],[/(sprint\s(\w+))/i],[[VENDOR,mapper.str,maps.device.sprint.vendor],[MODEL,mapper.str,maps.device.sprint.model],[TYPE,MOBILE]],[/(lenovo)\s?(S(?:5000|6000)+(?:[-][\w+]))/i],[VENDOR,MODEL,[TYPE,TABLET]],[/(htc)[;_\s-]+([\w\s]+(?=\))|\w+)*/i,/(zte)-(\w+)*/i,/(alcatel|geeksphone|huawei|lenovo|nexian|panasonic|(?=;\s)sony)[_\s-]?([\w-]+)*/i],[VENDOR,[MODEL,/_/g," "],[TYPE,MOBILE]],[/[\s\(;](xbox(?:\sone)?)[\s\);]/i],[MODEL,[VENDOR,"Microsoft"],[TYPE,CONSOLE]],[/(kin\.[onetw]{3})/i],[[MODEL,/\./g," "],[VENDOR,"Microsoft"],[TYPE,MOBILE]],[/\s((milestone|droid(?:[2-4x]|\s(?:bionic|x2|pro|razr))?(:?\s4g)?))[\w\s]+build\//i,/(mot)[\s-]?(\w+)*/i],[[VENDOR,"Motorola"],MODEL,[TYPE,MOBILE]],[/android.+\s(mz60\d|xoom[\s2]{0,2})\sbuild\//i],[MODEL,[VENDOR,"Motorola"],[TYPE,TABLET]],[/android.+((sch-i[89]0\d|shw-m380s|gt-p\d{4}|gt-n8000|sgh-t8[56]9|nexus 10))/i,/((SM-T\w+))/i],[[VENDOR,"Samsung"],MODEL,[TYPE,TABLET]],[/((s[cgp]h-\w+|gt-\w+|galaxy\snexus|sm-n900))/i,/(sam[sung]*)[\s-]*(\w+-?[\w-]*)*/i,/sec-((sgh\w+))/i],[[VENDOR,"Samsung"],MODEL,[TYPE,MOBILE]],[/(samsung);smarttv/i],[VENDOR,MODEL,[TYPE,SMARTTV]],[/\(dtv[\);].+(aquos)/i],[MODEL,[VENDOR,"Sharp"],[TYPE,SMARTTV]],[/sie-(\w+)*/i],[MODEL,[VENDOR,"Siemens"],[TYPE,MOBILE]],[/(maemo|nokia).*(n900|lumia\s\d+)/i,/(nokia)[\s_-]?([\w-]+)*/i],[[VENDOR,"Nokia"],MODEL,[TYPE,MOBILE]],[/android\s3\.[\s\w-;]{10}(a\d{3})/i],[MODEL,[VENDOR,"Acer"],[TYPE,TABLET]],[/android\s3\.[\s\w-;]{10}(lg?)-([06cv9]{3,4})/i],[[VENDOR,"LG"],MODEL,[TYPE,TABLET]],[/(lg) netcast\.tv/i],[VENDOR,MODEL,[TYPE,SMARTTV]],[/(nexus\s[45])/i,/lg[e;\s\/-]+(\w+)*/i],[MODEL,[VENDOR,"LG"],[TYPE,MOBILE]],[/android.+(ideatab[a-z0-9\-\s]+)/i],[MODEL,[VENDOR,"Lenovo"],[TYPE,TABLET]],[/linux;.+((jolla));/i],[VENDOR,MODEL,[TYPE,MOBILE]],[/((pebble))app\/[\d\.]+\s/i],[VENDOR,MODEL,[TYPE,WEARABLE]],[/android.+;\s(glass)\s\d/i],[MODEL,[VENDOR,"Google"],[TYPE,WEARABLE]],[/(mobile|tablet);.+rv\:.+gecko\//i],[[TYPE,util.lowerize],VENDOR,MODEL]],engine:[[/(presto)\/([\w\.]+)/i,/(webkit|trident|netfront|netsurf|amaya|lynx|w3m)\/([\w\.]+)/i,/(khtml|tasman|links)[\/\s]\(?([\w\.]+)/i,/(icab)[\/\s]([23]\.[\d\.]+)/i],[NAME,VERSION],[/rv\:([\w\.]+).*(gecko)/i],[VERSION,NAME]],os:[[/microsoft\s(windows)\s(vista|xp)/i],[NAME,VERSION],[/(windows)\snt\s6\.2;\s(arm)/i,/(windows\sphone(?:\sos)*|windows\smobile|windows)[\s\/]?([ntce\d\.\s]+\w)/i],[NAME,[VERSION,mapper.str,maps.os.windows.version]],[/(win(?=3|9|n)|win\s9x\s)([nt\d\.]+)/i],[[NAME,"Windows"],[VERSION,mapper.str,maps.os.windows.version]],[/\((bb)(10);/i],[[NAME,"BlackBerry"],VERSION],[/(blackberry)\w*\/?([\w\.]+)*/i,/(tizen)[\/\s]([\w\.]+)/i,/(android|webos|palm\os|qnx|bada|rim\stablet\sos|meego|contiki)[\/\s-]?([\w\.]+)*/i,/linux;.+(sailfish);/i],[NAME,VERSION],[/(symbian\s?os|symbos|s60(?=;))[\/\s-]?([\w\.]+)*/i],[[NAME,"Symbian"],VERSION],[/\((series40);/i],[NAME],[/mozilla.+\(mobile;.+gecko.+firefox/i],[[NAME,"Firefox OS"],VERSION],[/(nintendo|playstation)\s([wids3portablevu]+)/i,/(mint)[\/\s\(]?(\w+)*/i,/(mageia|vectorlinux)[;\s]/i,/(joli|[kxln]?ubuntu|debian|[open]*suse|gentoo|arch|slackware|fedora|mandriva|centos|pclinuxos|redhat|zenwalk|linpus)[\/\s-]?([\w\.-]+)*/i,/(hurd|linux)\s?([\w\.]+)*/i,/(gnu)\s?([\w\.]+)*/i],[NAME,VERSION],[/(cros)\s[\w]+\s([\w\.]+\w)/i],[[NAME,"Chromium OS"],VERSION],[/(sunos)\s?([\w\.]+\d)*/i],[[NAME,"Solaris"],VERSION],[/\s([frentopc-]{0,4}bsd|dragonfly)\s?([\w\.]+)*/i],[NAME,VERSION],[/(ip[honead]+)(?:.*os\s*([\w]+)*\slike\smac|;\sopera)/i],[[NAME,"iOS"],[VERSION,/_/g,"."]],[/(mac\sos\sx)\s?([\w\s\.]+\w)*/i,/(macintosh|mac(?=_powerpc)\s)/i],[[NAME,"Mac OS"],[VERSION,/_/g,"."]],[/((?:open)?solaris)[\/\s-]?([\w\.]+)*/i,/(haiku)\s(\w+)/i,/(aix)\s((\d)(?=\.|\)|\s)[\w\.]*)*/i,/(plan\s9|minix|beos|os\/2|amigaos|morphos|risc\sos|openvms)/i,/(unix)\s?([\w\.]+)*/i],[NAME,VERSION]]};var UAParser=function(uastring,extensions){if(!(this instanceof UAParser)){return new UAParser(uastring,extensions).getResult()}var ua=uastring||(window&&window.navigator&&window.navigator.userAgent?window.navigator.userAgent:EMPTY);var rgxmap=extensions?util.extend(regexes,extensions):regexes;this.getBrowser=function(){return mapper.rgx.apply(this,rgxmap.browser)};this.getCPU=function(){return mapper.rgx.apply(this,rgxmap.cpu)};this.getDevice=function(){return mapper.rgx.apply(this,rgxmap.device)};this.getEngine=function(){return mapper.rgx.apply(this,rgxmap.engine)};this.getOS=function(){return mapper.rgx.apply(this,rgxmap.os)};this.getResult=function(){return{ua:this.getUA(),browser:this.getBrowser(),engine:this.getEngine(),os:this.getOS(),device:this.getDevice(),cpu:this.getCPU()}};this.getUA=function(){return ua};this.setUA=function(uastring){ua=uastring;return this};this.setUA(ua)};UAParser.VERSION=LIBVERSION;UAParser.BROWSER={NAME:NAME,MAJOR:MAJOR,VERSION:VERSION};UAParser.CPU={ARCHITECTURE:ARCHITECTURE};UAParser.DEVICE={MODEL:MODEL,VENDOR:VENDOR,TYPE:TYPE,CONSOLE:CONSOLE,MOBILE:MOBILE,SMARTTV:SMARTTV,TABLET:TABLET,WEARABLE:WEARABLE,EMBEDDED:EMBEDDED};UAParser.ENGINE={NAME:NAME,VERSION:VERSION};UAParser.OS={NAME:NAME,VERSION:VERSION};if(typeof exports!==UNDEF_TYPE){if(typeof module!==UNDEF_TYPE&&module.exports){exports=module.exports=UAParser}exports.UAParser=UAParser}else{window.UAParser=UAParser;if(typeof define===FUNC_TYPE&&define.amd){define(function(){return UAParser})}var $=window.jQuery||window.Zepto;if(typeof $!==UNDEF_TYPE){var parser=new UAParser;$.ua=parser.getResult();$.ua.get=function(){return parser.getUA()};$.ua.set=function(uastring){parser.setUA(uastring);var result=parser.getResult();for(var prop in result){$.ua[prop]=result[prop]}}}}})(this);
+
+
+
+
+// Anonymous auto JavaScript function execution.
+(function (scope) {
+    'use strict';
+
+    // Global user agent browser object.
+    var browserData;
+
+    // ClientJS constructor which sets the browserData object and returs the client object.
+    var ClientJS = function () {
+        var parser = new UAParser();
+        browserData = parser.getResult();
+        return this;
+    };
+
+    // ClientJS prototype which contains all methods.
+    ClientJS.prototype = {
+
+        // Is Mobile.  Check if the browser is on a mobile device.
+        isMobile: function () {
+            // detectmobilebrowsers.com JavaScript Mobile Detection Script
+            var dataString = browserData.ua||navigator.vendor||window.opera;
+            return (/(android|bb\d+|meego).+mobile|avantgo|bada\/|blackberry|blazer|compal|elaine|fennec|hiptop|iemobile|ip(hone|od)|iris|kindle|lge |maemo|midp|mmp|mobile.+firefox|netfront|opera m(ob|in)i|palm( os)?|phone|p(ixi|re)\/|plucker|pocket|psp|series(4|6)0|symbian|treo|up\.(browser|link)|vodafone|wap|windows (ce|phone)|xda|xiino/i.test(dataString) || /1207|6310|6590|3gso|4thp|50[1-6]i|770s|802s|a wa|abac|ac(er|oo|s\-)|ai(ko|rn)|al(av|ca|co)|amoi|an(ex|ny|yw)|aptu|ar(ch|go)|as(te|us)|attw|au(di|\-m|r |s )|avan|be(ck|ll|nq)|bi(lb|rd)|bl(ac|az)|br(e|v)w|bumb|bw\-(n|u)|c55\/|capi|ccwa|cdm\-|cell|chtm|cldc|cmd\-|co(mp|nd)|craw|da(it|ll|ng)|dbte|dc\-s|devi|dica|dmob|do(c|p)o|ds(12|\-d)|el(49|ai)|em(l2|ul)|er(ic|k0)|esl8|ez([4-7]0|os|wa|ze)|fetc|fly(\-|_)|g1 u|g560|gene|gf\-5|g\-mo|go(\.w|od)|gr(ad|un)|haie|hcit|hd\-(m|p|t)|hei\-|hi(pt|ta)|hp( i|ip)|hs\-c|ht(c(\-| |_|a|g|p|s|t)|tp)|hu(aw|tc)|i\-(20|go|ma)|i230|iac( |\-|\/)|ibro|idea|ig01|ikom|im1k|inno|ipaq|iris|ja(t|v)a|jbro|jemu|jigs|kddi|keji|kgt( |\/)|klon|kpt |kwc\-|kyo(c|k)|le(no|xi)|lg( g|\/(k|l|u)|50|54|\-[a-w])|libw|lynx|m1\-w|m3ga|m50\/|ma(te|ui|xo)|mc(01|21|ca)|m\-cr|me(rc|ri)|mi(o8|oa|ts)|mmef|mo(01|02|bi|de|do|t(\-| |o|v)|zz)|mt(50|p1|v )|mwbp|mywa|n10[0-2]|n20[2-3]|n30(0|2)|n50(0|2|5)|n7(0(0|1)|10)|ne((c|m)\-|on|tf|wf|wg|wt)|nok(6|i)|nzph|o2im|op(ti|wv)|oran|owg1|p800|pan(a|d|t)|pdxg|pg(13|\-([1-8]|c))|phil|pire|pl(ay|uc)|pn\-2|po(ck|rt|se)|prox|psio|pt\-g|qa\-a|qc(07|12|21|32|60|\-[2-7]|i\-)|qtek|r380|r600|raks|rim9|ro(ve|zo)|s55\/|sa(ge|ma|mm|ms|ny|va)|sc(01|h\-|oo|p\-)|sdk\/|se(c(\-|0|1)|47|mc|nd|ri)|sgh\-|shar|sie(\-|m)|sk\-0|sl(45|id)|sm(al|ar|b3|it|t5)|so(ft|ny)|sp(01|h\-|v\-|v )|sy(01|mb)|t2(18|50)|t6(00|10|18)|ta(gt|lk)|tcl\-|tdg\-|tel(i|m)|tim\-|t\-mo|to(pl|sh)|ts(70|m\-|m3|m5)|tx\-9|up(\.b|g1|si)|utst|v400|v750|veri|vi(rg|te)|vk(40|5[0-3]|\-v)|vm40|voda|vulc|vx(52|53|60|61|70|80|81|83|85|98)|w3c(\-| )|webc|whit|wi(g |nc|nw)|wmlb|wonu|x700|yas\-|your|zeto|zte\-/i.test(dataString.substr(0, 4)));
+        },
+
+        isChrome: function () {
+            return (/Chrome/i.test(browserData.browser.name));
+        },
+
+        // Is Firefox.  Check if the browser is Firefox.
+        isFirefox: function () {
+            return (/Firefox/i.test(browserData.browser.name));
+        },
+
+        // Get Browser Major Version.  Return a string containing the major browser version.
+        getBrowserMajorVersion: function () {
+            return browserData.browser.major;
+        }
+
+    };
+
+    if (typeof module === 'object' && typeof exports === 'object') {
+        module.exports = ClientJS;
+    }
+    scope.ClientJS = ClientJS;
+})(window);
+
+
+</script>
+
+<script type="text/javascript" >
+
+
+function StartRender()
+{
+
+	
+		markR("StartMain init");
+
+
+      var tnow = "0"; var width=0; var height=0; var dpr=0;
+      
+      try
+      {
+        var w = window;
+        var	d = document;
+        var	e = d.documentElement;
+        var	g = d.getElementsByTagName('body')[0];
+        var	width = w.innerWidth || e.clientWidth || g.clientWidth;
+        var	height = w.innerHeight|| e.clientHeight|| g.clientHeight;
+        var dpr = window.devicePixelRatio || (window.screen.deviceXDPI / window.screen.logicalXDPI);
+      } catch(e) {}
+
+      try { tnow = window.performance.now(); } catch(e) {;}
+
+      //window.screen.deviceXDPI  varies according to zoom. At 100% zoom, this should equal the logicalXDPI
+      //window.screen.logicalXDPI actual monitor DPI
+      //screen.systemXDPI the DPI you set in OS
+      //If zoomed in on IE, the dpr ratio > 1 on desktops. also chrome
+      //depending on zoom, firefox craps the dpi value....
+      //var redirect = "roman.html?dpi="+dpr+"&xrsln="+width+"&yrsln="+height+"&now="+tnow+"&t="+t;
+      //window.location.replace(redirect);
+
+
+	// if desktop browser, set dpr to 1. depending on zoom, firefox craps the dpi value....
+	//dpr = 1; // the resolution seems to be correctly interpreted in this layout.
+	height = dpr * height;
+	width = dpr * width;
+
+    if ( height == 0 || width == 0) // sometimes mobile browsers are not yet ready with the viewport.
+	{
+		//alert("zero encountered");
+		window.setTimeout('StartRender();', 50);
+		return;
+	}
+
+	var deviceProperty = {
+		browserHeight : height, browserWidth : width, 
+		pxRatio:(height>width)?height/width:width/height, 
+		layout:(width < height?"Portrait":"Landscape")
+	};
+
+
+	var context = {};
+	var todx, tody, absXimgBG, absYimgBG, absXimgTag, absYimgTag, todxTag, todyTag;
+
+	// Preload images
+	var img1 = new Image();
+	var img2 = new Image();
+	var img3 = new Image();
+	var img4 = new Image();
+	var img5 = new Image();
+
+
+	if (deviceProperty.layout == "Landscape")
+	{
+		if (deviceProperty.pxRatio >= 1.5 )
+		{
+			//calculate based on width
+			mod = deviceProperty.browserWidth % 30;
+			rem = Math.floor(deviceProperty.browserWidth / 30);
+			todx = (mod>0)?30*(rem+1):deviceProperty.browserWidth;
+			tody = Math.round(todx/1.5);
+		}
+		else
+		{
+			//calculate based on height
+			mod = deviceProperty.browserHeight % 20;
+			rem = Math.floor(deviceProperty.browserHeight / 20);
+			tody = (mod>0)?20*(rem+1):deviceProperty.browserHeight;
+			todx = 1.5*tody;
+		}
+
+		mod = deviceProperty.browserWidth % 30;
+		rem = Math.floor(deviceProperty.browserWidth / 30);
+		todxTag = (mod>0)?30*(rem):deviceProperty.browserWidth;
+		todyTag = Math.round(todxTag/1.5); 
+
+		//Check max limits
+		if (todx > 2400) { todx = 2400; tody = 1600; todxTag = 2400; }
+		absYimgBG = Math.round(deviceProperty.browserHeight - tody)/2;
+		absXimgBG = Math.round(deviceProperty.browserWidth - todx)/2;
+		absYimgTag = Math.round(deviceProperty.browserHeight - todyTag)/2;
+		absXimgTag = Math.round(deviceProperty.browserWidth - todxTag)/2;
+
+		context = {absXimgBG: absXimgBG, absYimgBG: absYimgBG, width : todx, absXimgTag: absXimgTag, absYimgTag: absYimgTag, widthTag : todxTag, heightVp : deviceProperty.browserHeight, widthVp : deviceProperty.browserWidth, scaleVp:(1/dpr) };
+
+		img1.src = replaceHelper(context, "BG/LandscapeLanding_{{width}}px.jpg");
+		img2.src = replaceHelper(context, "BG/LandscapeLandingTag_{{widthTag}}px.png");
+		img3.src = replaceHelper(context, "BG/LandscapeLandingBH_{{widthTag}}px.png");
+		img4.src = replaceHelper(context, "BG/LandscapeLandingCiY_{{widthTag}}px.png");
+		img5.src = replaceHelper(context, "BG/LandscapeLandingLog_{{widthTag}}px.png");
+	}
+	else
+	{
+		// Portrait mode. y > x
+		mod = deviceProperty.browserHeight % 20;
+		rem = Math.floor(deviceProperty.browserHeight / 20);
+		tody = (mod>0)?20*(rem+1):deviceProperty.browserHeight;
+		todx = tody;
+
+		mod = deviceProperty.browserWidth % 20;
+		rem = Math.floor(deviceProperty.browserWidth / 20);
+		todxTag = (mod>0)?20*(rem):deviceProperty.browserWidth;
+		todyTag = todxTag;
+		absYimgTag = Math.round(deviceProperty.browserHeight - todyTag)/2;
+		absXimgTag = Math.round(deviceProperty.browserWidth - todxTag)/2;
+
+		//Check max limits
+		if (tody > 1600) { todx = 1600; tody = 1600; todyTag = 1600; }
+		absYimgBG = Math.round(deviceProperty.browserHeight - tody)/2;
+		absXimgBG = Math.round(deviceProperty.browserWidth - todx)/2;
+
+		/* context = {absXimgBG: absXimgBG, absYimgBG: absYimgBG, height : tody, absXimgTag: absXimgTag, absYimgTag: absYimgTag, heightTag : todyTag
+		  };*/
+		context = {absXimgBG: absXimgBG, absYimgBG: absYimgBG, height : tody, absXimgTag: absXimgTag, absYimgTag: absYimgTag, heightTag : todyTag, heightVp : deviceProperty.browserHeight, widthVp : deviceProperty.browserWidth, scaleVp:(1/dpr) };
+		/*depending on version of the chrome browser, either set the scaleVp to 1 or 1/dpr. looks like for version 537.36, it needs to be set to 1/dpr...version 535.19 and before needs only 1.		*/
+		
+		img1.src = replaceHelper(context, "BG/PortraitLanding_{{height}}px.jpg");
+		img2.src = replaceHelper(context, "BG/PortraitLandingTag_{{heightTag}}px.png");
+		img3.src = replaceHelper(context, "BG/PortraitLandingBH_{{heightTag}}px.png");
+		img4.src = replaceHelper(context, "BG/PortraitLandingCiY_{{heightTag}}px.png");
+		img5.src = replaceHelper(context, "BG/PortraitLandingLog_{{heightTag}}px.png");
+	}	
+
+	markR("image preload completed");
+// alert(img5.src);
+// alert(img4.src);
+// alert(img3.src);
+// alert(img2.src);
+// alert(img1.src);
+
+	// if not mobile firefox or mobile chrome (if it is uc browser or dolphin browser), then set dpr to 1
+	if( 
+		!((new ClientJS()).isMobile()) ||
+		( !(new ClientJS()).isChrome() && (!(new ClientJS()).isFirefox())  ) || 
+		((new ClientJS()).isChrome() && (new ClientJS()).getBrowserMajorVersion() < 30)  
+	  )
+		{	dpr = 1; 	}
+
+	context.scaleVp = (1/dpr);
+	// context.scriptSrc = scriptinsert;
+	context.scriptSrc = "";
+
+
+
+
+	var source   = document.getElementById("entry-template_"+deviceProperty.layout).innerHTML;		
+
+	// alert(mod+" "+rem+" : "+todx+" "+tody+" : "+absXimgBG+" "+absYimgBG);
+	// var template = Handlebars.compile(source); // Errors out in mobile dolphin browser
+	markR("document.write init");
+	//document.write(replaceHelper(context, source));
+	// http://stackoverflow.com/questions/997986/write-elements-into-a-child-iframe-using-javascript-or-jquery
+		// window.frames["roman_iframe"].document.write(replaceHelper(context, source));
+		//			<iframe name="roman_iframe" id="roman_iframe" style="position:fixed; top:0px; left:0px; bottom:0px; right:0px; width:100%; height:100%; border:none; margin:0; padding:0; overflow:hidden; z-index:999999;"> Your browser doesn't support iframes</iframe>
+
+	document.open();
+	document.write(replaceHelper(context, source));
+	document.close();
+	// document.getElementById("roman_iframe").contentDocument.write(replaceHelper(context, source));
+
+}
+  
+
+</script>
+</head>
+<body style="display:none;" onload="window.setTimeout('StartRender();', 10);">
+</body>
+
+</html>

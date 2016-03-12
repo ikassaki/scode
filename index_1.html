@@ -1,0 +1,44 @@
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <script type="text/javascript">var t = 0; try { t = new Date().getTime();   } catch(e) {;} </script>
+  
+  <!-- http://www.quirksmode.org/blog/archives/2013/10/initialscale1_m.html -->
+  <meta name='viewport' content='height=device-height, width=device-width, initial-scale=1' > 
+  <script src="markr.js" defer async></script>
+</head>
+	
+<body onload="window.setTimeout('StartMain();', 10);">
+
+  <script type="text/javascript" >
+    function StartMain()
+    {
+      var tnow = "0"; var width=0; var height=0; var dpr=0;
+      
+      try
+      {
+        var w = window;
+        var	d = document;
+        var	e = d.documentElement;
+        var	g = d.getElementsByTagName('body')[0];
+        var	width = w.innerWidth || e.clientWidth || g.clientWidth;
+        var	height = w.innerHeight|| e.clientHeight|| g.clientHeight;
+        var dpr = window.devicePixelRatio || (window.screen.deviceXDPI / window.screen.logicalXDPI);
+      } catch(e) {}
+
+      try { tnow = window.performance.now(); } catch(e) {;}
+
+      //window.screen.deviceXDPI  varies according to zoom. At 100% zoom, this should equal the logicalXDPI
+      //window.screen.logicalXDPI actual monitor DPI
+      //screen.systemXDPI the DPI you set in OS
+      //If zoomed in on IE, the dpr ratio > 1 on desktops.
+      //depending on zoom, firefox craps the dpi value....
+      var redirect = "roman.html?dpi="+dpr+"&xrsln="+width+"&yrsln="+height+"&now="+tnow+"&t="+t;
+      window.location.replace(redirect);
+    }
+  </script>
+
+</body>
+
+</html>
