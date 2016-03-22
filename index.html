@@ -837,6 +837,12 @@
 
 		dbgGTMpush('Dbg.deviceProperty.actualResolution',height+"x"+width);
  
+		if  (dpr > 1) 
+		{
+			if ( ( (width < height)?height:width ) > ((width < height)?720:1024) )
+				dpr = 1; 
+		}
+
 
 		height = dpr * height;
 		width = dpr * width;
