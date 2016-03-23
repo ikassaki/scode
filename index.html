@@ -34,8 +34,6 @@
 			  }
 		} catch(e) {;}
 
-		window["gtmNS"] = window["gtmNS"]||[];
-
 		function markR(label) {
 			try { marks.push( { time:window.performance.now(), name:label } ); pumpM(label);} catch(e) {}
 		}
@@ -301,7 +299,7 @@
 		scriptinsert += "markR('tweenlite.js script loaded');GTMpush('tweenlite.jsLoaded');\"><\/script>";
 
 		scriptinsert += "<script src=\"https://zvncyxu6t5.execute-api.us-east-1.amazonaws.com/WEB/getUQ\"  id=\"getUQresponse\" type=\"text/javascript\" onload=\"";
-		scriptinsert += "markR('guid loaded: '+g_uid);GTMpush('guidLoaded');\"><\/script>";
+		scriptinsert += "markR('guid loaded: '+g_uid);GTMpush('guidLoaded');dbgGTMpush('usersessionGUID',g_uid);\"><\/script>";
 		
 		scriptinsert += "<script src=\"client.min.js\"  type=\"text/javascript\" onload=\"";
 		scriptinsert += "markR('client.min.js script loaded');GTMpush('client.min.jsLoaded');\"><\/script>";
