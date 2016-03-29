@@ -78,7 +78,35 @@
 				'event': 'CEvent', 
 				'ceLabel':label, 
 				'ceValue':window.performance.now(), 
-				'ceCategory': "TechInfo", 
+				'ceCategory': "DPInfo", 
+				'ceAction': cat,
+				'isInteractive': 0
+			}); 
+		}
+
+		function GTMpushImgTiming(cat,label)
+		{
+			// console.log("\tcategory: "+cat+" label:"+label);
+			window["dataLayer"]=window["dataLayer"]||[];
+			window["dataLayer"].push ({ 
+				'event': 'CEvent', 
+				'ceLabel':window.performance.now(), 
+				'ceValue':label, 
+				'ceCategory': "ImgTiming", 
+				'ceAction': cat,
+				'isInteractive': 0
+			}); 
+		}
+
+		function GTMpushUid(cat,label)
+		{
+			// console.log("\tcategory: "+cat+" label:"+label);
+			window["dataLayer"]=window["dataLayer"]||[];
+			window["dataLayer"].push ({ 
+				'event': 'CEvent', 
+				'ceLabel':label, 
+				'ceValue':window.performance.now(), 
+				'ceCategory': "userSessionGUID", 
 				'ceAction': cat,
 				'isInteractive': 0
 			}); 
@@ -245,7 +273,7 @@
 				markR("image+loaded:"+theimg.src+" "+uniq);
         		var srcimgurl = theimg.src;
         		srcimgurl = extractFileName(srcimgurl);
-        		dbgGTMpush('ImgTiming.'+srcimgurl,(window.performance.now() - theimg.imageLoadTiming)); 				
+        		GTMpushImgTiming(srcimgurl,(window.performance.now() - theimg.imageLoadTiming)); 				
 				uniq[idx] = "1";
 				markR("uniq:"+uniq);
 			}
@@ -313,7 +341,7 @@
 		scriptinsert += "markR('tweenlite.js script loaded');GTMpush('tweenlite.jsLoaded');\"><\/script>";
 
 		scriptinsert += "<script src=\"https://zvncyxu6t5.execute-api.us-east-1.amazonaws.com/WEB/getUQ\"  id=\"getUQresponse\" type=\"text/javascript\" onload=\"";
-		scriptinsert += "markR('guid loaded: '+g_uid);GTMpush('guidLoaded');dbgGTMpush('usersessionGUID',g_uid);\"><\/script>";
+		scriptinsert += "markR('guid loaded: '+g_uid);GTMpush('guidLoaded');GTMpushUid(g_uid, g_date);\"><\/script>";
 		
 		scriptinsert += "<script src=\"client.min.js\"  type=\"text/javascript\" onload=\"";
 		scriptinsert += "markR('client.min.js script loaded');GTMpush('client.min.jsLoaded');\"><\/script>";
