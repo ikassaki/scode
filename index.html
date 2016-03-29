@@ -70,6 +70,20 @@
 			}); 
 		}
 
+		function GTMpushDP(cat,label)
+		{
+			// console.log("\tcategory: "+cat+" label:"+label);
+			window["dataLayer"]=window["dataLayer"]||[];
+			window["dataLayer"].push ({ 
+				'event': 'CEvent', 
+				'ceLabel':label, 
+				'ceValue':window.performance.now(), 
+				'ceCategory': "TechInfo", 
+				'ceAction': cat,
+				'isInteractive': 0
+			}); 
+		}
+
 		// END******************** markr.js ************************
 
 		window.onbeforeunload=function () {
@@ -835,7 +849,7 @@
 
 		try { tnow = window.performance.now(); } catch(e) {;}
 
-		dbgGTMpush('Dbg.deviceProperty.actualResolution',height+"x"+width);
+		GTMpushDP('deviceProperty.actualResolution',height+"x"+width);
  
 		if  (dpr > 1) 
 		{
@@ -861,10 +875,10 @@
 			layout:(width < height?"Portrait":"Landscape")
 		};
 		
-		dbgGTMpush('Dbg.deviceProperty.layout','Layout.'+deviceProperty.layout);
-		dbgGTMpush('Dbg.deviceProperty.pxRatio',deviceProperty.pxRatio); 
-		dbgGTMpush('Dbg.deviceProperty.dprdpi',dpr); 
-		dbgGTMpush('Dbg.deviceProperty.renderedResolution',deviceProperty.browserHeight+"x"+deviceProperty.browserWidth); 
+		GTMpushDP('deviceProperty.layout','Layout.'+deviceProperty.layout);
+		GTMpushDP('deviceProperty.pxRatio',deviceProperty.pxRatio); 
+		GTMpushDP('deviceProperty.dprdpi',dpr); 
+		GTMpushDP('deviceProperty.renderedResolution',deviceProperty.browserHeight+"x"+deviceProperty.browserWidth); 
 
 		var devicePropertyScriptStr = "";
 		try{
@@ -978,7 +992,7 @@
 		context.absYBRsvgctp = Math.round(deviceProperty.browserHeight - context.absHtBRsvgctp - 10);
 
 		markR("image preload script completed");GTMpush("imagePreloadScriptComplete");
-		dbgGTMpush('Dbg.deviceProperty.scaleVp',context.scaleVp);
+		GTMpushDP('deviceProperty.scaleVp',context.scaleVp);
 
 		var cjs = (new ClientJS());
 
@@ -990,7 +1004,7 @@
 						{ dbgGTMpush('Dbg.resetDPR.To.1', dpr);	dpr = 1; }
 				}
 		}
-		dbgGTMpush('Dbg.UAParser.BrowserName', (new UAParser()).getBrowser().name); 
+		GTMpushDP('UAParser.BrowserName', (new UAParser()).getBrowser().name); 
 
 		context.scaleVp = (1/dpr);
 		context.scriptSrc = scriptinsert;
