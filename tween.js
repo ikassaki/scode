@@ -17,15 +17,8 @@ function TweenLite_onOverwrite(overwritten, overwriting, target, overwrittenProp
     label = "None";
     try{    label = overwrittenProperties;  } catch(e){}
     try{    label = target.id+" : "+label;  } catch(e){}
-    window["dataLayer"]=window["dataLayer"]||[];
-    window["dataLayer"].push ({ 
-      'event': 'CEvent', 
-      'ceLabel':label, 
-      'ceValue':window.performance.now(), 
-      'ceCategory': "Dbg.TweenOverwritten", 
-      'ceAction': window.pageid+" : "+overwritten.vars.data+" : "+overwriting.vars.data,
-      'isInteractive': 0
-    }); 
+
+    GTMcEvent("Dbg.TweenOverwritten", window.pageid+" : "+overwritten.vars.data+" : "+overwriting.vars.data, label, window.performance.now(), 0);
   }
 }
 
@@ -51,17 +44,7 @@ function TweenStartOrComplete(twnobj, isStart, cback)
     console.log("Tween "+twnobj.data+" of Timeline "+twnobj.timeline.data+(isStart?" started":" completed")+" : "+window.performance.now()+" Tween: "+twnobj.data[0]+" TweenTarget(s): "+tweentgt);
     markR("Tween "+twnobj.data+" of Timeline "+twnobj.timeline.data+(isStart?" started":" completed")+" : "+window.performance.now()+" Tween: "+twnobj.data[0]+" TweenTarget(s): "+tweentgt);
 
-    window["dataLayer"]=window["dataLayer"]||[];
-    window["dataLayer"].push ({ 
-      'event': 'CEvent', 
-      'ceLabel':twnobj.timeline.data+" : "+twnobj.data+" : "+(isStart?"START":"FINISH"), 
-      'ceValue':window.performance.now().toFixed(2), 
-      'ceCategory': "TweenExecutionSeq", 
-      'ceAction': window.pageid+" : "+tweentgt,
-      'isInteractive': 0
-    }); 
-  }
-
+    GTMcEvent('TweenExecutionSeq', window.pageid+" : "+tweentgt, twnobj.timeline.data+" : "+twnobj.data+" : "+(isStart?"START":"FINISH"), window.performance.now().toFixed(2), 0);
 }
 
 window._LogTimelineExecutionSeq = true;
@@ -87,15 +70,7 @@ function TlineStartOrComplete(tmaxobj, isStart, cback, cbackParams)
     console.log("Timeline "+tmaxobj.data+(isStart?" started":" completed")+" : "+window.performance.now()+"; Progress:"+tmaxobj.progress()+" TotalProgress:"+tmaxobj.totalProgress()+" atLabel: "+tmaxobj.currentLabel()+" atTime: "+tmaxobj.time()+" TotalTime(sofar): "+tmaxobj.totalTime()+" TotalDuration: "+tmaxobj.totalDuration()+" ActiveTweenLabels: "+tweenlbl);
     markR("Timeline "+tmaxobj.data+(isStart?" started":" completed")+" : "+window.performance.now()+"; Progress:"+tmaxobj.progress()+" TotalProgress:"+tmaxobj.totalProgress()+" atLabel: "+tmaxobj.currentLabel()+" atTime: "+tmaxobj.time()+" TotalTime(sofar): "+tmaxobj.totalTime()+" TotalDuration: "+tmaxobj.totalDuration()+" ActiveTweenLabels: "+tweenlbl);
 
-    window["dataLayer"]=window["dataLayer"]||[];
-    window["dataLayer"].push ({ 
-      'event': 'CEvent', 
-      'ceLabel':"", 
-      'ceValue':window.performance.now(), 
-      'ceCategory': "TimelineExecutionSeq", 
-      'ceAction': window.pageid+" : "+tmaxobj.data+" : "+(isStart?"START":"FINISH"),
-      'isInteractive': 0
-    }); 
+    GTMcEvent('TimelineExecutionSeq', window.pageid+" : "+tmaxobj.data+" : "+(isStart?"START":"FINISH"), "", window.performance.now(), 0);
   }
 
   if ( _LogTimelineExecutionSeq )
@@ -108,15 +83,7 @@ function TlineStartOrComplete(tmaxobj, isStart, cback, cbackParams)
 
 function _LogPauseResume(isPause, tweenortimelineid)
 {
-    window["dataLayer"]=window["dataLayer"]||[];
-    window["dataLayer"].push ({ 
-      'event': 'CEvent', 
-      'ceLabel':tweenortimelineid, 
-      'ceValue':window.performance.now(), 
-      'ceCategory': "TweenExecutionSeq", 
-      'ceAction': window.pageid+" : "+(isPause?"PAUSE":"RESUME"),
-      'isInteractive': 0
-    }); 
+    GTMcEvent('TweenExecutionSeq', window.pageid+" : "+(isPause?"PAUSE":"RESUME"), tweenortimelineid, window.performance.now(), 1);
 }
 
 
