@@ -6,6 +6,7 @@
   <meta name='viewport' content='height=device-height, width=device-width, initial-scale=1' >
 
 	<script type="text/javascript">
+		window.g_t = 0; try { g_t = Date.now ? Date.now() : +(new Date()); /*new Date().getTime() is not updated every millisecond*/   } catch(e) {;}
 	 	window.pageid = "FirstPage";
  		xmlhttp=new XMLHttpRequest();
 		xmlhttp.open("POST","http://192.168.1.210:8080/",true);
@@ -13,7 +14,7 @@
 	</script>
 
 	<script id="markrjs" type="text/javascript">
-		window.g_t = 0; try { g_t = new Date().getTime();   } catch(e) {;}
+		//window.g_t = 0; try { g_t = new Date().getTime();   } catch(e) {;}
 
 		// START******************** markr.js ************************
 		try
@@ -34,6 +35,20 @@
 			  }
 		} catch(e) {;}
 
+		function generateUUID()
+		{
+		    var d = new Date().getTime();
+		    try { d = new Date().now();   } catch(e) {;}
+		    try { d += performance.now();   } catch(e) {;} //use high-precision timer if available
+		    var uuid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+		        var r = (d + Math.random()*16)%16 | 0;
+		        d = Math.floor(d/16);
+		        return (c=='x' ? r : (r&0x3|0x8)).toString(16);
+		    });
+		    return uuid;
+		}
+		window.g_uuid = window.g_uuid || generateUUID();
+
 		function markR(label) {
 			try { marks.push( { time:window.performance.now(), name:label } ); pumpM(label);} catch(e) {}
 		}
@@ -41,91 +56,44 @@
 			try { markR("\033[31m"+label+"\033[0m"); } catch(e) {}
 		}
 
-		function GTMpush(label, isinteract)
+		function GTMcEvent(cat, action, label, valu, isinteract)
 		{
 			isinteract = typeof isinteract !== 'undefined' ? isinteract : 0;
-			// console.log("\t\tgtnpush: "+label+" isinteract:"+isinteract+"  now:"+window.performance.now().toFixed(2));
 			window["dataLayer"]=window["dataLayer"]||[];
 			window["dataLayer"].push ({ 
 				'event': 'CEvent', 
-				'ceLabel':window.pageid, 
-				'ceValue':window.performance.now(), 
-				'ceCategory': 'PageLoadSeq', 
-				'ceAction': label,
-				'isInteractive': isinteract
+				'ceCategory': cat, 
+				'ceAction': action,
+				'ceLabel':label, 
+				'ceValue':valu, 
+				'isInteractive': isinteract,
+				'metric1':window.performance.now(),
+				'dimension5':window.g_uuid
 			}); 
 		}
+		function GTMpush(label, isinteract)
+		{	GTMcEvent('PageLoadSeq', label, window.pageid, window.performance.now(), isinteract);	}
+
+		function GTMpushInit()
+		{	GTMcEvent('PageLoadSeq', "PageInit", window.pageid, window.g_t, isinteract);	}
 
 		function dbgGTMpush(cat,label)
-		{
-			// console.log("\tcategory: "+cat+" label:"+label);
-			window["dataLayer"]=window["dataLayer"]||[];
-			window["dataLayer"].push ({ 
-				'event': 'CEvent', 
-				'ceLabel':window.pageid, 
-				'ceValue':window.performance.now(), 
-				'ceCategory': cat, 
-				'ceAction': label,
-				'isInteractive': 0
-			}); 
-		}
+		{	GTMcEvent(cat, label, window.pageid, window.performance.now(), 0);	}
 
 		function GTMpushDP(cat,label)
-		{
-			// console.log("\tcategory: "+cat+" label:"+label);
-			window["dataLayer"]=window["dataLayer"]||[];
-			window["dataLayer"].push ({ 
-				'event': 'CEvent', 
-				'ceLabel':label, 
-				'ceValue':window.performance.now(), 
-				'ceCategory': "DPInfo", 
-				'ceAction': cat,
-				'isInteractive': 0
-			}); 
-		}
+		{	GTMcEvent("DPInfo", cat, label, window.performance.now(), 0);	}
 
 		function GTMpushImgTiming(cat,label)
-		{
-			// console.log("\tcategory: "+cat+" label:"+label);
-			window["dataLayer"]=window["dataLayer"]||[];
-			window["dataLayer"].push ({ 
-				'event': 'CEvent', 
-				'ceLabel':window.performance.now(), 
-				'ceValue':label, 
-				'ceCategory': "ImgTiming", 
-				'ceAction': cat,
-				'isInteractive': 0
-			}); 
-		}
+		{	GTMcEvent("ImgTiming", cat, window.performance.now(), label, 0);	}
 
 		function GTMpushUid(cat,label)
-		{
-			// console.log("\tcategory: "+cat+" label:"+label);
-			window["dataLayer"]=window["dataLayer"]||[];
-			window["dataLayer"].push ({ 
-				'event': 'CEvent', 
-				'ceLabel':label, 
-				'ceValue':window.performance.now(), 
-				'ceCategory': "userSessionGUID", 
-				'ceAction': cat,
-				'isInteractive': 0
-			}); 
-		}
+		{	GTMcEvent("userSessionGUID", cat, label, (Date.now ? Date.now() : +(new Date())), 0);	}
 
 		// END******************** markr.js ************************
 
 		window.onbeforeunload=function () {
 			markR("unloadevent4-"+window.pageid);
-			window["dataLayer"]=window["dataLayer"]||[];
-			window["dataLayer"].push ({ 
-				'event': 'CEvent', 
-				'ceLabel':window.pageid, 
-				'ceValue':window.performance.now(), 
-				'ceCategory': 'PageLoadSeq', 
-				'ceAction': "OnBeforeUnload",
-				'isInteractive': 0
-			});
-
+			GTMpush("OnBeforeUnload", 0);
 		};
 		
 		window.onresize = function () {  //or use window.addEventListener('resize', function(event){ markR("onresize2"); console.log(event); });
@@ -144,19 +112,10 @@
 			// console.log("onresize-"+window.pageid+" "+resoln);
 			markR("onresize-"+window.pageid+" "+resoln);
 
-			window["dataLayer"]=window["dataLayer"]||[];
-			window["dataLayer"].push ({ 
-				'event': 'CEvent', 
-				'ceLabel':resoln, 
-				'ceValue':window.performance.now(), 
-				'ceCategory': 'PageLoadSeq', 
-				'ceAction': "OnResize "+window.pageid,
-				'isInteractive': 0
-			});
-
+			GTMcEvent('PageLoadSeq', "OnResize "+window.pageid, resoln, window.performance.now(), 0);
 		};
 
-		markR("markR init from page:"+window.pageid+" @ "+g_t);		GTMpush("pageInit");		
+		markR("markR init from page:"+window.pageid+" @ "+g_t);		GTMpushInit();		
 
 		function pumpM(msg)
 		{//return;
