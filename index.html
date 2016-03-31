@@ -9,7 +9,7 @@
 		window.g_t = 0; try { g_t = Date.now ? Date.now() : +(new Date()); /*new Date().getTime() is not updated every millisecond*/   } catch(e) {;}
 	 	window.pageid = "FirstPage";
  		xmlhttp=new XMLHttpRequest();
-		xmlhttp.open("POST","http://192.168.1.210:8080/",true);
+		xmlhttp.open("POST","http://localhost:8080/",true);
 		xmlhttp.send("\033[31m\x1b[43m+---------------------------------------"+Date()+" "+window.pageid+"\033[0m\033[39m\n"); 
 	</script>
 
@@ -48,6 +48,7 @@
 		    return uuid;
 		}
 		window.g_uuid = window.g_uuid || generateUUID();
+		pumpM(window.g_uuid);
 
 		function markR(label) {
 			try { marks.push( { time:window.performance.now(), name:label } ); pumpM(label);} catch(e) {}
@@ -70,12 +71,14 @@
 				'metric1':window.performance.now(),
 				'dimension5':window.g_uuid
 			}); 
+
+			pumpM("GA: "+ [cat, action, label, valu].join("----"));
 		}
 		function GTMpush(label, isinteract)
 		{	GTMcEvent('PageLoadSeq', label, window.pageid, window.performance.now(), isinteract);	}
 
 		function GTMpushInit()
-		{	GTMcEvent('PageLoadSeq', "PageInit", window.pageid, window.g_t, isinteract);	}
+		{	GTMcEvent('PageLoadSeq', "PageInit", window.pageid, window.g_t, 0);	}
 
 		function dbgGTMpush(cat,label)
 		{	GTMcEvent(cat, label, window.pageid, window.performance.now(), 0);	}
@@ -115,13 +118,13 @@
 			GTMcEvent('PageLoadSeq', "OnResize "+window.pageid, resoln, window.performance.now(), 0);
 		};
 
-		markR("markR init from page:"+window.pageid+" @ "+g_t);		GTMpushInit();		
-
+		markR("markR init from page:"+window.pageid+" @ "+g_t);		GTMpushInit();
+		
 		function pumpM(msg)
 		{//return;
 			// markR(window.pageid+" Message: "+msg);
 			xmlhttp=new XMLHttpRequest();
-			xmlhttp.open("POST","http://192.168.1.210:8080/",true);
+			xmlhttp.open("POST","http://localhost:8080/",true);
 			xmlhttp.send("\x1b[36m"+window.pageid+"\x1b[0m \x1b[43m"+window.performance.now()+"\x1b[0m Message: "+msg);
 			console.log(" "+window.pageid+" "+window.performance.now()+"  Message: "+msg);
 		}
@@ -195,11 +198,13 @@
 			window.setTimeout(bodyDisplay, 50);
 		}
 
+		window.g_waitForEnumPropertiesCounter = 0;
 		function waitForEnumProperties()
 		{
 			var notcalled = true;
 			try
 			{
+				g_waitForEnumPropertiesCounter++;
 				if ( (EnumProperties && 'function' === typeof EnumProperties)  && (startTween && 'function' === typeof startTween)  )
 				{
 					markR("EnumProperties available now. Invoking EnumProperties and startTween");
@@ -211,10 +216,11 @@
 					// window.setTimeout("customGTM(window,document,'script','dataLayer','GTM-PDNKG3')",300);  // custom delay load for performance. identified performance problem due to congestion when network throttling is set in chrome.
 					return; 
 				}
-			} catch(e) { markR("Exception:"+e); GTMpush("exception.waitForEnumProperties"); }
+			} catch(e) { markR("Exception:"+e); GTMcEvent("exception.waitForEnumProperties", (e.message)?e.message:""+e, (e.stack)?e.stack:""+e, window.performance.now(), 0);  }
 			if (notcalled)
 			{
-				window.setTimeout(waitForEnumProperties, 100);
+				if (g_waitForEnumPropertiesCounter > 20) { window.location.reload(true); GTMpush("enumPropertiesNotYetLoaded - Page Reload"); }
+				window.setTimeout(waitForEnumProperties, (50+(g_waitForEnumPropertiesCounter*50)) );
 				markR("EnumProperties not yet loaded.");
 				GTMpush("enumPropertiesNotYetLoaded");
 			}
