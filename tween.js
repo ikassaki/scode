@@ -369,7 +369,7 @@ function StartFocusRectinLandingPg(imgdbgname, imgfilenamepath, focusrects)
                       {
                         var height = imgs.height;
                         var width = imgs.width;
-                        dbgGTMpush('ImgTiming.'+imgdbgname,(window.performance.now() - imgs.imageLoadTiming)); 
+                        GTMpushImgTiming(imgdbgname,(window.performance.now() - imgs.imageLoadTiming)); 
                         dualcall.call();
                       }
 
