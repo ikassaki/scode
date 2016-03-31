@@ -8,6 +8,7 @@
 	<script type="text/javascript">
 		window.g_t = 0; try { g_t = Date.now ? Date.now() : +(new Date()); /*new Date().getTime() is not updated every millisecond*/   } catch(e) {;}
 	 	window.pageid = "FirstPage";
+		window.gaTagCounter = 0;
 	 	window.g_localhostIP = null;//"192.168.1.1:8080";
 	 	if (window.g_localhostIP)
 	 	{
@@ -61,7 +62,6 @@
 			try { markR("\033[31m"+label+"\033[0m"); } catch(e) {}
 		}
 
-		window.gaTagCounter = 0;
 		function GTMcEvent(cat, action, label, valu, isinteract)
 		{
 			isinteract = typeof isinteract !== 'undefined' ? isinteract : 0;
@@ -130,9 +130,8 @@
 		 	if (window.g_localhostIP)
 		 	{
 				xmlhttp=new XMLHttpRequest();
-				xmlhttp.open("POST","http://localhost:8080/",true);
+				xmlhttp.open("POST","http://"+window.g_localhostIP+"/",true);
 				xmlhttp.send("\x1b[36m"+window.g_uuid+" - "+window.pageid+"\x1b[0m \x1b[43m"+window.performance.now()+"\x1b[0m Message: "+msg);
-				// console.log(" "+window.pageid+" "+window.performance.now()+"  Message: "+msg);
 			}
 		}
 
@@ -303,29 +302,29 @@
 			return (retval);
 		}
 
-		var scriptinsert = "<script type=\"text/javascript\">markR('script starting');GTMpush('scriptStarting');<\/script>";
+		var scriptinsert = "<script type=\"text/javascript\">markR('script loading starting');GTMpush('scriptLoadStarting');<\/script>";
 
 		scriptinsert += "<script src=\"tween.js\"  type=\"text/javascript\" onload=\"";
-		scriptinsert += "markR('tween.js script loaded');GTMpush('tween.jsLoaded');\"><\/script>";
+		scriptinsert += "markR('tween.js script loaded');GTMpush('tween.js Loaded');\"><\/script>";
 
 		// scriptinsert += "<script src=\"http://cdnjs.cloudflare.com/ajax/libs/gsap/1.18.0/TweenMax.min.js\"  type=\"text/javascript\" onload=\"";
 		scriptinsert += "<script src=\"TweenMax.min.js\"  type=\"text/javascript\" onload=\"";
-		scriptinsert += "markR('tweenlite.js script loaded');GTMpush('tweenlite.jsLoaded');\"><\/script>";
+		scriptinsert += "markR('tweenlite.js script loaded');GTMpush('tweenlite.js Loaded');\"><\/script>";
 
 		scriptinsert += "<script src=\"https://zvncyxu6t5.execute-api.us-east-1.amazonaws.com/WEB/getUQ\"  id=\"getUQresponse\" type=\"text/javascript\" onload=\"";
-		scriptinsert += "markR('guid loaded: '+g_uid);GTMpush('guidLoaded');GTMpushUid(g_uid, g_date);\"><\/script>";
+		scriptinsert += "markR('guid loaded: '+g_uid);GTMpush('guid Loaded');GTMpushUid(g_uid, g_date);\"><\/script>";
 		
 		scriptinsert += "<script src=\"client.min.js\"  type=\"text/javascript\" onload=\"";
-		scriptinsert += "markR('client.min.js script loaded');GTMpush('client.min.jsLoaded');\"><\/script>";
+		scriptinsert += "markR('client.min.js script loaded');GTMpush('client.min.js Loaded');\"><\/script>";
 		
 		scriptinsert += "<script src=\"plugin-detect-0.6.3.js\"  type=\"text/javascript\" onload=\"";
-		scriptinsert += "markR('plugin-detect-0.6.3.js script loaded');GTMpush('plugin-detect..jsLoaded');\"><\/script>";
+		scriptinsert += "markR('plugin-detect-0.6.3.js script loaded');GTMpush('plugin-detect..js Loaded');\"><\/script>";
 		
 		scriptinsert += "<script src=\"base64.js\"  type=\"text/javascript\" onload=\"";
-		scriptinsert += "markR('base64.js script loaded');GTMpush('base64.jsLoaded');\"><\/script>";
+		scriptinsert += "markR('base64.js script loaded');GTMpush('base64.js Loaded');\"><\/script>";
 
 		scriptinsert += "<script src=\"sniff.js\"  type=\"text/javascript\" onload=\"";
-		scriptinsert += "markR('sniff.js script loaded');GTMpush('sniff.jsLoaded');\"><\/script>";
+		scriptinsert += "markR('sniff.js script loaded');GTMpush('sniff.js Loaded');\"><\/script>";
 		
 	</script>
 
