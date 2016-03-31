@@ -45,6 +45,7 @@ function TweenStartOrComplete(twnobj, isStart, cback)
     markR("Tween "+twnobj.data+" of Timeline "+twnobj.timeline.data+(isStart?" started":" completed")+" : "+window.performance.now()+" Tween: "+twnobj.data[0]+" TweenTarget(s): "+tweentgt);
 
     GTMcEvent('TweenExecutionSeq', window.pageid+" : "+tweentgt, twnobj.timeline.data+" : "+twnobj.data+" : "+(isStart?"START":"FINISH"), window.performance.now().toFixed(2), 0);
+  }
 }
 
 window._LogTimelineExecutionSeq = true;
@@ -75,9 +76,6 @@ function TlineStartOrComplete(tmaxobj, isStart, cback, cbackParams)
 
   if ( _LogTimelineExecutionSeq )
     logevent();
-
-  
-
 }
 
 
