@@ -3,7 +3,7 @@
 ///////////////////////////////////////////////////////////////////////////
 
 
-window._LogDbgTweenOverwritten = false;
+window._LogDbgTweenOverwritten = true;
 function TweenLite_onOverwrite(overwritten, overwriting, target, overwrittenProperties) 
 {
   if ( _LogDbgTweenOverwritten )
@@ -71,7 +71,7 @@ function TlineStartOrComplete(tmaxobj, isStart, cback, cbackParams)
     console.log("Timeline "+tmaxobj.data+(isStart?" started":" completed")+" : "+window.performance.now()+"; Progress:"+tmaxobj.progress()+" TotalProgress:"+tmaxobj.totalProgress()+" atLabel: "+tmaxobj.currentLabel()+" atTime: "+tmaxobj.time()+" TotalTime(sofar): "+tmaxobj.totalTime()+" TotalDuration: "+tmaxobj.totalDuration()+" ActiveTweenLabels: "+tweenlbl);
     markR("Timeline "+tmaxobj.data+(isStart?" started":" completed")+" : "+window.performance.now()+"; Progress:"+tmaxobj.progress()+" TotalProgress:"+tmaxobj.totalProgress()+" atLabel: "+tmaxobj.currentLabel()+" atTime: "+tmaxobj.time()+" TotalTime(sofar): "+tmaxobj.totalTime()+" TotalDuration: "+tmaxobj.totalDuration()+" ActiveTweenLabels: "+tweenlbl);
 
-    GTMcEvent('TimelineExecutionSeq', window.pageid+" : "+tmaxobj.data+" : "+(isStart?"START":"FINISH"), "", window.performance.now(), 0);
+    GTMcEvent('TimelineExecutionSeq', (window.pageid+" : "+tmaxobj.data+" : "+(isStart?"START":"FINISH")), "atLabel:"+tweenlbl, window.performance.now(), 0);
   }
 
   if ( _LogTimelineExecutionSeq )
@@ -499,7 +499,7 @@ window._focusRectAnimation =
                   var scaleto2 = widthOfViewport/designedfor;
                   var scaleto = (scaleto1<scaleto2)?scaleto1:scaleto2;
 
-                  var tbigbangClick = new TimelineMax( {  data:["tbigbangClick"], 
+                  var tbigbangClick = new TimelineMax( {  data:["focusRectAnim"], 
                                                           onComplete:TlineStartOrComplete, 
                                                           onCompleteParams:["{self}", false, function(){hideimage.play();}], 
                                                           onStart:TlineStartOrComplete, 

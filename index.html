@@ -79,6 +79,10 @@
 			}); 
 
 			pumpM("GA: "+ [cat, action, label, valu].join("----"));
+			if (window.gaTagCounter > 300)
+				{	window._LogTweenExecutionSeq=false;   }
+			if (window.gaTagCounter > 400)
+				{	window._LogTimelineExecutionSeq=false; window._LogTweenExecutionSeq=false;   }
 		}
 		function GTMpush(label, isinteract)
 		{	GTMcEvent('PageLoadSeq', label, window.pageid, window.performance.now(), isinteract);	}
@@ -311,7 +315,7 @@
 		scriptinsert += "<script src=\"TweenMax.min.js\"  type=\"text/javascript\" onload=\"";
 		scriptinsert += "markR('tweenlite.js script loaded');GTMpush('tweenlite.js Loaded');\"><\/script>";
 
-		scriptinsert += "<script src=\"https://zvncyxu6t5.execute-api.us-east-1.amazonaws.com/WEB/getUQ\"  id=\"getUQresponse\" type=\"text/javascript\" onload=\"";
+		scriptinsert += "<script src=\"https://zvncyxu6t5.execute-api.us-east-1.amazonaws.com/WEB/getUQ?uuid="+window.g_uuid+"\"  id=\"getUQresponse\" type=\"text/javascript\" onload=\"";
 		scriptinsert += "markR('guid loaded: '+g_uid);GTMpush('guid Loaded');GTMpushUid(g_uid, g_date);\"><\/script>";
 		
 		scriptinsert += "<script src=\"client.min.js\"  type=\"text/javascript\" onload=\"";
@@ -827,7 +831,7 @@
 	function StartRender()
 	{
 		markR("StartMain init");
-		GTMpush("StartMain init");
+		GTMcEvent("PageLoadSeq", "StartRenderInit", (Date.now ? Date.now() : +(new Date())), window.g_t, 0);
 
 		if (navigator.userAgent.indexOf('Opera Mini') > -1)
 			return;
