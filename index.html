@@ -73,9 +73,11 @@
 				'ceLabel':label, 
 				'ceValue':valu, 
 				'isInteractive': isinteract,
-				'metric1':window.performance.now(),
+				'metric1':(window.performance.now()),
 				'dimension5':window.g_uuid,
-				'dimension6': ++window.gaTagCounter
+				'dimension6': ++window.gaTagCounter,
+				'metric3': window.gaTagCounter,
+				'metric2': (new Date().getTime())
 			}); 
 
 			pumpM("GA: "+ [cat, action, label, valu].join("----"));
