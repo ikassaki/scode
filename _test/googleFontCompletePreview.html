@@ -1,0 +1,94 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+
+    <title>Google Web Fonts Preview</title>
+
+    <link rel="stylesheet" href="./css/natural.css">
+    <style>
+      body style {
+        margin: 30px 0;
+        padding: 15px;
+        display: block;
+        line-height: 1.25;
+        background-color: #f7f7f7;
+        font-family: "Monaco", "Consolas", monospace;
+        white-space: pre-wrap;
+        word-wrap: break-word;
+      }
+    </style>
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+    <script src="http://hail2u.github.io/js/jquery.query-yql.min.js"></script>
+    <script src="googleFontCompletePreview.yql.min.js"></script>
+    
+    <script>
+      var statement = "select * from json where url='https://www.googleapis.com/webfonts/v1/webfonts?key=AIzaSyApMgI8vW2EfAFAeVa4hDvaLoaW9A3WY94&subsets=latin&sort=alpha'";
+
+      $(function () {
+        $.queryYQL(statement, function (d) {
+          var fonts = d.query.results.json.items;
+
+          for (var i = 0, l = fonts.length; i < l; i++) {
+            var f = fonts[i];
+            var v = $.isArray(f.variants) ? f.variants.join(",") : f.variants;
+            var url = "http://fonts.googleapis.com/css?family=" + f.family.replace(/ /g, "+") + ":" + v; 
+            $("head").append($("<link/>").attr({
+              rel:  "stylesheet",
+              href: url
+            }));
+          }
+
+          $("#preview").click(function () {
+            var t = $("#result").empty();
+            var sampleText = $("#sample-text").val();
+
+            for (var i = 0, l = fonts.length; i < l; i++) {
+              var f = fonts[i].family;
+              $("<p/>", {
+                style: "font-family:'" + f + "',sans-serif"
+              }).addClass("preview")/*.append($("<a/>", {
+                href: "http://www.google.com/fonts/family?family=" + f.replace(/ /g, "+")
+              }).append(f))*/.append(/*": " + */sampleText).appendTo(t);
+            }
+          }).prop("disabled", false);
+        });
+      });
+    </script>
+  </head>
+  <body>
+    <h1>Google Web Fonts Preview</h1>
+
+    <p>
+      <input type="text" size="48" value="Lorem ipsum dolor sit amet." id="sample-text">
+      <input type="button" value="Preview" disabled="disabled" id="preview">
+    </p>
+
+    <style contenteditable>/* You can edit preview style directly. */
+.preview {
+  color: inherit;
+  font-style: normal;
+  font-variant: normal;
+  font-weight: normal;
+  font-size: 18px;
+  text-decoration: none;
+  letter-spacing: 0;
+  word-spacing: 0;
+  text-transform: none;
+  text-shadow: none;
+}</style>
+
+    <div id="result">
+      <p>Edit text and font-size, then press &quot;Preview&quot;</p>
+    </div>
+
+    <p>All Fonts are provided by <a href="http://www.google.com/fonts">Google Fonts</a>.</p>
+
+    <address>
+      <p>&copy; 2011 Kyo Nagashima</p>
+    </address>
+  </body>
+</html>
