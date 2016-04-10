@@ -820,3 +820,158 @@ function createKT()
   }
 
 }
+
+window.g_MenushowTgl = false;
+  function showMenu ()
+  {
+      var menuDivName = "centralmenu";
+    if (window.g_MenushowTgl)
+    {
+        document.getElementById(menuDivName).innerHTML = "";
+        tForeverCircleSpin.resume();
+        document.getElementById("LandingTag").style.display="block";
+        document.getElementById(menuDivName).style.display="none";
+        _clickCallbacks = null;
+    }
+    else
+    {    
+      //alert("will show menu 1:");
+        var cmenuhtml = constructMenuHollow(menuDivName, [  {svgscriptid:"svgFAQicon", svgWd:100, svgHt:100} ,
+                                               {svgscriptid:"svgLOGINicon", svgWd:100, svgHt:100} , 
+                                               {svgscriptid:"svgAPPLYicon", svgWd:100, svgHt:100} , 
+                                               {svgscriptid:"svgCONTACTUSicon", svgWd:150, svgHt:150} , 
+                                               {svgscriptid:"svgPROGRAMicon", svgWd:100, svgHt:100} , 
+                                               {svgscriptid:"svgFEEDBACKicon", svgWd:100, svgHt:100} , 
+                                               {svgscriptid:"svgFAQ3icon", svgWd:100, svgHt:100} ] );
+
+        document.getElementById(menuDivName).style.display="block";
+        document.getElementById(menuDivName).innerHTML = cmenuhtml;
+      
+      console.log(document.getElementById(menuDivName).outerHTML);
+
+        //http://codepen.io/anon/pen/AkoGx?editors=1010
+        //http://stackoverflow.com/questions/5736398/how-to-calculate-the-svg-path-for-an-arc-of-a-circle
+        //document.getElementById("arc2").setAttribute("d", describeArc(250, 300, 150, 0, 180));
+        //tweenclickActive = true;
+        tForeverCircleSpin.pause();
+        document.getElementById("LandingTag").style.display="none";
+        _clickCallbacks = function(){};
+        _clickCallbacks = showMenu;
+    }
+    window.g_MenushowTgl = !window.g_MenushowTgl;
+  }
+
+
+
+ function constructMenuHollow(menuDivName, icons)
+ {
+  //https://sarasoueidan.com/blog/building-a-circular-navigation-with-svg/
+   try
+    {   
+        var polarToCartesian = function (centerX, centerY, radius, angleInDegrees) 
+        {
+            var angleInRadians = (angleInDegrees-90) * Math.PI / 180.0;
+
+            return {
+              x: centerX + (radius * Math.cos(angleInRadians)),
+              y: centerY + (radius * Math.sin(angleInRadians))
+            };
+        }
+
+        var describeArc = function (x, y, radius, startAngle, endAngle)
+        {
+
+            var start = polarToCartesian(x, y, radius, endAngle);
+            var end = polarToCartesian(x, y, radius, startAngle);
+
+            var arcSweep = endAngle - startAngle <= 180 ? "0" : "1";
+
+            var d = [
+                "M", start.x, start.y, 
+                "A", radius, radius, 0, arcSweep, 0, end.x, end.y,
+                "L", x,y,
+                "L", start.x, start.y
+            ].join(" ");
+
+            return d;       
+        }
+
+         //http://jsbin.com/zuvaxuvezu/edit?html,js,output
+        var describeArcHollow = function (x, y, radius, startAngle, endAngle){
+
+            var start = polarToCartesian(x, y, radius, endAngle);
+            var end = polarToCartesian(x, y, radius, startAngle);
+
+            var arcSweep = endAngle - startAngle <= 180 ? "0" : "1";
+
+            var d = [
+                "M", start.x, start.y, 
+                "A", radius, radius, 0, arcSweep, 0, end.x, end.y
+            ].join(" ");
+
+            return d;       
+        }
+
+       var svgstr = "";
+       var outerradius = 250;
+       var viewboxHtWd = outerradius * 2;
+       var thickness = 120;
+       var pstr = '<path id="{{arcid}}" fill="none" stroke="rgba(52,52,52,0.7)" stroke-width="'+thickness+'" d="{{describearc}}"/>';
+       var da;
+       var menuCt = icons.length;
+       for(var i=0; i<menuCt; i++)
+       {       
+            da = describeArcHollow(250,250,outerradius-thickness/2,(360/menuCt)*i,(360/menuCt)*(i+1));
+            svgstr += replaceHelper({arcid:"arc"+i, describearc:da}, pstr);
+       }
+     
+       var calcHtWd = function(sourceIconWidth, sourceIconHeight, angle)
+       {
+          var reqIconRatio = 0.18; //Master key.
+          //var sourceIconWidth = 100; //hardcoded
+          var sourceIconWidthRatio = sourceIconWidth / viewboxHtWd;
+          var convertSourceIconWidthRatio = reqIconRatio / sourceIconWidthRatio;
+          //var sourceIconHeight = 100; //hardcoded
+          var sourceIconHeightRatio = sourceIconHeight / viewboxHtWd;
+          var convertSourceIconHeightRatio = reqIconRatio / sourceIconHeightRatio;
+       
+       
+          var wdth = Math.round( ((deviceProperty.layout=="Portrait")?deviceProperty.browserWidth:deviceProperty.browserHeight) * 0.75);
+          var higt = wdth; //its a square viewbox for the circle.
+          var ratio = wdth/(outerradius*2);
+          var svgFAQiconratioWd = sourceIconWidth * ratio;
+          svgFAQiconratioWd = svgFAQiconratioWd * convertSourceIconWidthRatio;
+       
+          var svgFAQiconratioHt = sourceIconHeight * ratio;
+          svgFAQiconratioHt = svgFAQiconratioHt * convertSourceIconHeightRatio;
+
+          var ptc = polarToCartesian(250,250,outerradius-thickness/2,angle);
+          ptc.x = (ptc.x * ratio) - svgFAQiconratioWd/2;
+          ptc.y = (ptc.y * ratio) - svgFAQiconratioHt/2;
+
+          return {Ht:svgFAQiconratioHt, Wd:svgFAQiconratioWd, X:ptc.x, Y:ptc.y};
+       }
+
+      var cmenuhtml = '<svg viewBox="0 0 '+viewboxHtWd+' '+viewboxHtWd+'">'+svgstr+'</svg>';
+      for(var i=0; i<menuCt; i++)
+      {
+        var cmenuicon = calcHtWd(icons[i].svgWd,icons[i].svgHt,(360/menuCt)*i+(360/menuCt)/2);
+        cmenuhtml +=  '<div onclick="var e = arguments[0] || window.event; (e.stopPropagation)?e.stopPropagation():e.cancelBubble = true;alert('+i+')" style="position:absolute;left:'+cmenuicon.X+';top:'+cmenuicon.Y+';width:'+cmenuicon.Wd+';height:'+cmenuicon.Ht+'">'+  document.getElementById(icons[i].svgscriptid).innerHTML + '</div>';
+      }
+      return cmenuhtml;
+      // document.getElementById("centralmenuIcon").innerHTML = "hi there";
+
+      //http://greensock.com/forums/topic/7573-tween-around-circle/
+      // to place icons in a circular path
+
+      //alert('<div style="position:absolute;left:0px;top:0px;width:100px;height:100px;border:2px solid red;">'+  document.getElementById("svgFAQicon") + '</div>');
+
+      }catch(e){console.log(e);}
+
+ }
+
+
+
+
+
+
