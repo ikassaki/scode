@@ -836,13 +836,15 @@ window.g_MenushowTgl = false;
     else
     {    
       //alert("will show menu 1:");
-        var cmenuhtml = constructMenuHollow(menuDivName, [  {svgscriptid:"svgFAQicon", svgWd:100, svgHt:100} ,
-                                               {svgscriptid:"svgLOGINicon", svgWd:100, svgHt:100} , 
-                                               {svgscriptid:"svgAPPLYicon", svgWd:100, svgHt:100} , 
-                                               {svgscriptid:"svgCONTACTUSicon", svgWd:150, svgHt:150} , 
+        var cmenuhtml = constructMenuHollow(menuDivName, [  
+                                               {svgscriptid:"svgCONTACTUSINVERTEDicon", svgWd:150, svgHt:150} , 
                                                {svgscriptid:"svgPROGRAMicon", svgWd:100, svgHt:100} , 
-                                               {svgscriptid:"svgFEEDBACKicon", svgWd:100, svgHt:100} , 
-                                               {svgscriptid:"svgFAQ3icon", svgWd:100, svgHt:100} ] );
+                                               {svgscriptid:"svgFAQicon", svgWd:100, svgHt:100} , 
+                                               {svgscriptid:"svgFEEDBACKicon", svgWd:100, svgHt:100},
+                                               {svgscriptid:"svgPARTNERicon", svgWd:100, svgHt:100} ,
+                                               {svgscriptid:"svgAPPLYicon", svgWd:100, svgHt:100} , 
+                                               {svgscriptid:"svgLOGINicon", svgWd:100, svgHt:100} 
+                        ] );
 
         document.getElementById(menuDivName).style.display="block";
         document.getElementById(menuDivName).innerHTML = cmenuhtml;
@@ -916,13 +918,18 @@ window.g_MenushowTgl = false;
        var outerradius = 250;
        var viewboxHtWd = outerradius * 2;
        var thickness = 120;
-       var pstr = '<path id="{{arcid}}" fill="none" stroke="rgba(52,52,52,0.7)" stroke-width="'+thickness+'" d="{{describearc}}"/>';
+       var arcMenuStyles = "";
+       var arcMenuidstring = "arcMenu";
+       var arcMenuHoverColor = "black"; var arcMenuColor = "rgba(52,52,52,0.7)"; var arcMenuClickCode = "var e = arguments[0] || window.event; (e.stopPropagation)?e.stopPropagation():e.cancelBubble = true;";
+       var pstr = '<path id="{{arcid}}" fill="none" stroke="'+arcMenuColor+'" stroke-width="'+thickness+'" d="{{describearc}}" onclick="'+arcMenuClickCode+'alert({{i}});" />';
+       // var pstr = '<path id="{{arcid}}" fill="none" stroke="rgba(252,252,252,1)" stroke-width="'+thickness+'" d="{{describearc}}"/>';
        var da;
        var menuCt = icons.length;
        for(var i=0; i<menuCt; i++)
        {       
             da = describeArcHollow(250,250,outerradius-thickness/2,(360/menuCt)*i,(360/menuCt)*(i+1));
-            svgstr += replaceHelper({arcid:"arc"+i, describearc:da}, pstr);
+            svgstr += replaceHelper({arcid:arcMenuidstring+i, describearc:da, i:i}, pstr);
+            arcMenuStyles += "#"+arcMenuidstring+i+":hover {stroke:"+arcMenuHoverColor+"; cursor:hand;} " + "#"+arcMenuidstring+i+" {stroke:"+arcMenuColor+"; cursor:hand;} ";
        }
      
        var calcHtWd = function(sourceIconWidth, sourceIconHeight, angle)
@@ -952,11 +959,11 @@ window.g_MenushowTgl = false;
           return {Ht:svgFAQiconratioHt, Wd:svgFAQiconratioWd, X:ptc.x, Y:ptc.y};
        }
 
-      var cmenuhtml = '<svg viewBox="0 0 '+viewboxHtWd+' '+viewboxHtWd+'">'+svgstr+'</svg>';
+      var cmenuhtml = '<svg viewBox="0 0 '+viewboxHtWd+' '+viewboxHtWd+'">'+'<style type="text/css">'+arcMenuStyles+'</style>'+svgstr+'</svg>';
       for(var i=0; i<menuCt; i++)
       {
         var cmenuicon = calcHtWd(icons[i].svgWd,icons[i].svgHt,(360/menuCt)*i+(360/menuCt)/2);
-        cmenuhtml +=  '<div onclick="var e = arguments[0] || window.event; (e.stopPropagation)?e.stopPropagation():e.cancelBubble = true;alert('+i+')" style="position:absolute;left:'+cmenuicon.X+';top:'+cmenuicon.Y+';width:'+cmenuicon.Wd+';height:'+cmenuicon.Ht+'">'+  document.getElementById(icons[i].svgscriptid).innerHTML + '</div>';
+        cmenuhtml +=  '<div onmouseover="document.getElementById(\''+arcMenuidstring+i+'\').style.stroke=\''+arcMenuHoverColor+'\';" onmouseout="document.getElementById(\'arcMenu'+i+'\').style.stroke=\''+arcMenuColor+'\';" onclick="'+arcMenuClickCode+'alert('+i+')" style="cursor:hand;position:absolute;left:'+cmenuicon.X+';top:'+cmenuicon.Y+';width:'+cmenuicon.Wd+';height:'+cmenuicon.Ht+'">'+  document.getElementById(icons[i].svgscriptid).innerHTML + '</div>';
       }
       return cmenuhtml;
       // document.getElementById("centralmenuIcon").innerHTML = "hi there";
@@ -969,7 +976,6 @@ window.g_MenushowTgl = false;
       }catch(e){console.log(e);}
 
  }
-
 
 
 
