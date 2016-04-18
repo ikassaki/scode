@@ -1,0 +1,115 @@
+<h3>Hi There!</h3>
+
+<script id="svgLoginForm" type="text/x-handlebars-template">
+<div style="position:absolute; left:0; top:0;">
+<form>
+	<p>LogIn<br><br>
+	<p>EMAIL<br>
+	<input type="text" /> <br>
+	<p>PASSWORD<br>
+	<input type="text" /><br>
+	<input type="button" value="Login" /><br>
+	<a>Forgot Password</a>
+
+</form>
+</div>
+</script>
+
+<script id="svgfilter" type="text/x-handlebars-template">
+
+<filter id="whiteglow">
+    <feFlood result="flood" flood-color="#ffffff" flood-opacity="1"></feFlood>
+    <feComposite in="flood" result="mask" in2="SourceGraphic" operator="in"></feComposite>
+    <feMorphology in="mask" result="dilated" operator="dilate" radius="2"></feMorphology>
+    <feGaussianBlur in="dilated" result="blurred" stdDeviation="5"></feGaussianBlur>
+    <feMerge>
+        <feMergeNode in="blurred"></feMergeNode>
+        <feMergeNode in="SourceGraphic"></feMergeNode>
+    </feMerge>
+</filter>
+
+<filter id="outerglow" x="-5000%" y="-5000%" width="10000%" height="10000%">
+  <feFlood result="flood" flood-color="#cccccc" flood-opacity="0.2"></feFlood>
+  <feComposite in="flood" result="mask" in2="SourceGraphic" operator="in"></feComposite>
+  <feMorphology in="mask" result="dilated" operator="dilate" radius="1"></feMorphology>
+  <feGaussianBlur in="dilated" result="blurred" stdDeviation="1"></feGaussianBlur>
+  <feComposite in="blurred" in2="SourceGraphic" operator="arithmetic" k2="1" k3="-1" result="nocombine"></feComposite>
+  <feMerge>
+      <feMergeNode in="nocombine"></feMergeNode>
+      <feMergeNode in="SourceGraphic"></feMergeNode>
+  </feMerge>
+</filter>
+
+<!-- //a transparent glow that takes on the colour of the object it's applied to. http://stackoverflow.com/questions/9630008/how-can-i-create-a-glow-around-a-rectangle-with-svg -->
+<filter id="glow">
+    <feGaussianBlur stdDeviation="12.5" result="coloredBlur"/>
+    <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+    </feMerge>
+</filter>
+
+<!-- //a transparent grey drop-shadow that blends with the background colour -->
+<filter id="shadow" width="1.5" height="1.5" x="-.25" y="-.25">
+    <feGaussianBlur in="SourceAlpha" stdDeviation="2.5" result="blur"/>
+    <feColorMatrix result="bluralpha" type="matrix" values=
+            "1 0 0 0   0
+             1 1 0 0   0
+             0 0 1 0   0
+             1 0 0 0.9 0 "/>
+    <feOffset in="bluralpha" dx="30" dy="3" result="offsetBlur"/>
+    <feMerge>
+        <feMergeNode in="offsetBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+    </feMerge>
+</filter>
+
+</script>
+<script>
+
+
+
+
+
+	//alert( ); 
+	function snippetBodyLoad()
+	{
+		//alert("yey. this wont work.");
+	}
+	window.snippetBodyLoad2 = function()
+	{
+		//alert("yey2");
+	}
+	// window.parent.document.getElementById("pageContent").style.display="block";
+	// alert(window.parent.pageid);
+	// var sdfsdf= window.parent.constructMenuHollow("",[{svgscriptid:"svgPROGRAMicon", svgWd:100, svgHt:100, fncall:"menuCalls.showProgramScreen"}, 
+ //                                               {svgscriptid:"svgAPPLYicon", svgWd:100, svgHt:100, fncall:"menuCalls.showApplyScreen"}]);
+	// alert(sdfsdf);
+
+       var outerradius = 250;
+       var viewboxHtWd = outerradius * 2;
+       var arcMenuStyles = "";
+       var svgstr = '<circle cx="250" cy="250" r="250" stroke="black" stroke-width="0" fill="rgba(3,3,3,0.7)" style="filter:url(#outerglow)"/>';
+      var cmenuhtml = '<svg viewBox="0 0 '+viewboxHtWd+' '+viewboxHtWd+'">'+'<defs>'+document.getElementById("svgfilter").innerHTML+'</defs><style type="text/css">'+arcMenuStyles+'</style>'+svgstr+'</svg>';
+
+	    var container =    window.parent.document.getElementById("pageContent")
+var  deviceProperty = window.parent.deviceProperty;
+		var wd = Math.round( ((deviceProperty.layout=="Portrait")?deviceProperty.browserWidth:deviceProperty.browserHeight) * 0.75);
+		container.style.width = wd;
+		container.style.left = Math.round(deviceProperty.browserWidth/2 - wd/2);
+		var ht = wd; //ht and wd of the svg viewport viewbox
+		container.style.height = ht;
+		container.style.top = Math.round(deviceProperty.browserHeight/2 - ht/2);;
+
+	    container.style.border="none";
+	    container.style.display="block";
+        container.innerHTML = cmenuhtml + document.getElementById("svgLoginForm").innerHTML;
+//alert(container.innerHTML);
+
+        window.parent._clickCallbacks = function(){};
+
+
+</script>
+
+<!-- should always be the last line. ensures the HTML above is loaded as dom content and available -->
+<img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" onload="this.parentNode.removeChild(this); snippetBodyLoad2(); menuCalls.showLoginScreen(); snippetBodyLoad(); " />

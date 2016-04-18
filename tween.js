@@ -835,15 +835,14 @@ window.g_MenushowTgl = false;
     }
     else
     {    
-      //alert("will show menu 1:");
         var cmenuhtml = constructMenuHollow(menuDivName, [  
-                                               {svgscriptid:"svgCONTACTUSINVERTEDicon", svgWd:150, svgHt:150} , 
-                                               {svgscriptid:"svgPROGRAMicon", svgWd:100, svgHt:100} , 
-                                               {svgscriptid:"svgFAQicon", svgWd:100, svgHt:100} , 
-                                               {svgscriptid:"svgFEEDBACKicon", svgWd:100, svgHt:100},
-                                               {svgscriptid:"svgPARTNERicon", svgWd:100, svgHt:100} ,
-                                               {svgscriptid:"svgAPPLYicon", svgWd:100, svgHt:100} , 
-                                               {svgscriptid:"svgLOGINicon", svgWd:100, svgHt:100} 
+                                               {svgscriptid:"svgPROGRAMicon", svgWd:100, svgHt:100, fncall:"menuCalls.showProgramScreen"} , 
+                                               {svgscriptid:"svgAPPLYicon", svgWd:100, svgHt:100, fncall:"menuCalls.showApplyScreen"} , 
+                                               {svgscriptid:"svgFAQicon", svgWd:100, svgHt:100, fncall:"menuCalls.showFAQScreen"} , 
+                                               {svgscriptid:"svgFEEDBACKicon", svgWd:100, svgHt:100, fncall:"menuCalls.showFeedbackScreen"},
+                                               {svgscriptid:"svgPARTNERicon", svgWd:100, svgHt:100, fncall:"menuCalls.showPartnersScreen"} ,
+                                               {svgscriptid:"svgCONTACTUSINVERTEDicon", svgWd:150, svgHt:150, fncall:"menuCalls.showContactUsScreen"} , 
+                                               {svgscriptid:"svgLOGINicon", svgWd:100, svgHt:100, fncall:"menuCalls.showLoginScreen"} 
                         ] );
 
         document.getElementById(menuDivName).style.display="block";
@@ -921,14 +920,14 @@ window.g_MenushowTgl = false;
        var arcMenuStyles = "";
        var arcMenuidstring = "arcMenu";
        var arcMenuHoverColor = "black"; var arcMenuColor = "rgba(52,52,52,0.7)"; var arcMenuClickCode = "var e = arguments[0] || window.event; (e.stopPropagation)?e.stopPropagation():e.cancelBubble = true;";
-       var pstr = '<path id="{{arcid}}" fill="none" stroke="'+arcMenuColor+'" stroke-width="'+thickness+'" d="{{describearc}}" onclick="'+arcMenuClickCode+'alert({{i}});" />';
+       var pstr = '<path id="{{arcid}}" fill="none" stroke="'+arcMenuColor+'" stroke-width="'+thickness+'" d="{{describearc}}" onclick="'+arcMenuClickCode+'{{fncall}}()" />';
        // var pstr = '<path id="{{arcid}}" fill="none" stroke="rgba(252,252,252,1)" stroke-width="'+thickness+'" d="{{describearc}}"/>';
        var da;
        var menuCt = icons.length;
        for(var i=0; i<menuCt; i++)
        {       
             da = describeArcHollow(250,250,outerradius-thickness/2,(360/menuCt)*i,(360/menuCt)*(i+1));
-            svgstr += replaceHelper({arcid:arcMenuidstring+i, describearc:da, i:i}, pstr);
+            svgstr += replaceHelper({arcid:arcMenuidstring+i, describearc:da, i:i, fncall:icons[i].fncall}, pstr);
             arcMenuStyles += "#"+arcMenuidstring+i+":hover {stroke:"+arcMenuHoverColor+"; cursor:hand;} " + "#"+arcMenuidstring+i+" {stroke:"+arcMenuColor+"; cursor:hand;} ";
        }
      
@@ -963,7 +962,7 @@ window.g_MenushowTgl = false;
       for(var i=0; i<menuCt; i++)
       {
         var cmenuicon = calcHtWd(icons[i].svgWd,icons[i].svgHt,(360/menuCt)*i+(360/menuCt)/2);
-        cmenuhtml +=  '<div onmouseover="document.getElementById(\''+arcMenuidstring+i+'\').style.stroke=\''+arcMenuHoverColor+'\';" onmouseout="document.getElementById(\'arcMenu'+i+'\').style.stroke=\''+arcMenuColor+'\';" onclick="'+arcMenuClickCode+'alert('+i+')" style="cursor:hand;position:absolute;left:'+cmenuicon.X+';top:'+cmenuicon.Y+';width:'+cmenuicon.Wd+';height:'+cmenuicon.Ht+'">'+  document.getElementById(icons[i].svgscriptid).innerHTML + '</div>';
+        cmenuhtml +=  '<div onmouseover="document.getElementById(\''+arcMenuidstring+i+'\').style.stroke=\''+arcMenuHoverColor+'\';" onmouseout="document.getElementById(\'arcMenu'+i+'\').style.stroke=\''+arcMenuColor+'\';" onclick="'+arcMenuClickCode+icons[i].fncall+'();" style="cursor:hand;position:absolute;left:'+cmenuicon.X+';top:'+cmenuicon.Y+';width:'+cmenuicon.Wd+';height:'+cmenuicon.Ht+'">'+  document.getElementById(icons[i].svgscriptid).innerHTML + '</div>';
       }
       return cmenuhtml;
       // document.getElementById("centralmenuIcon").innerHTML = "hi there";
@@ -978,6 +977,103 @@ window.g_MenushowTgl = false;
  }
 
 
+//http://javascript.crockford.com/private.html
+window.menuCalls = new function()
+{
+  var isprivate = "hello";
+  this.ispublic = "helloP";
+  this.showLoginScreen = function()
+              {
+                alert("you clicked login menu item"+isprivate);
+              }
+  this.showProgramScreen = function()
+              {
+                alert("you clicked program menu item"+isprivate);
+              }
+  this.showApplyScreen = function()
+              {
+                alert("you clicked apply menu item"+isprivate);
+              }
+  this.showFAQScreen = function()
+              {
+                alert("you clicked faq menu item"+isprivate);
+              }
+  this.showFeedbackScreen = function()
+              {
+                alert("you clicked feedback menu item"+isprivate);
+              }
+  this.showPartnersScreen = function()
+              {
+                alert("you clicked Partners menu item"+isprivate);
+              }
+  this.showContactUsScreen = function()
+              {
+                alert("you clicked contactus menu item"+isprivate);
+                // xHTP.send("loginHTMLsnippet.html", function(resp)
+                //               {
+                //                 var MyDiv = document.getElementById("pageContent");
+                //                 MyDiv.innerHTML = resp; alert(resp);
+                //                 var arr = MyDiv.getElementsByTagName('script')
+                //                 for (var n = 0; n < arr.length; n++)
+                //                     eval(arr[n].innerHTML);//run script inside div  
+                //                 // the above approach,  not sure if entire response is available as DOM. not sure if innerHTML is synchronous across all browsers.  http://stackoverflow.com/questions/7001376/event-to-determine-when-innerhtml-has-loaded
+
+                //               }
+                // , "");
+                document.getElementById("svgmenuActionResult").src="loginHTMLsnippet.html"
+                showMenu();
+              }
+}
+
+//http://stackoverflow.com/questions/2557247/easiest-way-to-retrieve-cross-browser-xmlhttprequest
+window.xHTP = new function()
+{
+  var XMLHttpFactories = [
+    function () {return new XMLHttpRequest()},
+    function () {return new ActiveXObject("Msxml2.XMLHTTP")},
+    function () {return new ActiveXObject("Msxml3.XMLHTTP")},
+    function () {return new ActiveXObject("Microsoft.XMLHTTP")}
+  ];
 
 
+  var createXMLHTTPObject = function() 
+  {
+    var xmlhttp = false;
+    for (var i=0;i<XMLHttpFactories.length;i++) {
+        try {
+            xmlhttp = XMLHttpFactories[i]();
+        }
+        catch (e) {
+            continue;
+        }
+        break;
+    }
+    return xmlhttp;
+  }
+
+  this.send = function (url,callback,postData) 
+  {
+    var req = createXMLHTTPObject();
+    if (!req) return;
+    var method = (postData) ? "POST" : "GET";
+    req.open(method,url,true);
+    //req.setRequestHeader('User-Agent','XMLHTTP/1.0');
+    if (postData)
+        req.setRequestHeader('Content-type','application/x-www-form-urlencoded');
+    req.onreadystatechange = function () 
+    {
+        if (req.readyState != 4) return;
+        if (req.status != 200 && req.status != 304) 
+        {
+            //alert('HTTP error ' + req.status);
+            return;
+        }
+        if (req.status == 200)
+          callback(req.responseText);
+    }
+    if (req.readyState == 4) return;
+    req.send(postData);
+  }
+
+}
 
