@@ -1345,11 +1345,21 @@ might not be able to access external javascript?
 	</script>
 
 
+	<script id="entry-template_scripts" type="text/x-handlebars-template">
+		<link href='http://fonts.googleapis.com/css?family=Mate+SC' rel='stylesheet' type='text/css'>
+		<link href='https://fonts.googleapis.com/css?family=Fjalla+One' rel='stylesheet' type='text/css'>
+		<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700,800' rel='stylesheet' type='text/css'>
+		<link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet' type='text/css'>
+		<link href='https://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'>
+		<link href='https://fonts.googleapis.com/css?family=Lato:400,700,900' rel='stylesheet' type='text/css'>
+	</script>
+
+
 	<script id="entry-template_Landscape" type="text/x-handlebars-template">
 
 		<html>
 		<meta name='viewport' content='height={{heightVp}}, width={{widthVp}}, initial-scale={{scaleVp}}, minimum-scale={{scaleVp}}, maximum-scale=2, target-densitydpi=device-dpi'>
-		<link href='http://fonts.googleapis.com/css?family=Mate+SC' rel='stylesheet' type='text/css'>
+		{{fontstobeused}}
 		<head>
 			<style type="text/css">
 				body
@@ -1393,7 +1403,7 @@ might not be able to access external javascript?
 				<img src="BG/LandscapeLandingCiY_{{widthTag}}px.png " id="LandingCiY" onload="markR('LandscapeLandingCiY_{{widthTag}}px.png'); GTMpush('image.LandscapeLandingCiY_{{widthTag}}px.png');" style="border: 0px solid red; position:absolute; left:{{absXimgTag}}px; top:{{absYimgTag}}px">
 				<img src="BG/LandscapeLandingLog_{{widthTag}}px.png " id="LandingLog" onload="markR('LandscapeLandingLog_{{widthTag}}px.png'); GTMpush('image.LandscapeLandingLog_{{widthTag}}px.png');" style="border: 0px solid red; position:absolute; left:{{absXimgTag}}px; top:{{absYimgTag}}px">
 
-				<iframe style="display:none" id="svgmenuActionResult" src="about:blank"></iframe>
+				<iframe style="display:none" id="svgmenuActionResult" name="svgmenuActionResult" src="about:blank"></iframe>
 				<div id="pageContent" style="display:none; opacity:1; z-index:990; border: 1px solid yellow; color:white; position:absolute; left:0; top:0; width:{{absWdCntntDiv}}; height:{{absHtCntntDiv}};  ">
 					Nothing here
 				</div>
@@ -1448,7 +1458,7 @@ might not be able to access external javascript?
 
 		<html>
 		<meta name='viewport' content='height={{heightVp}}, width={{widthVp}}, initial-scale={{scaleVp}}, minimum-scale={{scaleVp}}, maximum-scale=2, target-densitydpi=device-dpi '>
-		<link href='http://fonts.googleapis.com/css?family=Mate+SC' rel='stylesheet' type='text/css'>
+		{{fontstobeused}}
 		<head>
 			<style type="text/css">
 				body
@@ -1492,7 +1502,7 @@ might not be able to access external javascript?
 				<img src="BG/PortraitLandingCiY_{{heightTag}}px.png " id="LandingCiY" onload="markR('PortraitLandingCiY_{{heightTag}}px.png'); GTMpush('image.PortraitLandingCiY_{{heightTag}}px.png');" style="border: 0px solid red; position:absolute; left:{{absXimgTag}}px; top:{{absYimgTag}}px">
 				<img src="BG/PortraitLandingLog_{{heightTag}}px.png " id="LandingLog" onload="markR('PortraitLandingLog_{{heightTag}}px.png'); GTMpush('image.PortraitLandingLog_{{heightTag}}px.png');" style="border: 0px solid red; position:absolute; left:{{absXimgTag}}px; top:{{absYimgTag}}px">
 
-				<iframe style="display:none" id="svgmenuActionResult" src="about:blank"></iframe>
+				<iframe style="display:none" id="svgmenuActionResult" name="svgmenuActionResult" src="about:blank"></iframe>
 				<div id="pageContent" style="display:none; opacity:1; z-index:990; border: 1px solid yellow; color:white; position:absolute; left:0; top:0; width:{{absWdCntntDiv}}; height:{{absHtCntntDiv}};  overflow-x:auto; overflow-y:auto;">
 					Nothing here
 				</div>
@@ -1819,6 +1829,8 @@ might not be able to access external javascript?
 		context.svgSource += document.getElementById("svgFAQ3icon").outerHTML;
 		context.svgSource += document.getElementById("svgPROGRAMicon").outerHTML;
 		context.svgSource += document.getElementById("svgPARTNERicon").outerHTML;
+
+		context.fontstobeused = document.getElementById("entry-template_scripts").innerHTML;
 
 
 		var source   = document.getElementById("entry-template_"+deviceProperty.layout).innerHTML;
