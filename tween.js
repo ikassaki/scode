@@ -1003,7 +1003,9 @@ window.menuCalls = new function()
               }
   this.showFeedbackScreen = function()
               {
-                alert("you clicked feedback menu item"+isprivate);
+                // alert("you clicked feedback menu item"+isprivate);
+                document.getElementById("svgmenuActionResult").src="feedbackHTMLsnippet.html"
+                showMenu();
               }
   this.showPartnersScreen = function()
               {
