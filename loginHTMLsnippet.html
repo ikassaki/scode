@@ -29,6 +29,7 @@
                 font-weight: 400;
                 background-color: #f2f2f2; 
                 border: 1px solid #e6e6e6; 
+                padding-left:7px; 
                 top:{{emailboxtop}}px; 
                 width:{{widthinputelmnts}}px;
                 height:{{heightinputelmnts}}px;
@@ -55,8 +56,7 @@
                 font-weight: 400; 
                 background-color: #f2f2f2; 
                 border: 1px solid #e6e6e6; 
-                width: 77%; 
-                height:26px; 
+                padding-left:7px; 
                 top:{{pwdboxtop}}px; 
                 width:{{widthinputelmnts}}px;
                 height:{{heightinputelmnts}}px;
@@ -180,7 +180,7 @@
 var  deviceProperty = window.parent.deviceProperty;
 
 
-var reqrsX = 350;
+var reqrsX = 410;
 var reqrsY = 600;
 var avlX = deviceProperty.browserWidth*0.7;
 var avlY = deviceProperty.browserHeight*0.7;// take only 70% max area of screen
@@ -211,6 +211,7 @@ var calcratio = (deviceProperty.layout=="Portrait")?avlX/reqrsX:avlY/reqrsY;
 var heightinputelmnts = ((ht/2)/7);
 var offsettop = ht/2 - heightinputelmnts;
 var gap = heightinputelmnts/5;
+var offsetleft = 14;
 console.log(gap+" "+offsettop+" "+heightinputelmnts);
       var rst = window.parent.replaceHelper({
               loginformloginicon:window.parent.document.getElementById("svgLOGINicon").innerHTML,
@@ -224,9 +225,9 @@ console.log(gap+" "+offsettop+" "+heightinputelmnts);
               pwdboxtop:offsettop+heightinputelmnts*3+gap*3,
               submittop:offsettop+heightinputelmnts*4.5+gap*4.5,
               fgtpwdtop:offsettop + heightinputelmnts*5.5+gap*5.5,
-              widthinputelmnts:300,
+              widthinputelmnts:wd-(offsetleft*2.5),
               heightinputelmnts:heightinputelmnts,
-              leftinputelmnts:14,
+              leftinputelmnts:offsetleft,
               widthsubmit:(wd/3)
             }, document.getElementById("svgLoginForm").innerHTML);
         container.innerHTML = cmenuhtml1 + rst;
