@@ -985,7 +985,9 @@ window.menuCalls = new function()
   this.ispublic = "helloP";
   this.showLoginScreen = function()
               {
-                alert("you clicked login menu item"+isprivate);
+                // alert("you clicked login menu item"+isprivate);
+                document.getElementById("svgmenuActionResult").src="loginHTMLsnippet.html"
+                showMenu();
               }
   this.showProgramScreen = function()
               {
@@ -1021,8 +1023,6 @@ window.menuCalls = new function()
 
                 //               }
                 // , "");
-                document.getElementById("svgmenuActionResult").src="loginHTMLsnippet.html"
-                showMenu();
               }
 }
 
