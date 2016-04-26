@@ -825,6 +825,7 @@ window.g_MenushowTgl = false;
   function showMenu ()
   {
       var menuDivName = "centralmenu";
+      document.getElementById("pageContent").style.display = "none";
     if (window.g_MenushowTgl)
     {
         document.getElementById(menuDivName).innerHTML = "";
