@@ -1,0 +1,305 @@
+
+<h3>Hi There!</h3>
+
+<script id="svgLoginForm" type="text/x-handlebars-template">
+<div style="position:absolute; left:0; top:0;">
+<div style="border:0px solid red; position:absolute; top:{{litop}};left:{{lileft}};height:{{liht}}px; width:{{liwd}}px;" id="loginformloginicon">{{loginformloginicon}}</div>
+<div style="border:1px solid red; background-color: yellow; position:absolute; top:{{litop}};left:0;height:{{liht}}px; width:{{liwd}}px;" id="contacthtmlemailicon">{{whatsapp}}</div>
+
+<div style="border:1px solid red; background-color: yellow; position:absolute; top:0;left:0;height:{{liht}}px; width:{{liwd}}px;" id="contacthtmlwhatsappicon">
+
+<svg viewBox="0 0 500 500" style="enable-background:new 0 0 500 500;">
+<defs>
+  <pattern id="img1" patternUnits="userSpaceOnUse" width="71" height="85">
+    <image xlink:href="http://subtlepatterns2015.subtlepatterns.netdna-cdn.com/patterns/new_year_background.png" x="0" y="0" width="71" height="85" />
+  </pattern>
+  <pattern id="img2" patternUnits="userSpaceOnUse" width="500" height="500">
+    <image xlink:href="hikelogo.png" x="0" y="0" width="500" height="500" />
+  </pattern>
+  <pattern id="img3" patternUnits="userSpaceOnUse" width="500" height="500">
+    <image xlink:href="whatsapplogo.png" x="0" y="0" width="500" height="500" />
+  </pattern>
+</defs>
+
+<circle cx="250" cy="250" r="250" stroke="black" stroke-width="0" fill="url(#img3)" style="filter:url(#outerglow)"/>
+</svg>
+</div>
+
+<form name="loginForm" id="loginForm" action="corp.bitroman.com/login" target="svgmenuActionResult" style="color:#333">
+	<p style="display:none; letter-spacing:0px; font-family: 'Fjalla One', sans-serif;">EMAIL You shall not pass, <span style="letter-spacing:0px; font-family: 'Fjalla One', sans-serif;">unless you fill up the right credentials</span></p><br/><br/>
+
+	<p style="position:absolute; 
+            margin:0px;
+            letter-spacing:0.5px; 
+            font-family: 'Oswald', sans-serif;
+            font-weight: 900; 
+            top:{{emailtop}}px;
+            width:{{widthinputelmnts}}px;
+            height:{{heightinputelmnts}}px;
+            line-height:{{heightinputelmnts}}px;
+            left:{{leftinputelmnts}}px; 
+            ">
+      Sign Up For Our Mailing List
+  </p>
+
+	<input style="position:absolute;
+                letter-spacing:0px;
+                margin:0px; 
+                font-family: 'Open Sans', sans-serif;
+                font-weight: 400;
+                background-color: #f2f2f2; 
+                border: 1px solid #e6e6e6; 
+                padding-left:7px; 
+                top:{{emailboxtop}}px; 
+                width:{{widthemailsubsc}}px;
+                height:{{heightinputelmnts}}px;
+                left:{{leftinputelmnts}}px; 
+                " 
+                type="email" placeholder="Email" maxlength="100" /> 
+
+	<p style="position:absolute;
+            letter-spacing:0.5px; 
+            margin:0px; display:table-cell; vertical-align:middle;
+            font-family: 'Lato', sans-serif;
+            font-weight: 900; 
+            top:{{pwdtop}}px; 
+            width:{{widthinputelmnts}}px;
+            height:{{heightinputelmnts}}px;
+            line-height:{{heightinputelmnts}}px;
+            left:{{leftinputelmnts}}px; 
+            ">
+            PASSWORD</p>
+
+	<input style="position:absolute;
+                margin:0px;
+                font-family: 'Lato', sans-serif;
+                font-weight: 400; 
+                background-color: #f2f2f2; 
+                border: 1px solid #e6e6e6; 
+                padding-left:7px; 
+                top:{{pwdboxtop}}px; 
+                width:{{widthinputelmnts}}px;
+                height:{{heightinputelmnts}}px;
+                left:{{leftinputelmnts}}px; 
+                " 
+                type="password" placeholder="Password"  maxlength="100"/>
+
+	<input type="submit" style="position:absolute;
+                              border-radius: 3px; 
+                              margin:0px;
+                              background-color: #ff5000 /*ff7700, ff5000, eeac00, ff5b27, ed5525, ff6c2f, ff631d*/; 
+                              border: none; 
+                              color:white; 
+                              font-family: 'Lato', sans-serif;
+                              font-weight: 400; 
+                              height:{{heightinputelmnts}}px; 
+                              width: {{widthsubmit}}px; 
+                              top:{{submittop}}px;
+                              left:{{submitleft}}px; 
+                              " 
+                              value="SUBMIT" onclick="alert(this.parentNode);this.parentNode.parentNode.submit();alert(2);" />
+
+	<a style="position:absolute; display:none;
+            font-family: 'Mate SC', sans-serif;
+            margin:0px; 
+            top:{{fgtpwdtop}}px; 
+            left:{{leftinputelmnts}}px; 
+            width:{{widthinputelmnts}}px;
+            height:{{heightinputelmnts}}px;
+            ">
+            FORGOT Password</a>
+<!-- http://trycolors.com/?try=1&FFED00=4&FF0000=4&FF00AB=2&0047ab=0&00EDFF=0&00B500=0&FFFFFF=0&000000=1 -->
+</form>
+<div style="display:block; border:2px solid red; position:absolute; top:200px;left:5px;height:150px; width:290px;" id="loginformbg">{{whatsapp}}</div>
+</div>
+</script>
+
+
+
+<script id="emailsvg1" type="text/x-handlebars-template">
+</script>
+
+<script id="emailsvg2" type="text/x-handlebars-template">
+  <svg xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:svg="http://www.w3.org/2000/svg" xmlns="http://www.w3.org/2000/svg" xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" version="1.1" viewBox="0 0 24 30" x="0px" y="0px"><g transform="translate(0,-24)"><path style="color:#000000;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:medium;line-height:normal;font-family:sans-serif;text-indent:0;text-align:start;text-decoration:none;text-decoration-line:none;text-decoration-style:solid;text-decoration-color:#000000;letter-spacing:normal;word-spacing:normal;text-transform:none;direction:ltr;block-progression:tb;writing-mode:lr-tb;baseline-shift:baseline;text-anchor:start;white-space:normal;clip-rule:nonzero;display:inline;overflow:visible;visibility:visible;opacity:1;isolation:auto;mix-blend-mode:normal;color-interpolation:sRGB;color-interpolation-filters:linearRGB;solid-color:#000000;solid-opacity:1;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:2;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;marker:none;color-rendering:auto;image-rendering:auto;shape-rendering:auto;text-rendering:auto;enable-background:accumulate" d="M 4 4 C 2.9092972 4 2 4.909297 2 6 L 2 18 C 2 19.090703 2.9092972 20 4 20 L 20 20 C 21.090703 20 22 19.090703 22 18 L 22 6 C 22 4.909297 21.090703 4 20 4 L 4 4 z M 5.5996094 6 L 18.400391 6 L 12.001953 10.265625 C 9.8679058 8.8437326 7.7336978 7.4221637 5.5996094 6 z M 4 7.3378906 C 6.481487 8.99234 8.9627873 10.647001 11.445312 12.300781 L 12 12.669922 L 20 7.3378906 L 20 18 L 4 18 L 4 7.3378906 z " transform="translate(0,24)"/></g><text x="0" y="39" fill="#000000" font-size="5px" font-weight="bold" font-family="'Helvetica Neue', Helvetica, Arial-Unicode, Arial, Sans-serif">Created by Vignesh Nandha Kumar</text><text x="0" y="44" fill="#000000" font-size="5px" font-weight="bold" font-family="'Helvetica Neue', Helvetica, Arial-Unicode, Arial, Sans-serif">from the Noun Project</text></svg>
+</script>
+<script id="emailsvg3" type="text/x-handlebars-template">
+  <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 0 100 125" style="enable-background:new 0 0 100 100;" xml:space="preserve"><path d="M50,42c-1.4,0-2.6,1.3-2.6,3c0,1.3,0.8,2.1,2,2.1c1.4,0,2.6-1.4,2.6-3C52,42.8,51.2,42,50,42z"/><path d="M50,8.3L11.5,38.8v53h77v-53L50,8.3z M86.5,42.9v44.7L58.7,65.3L86.5,42.9z M50,36.4c4.7,0,8.3,3.6,8.3,7.6  c0,3.2-1.7,4.8-3.7,4.8c-1.5,0-2.4-0.6-2.8-1.3c-0.7,0.7-1.6,1.3-3,1.3c-1.9,0-3.5-1.4-3.5-3.6c0-2.7,2.1-4.8,4.3-4.8  c1.4,0,2.2,0.7,2.7,1.4l0.1-0.3c0.1-0.6,0.5-1,1-1c0.5,0,1,0.5,0.9,1.2l-0.7,4.1c-0.1,0.3-0.1,0.6-0.1,0.8c0,0.8,0.6,1.4,1.5,1.4  c1.4,0,2.5-1.3,2.5-3.9c0-3.5-3.2-6.9-7.6-6.9c-4.4,0-7.6,3.4-7.6,7.7c0,4.2,3.2,7.6,7.8,7.6c1.8,0,3.2-0.4,4.5-1.2  c0.1,0,0.2-0.1,0.2-0.1c0.2,0,0.3,0.2,0.3,0.3c0,0.2-0.1,0.3-0.2,0.3c-1.4,0.8-3,1.3-4.9,1.3c-4.9,0-8.5-3.8-8.5-8.3  C41.6,40.2,45.3,36.4,50,36.4z M41.3,65.3L13.5,87.6V42.9L41.3,65.3z M14,89.8l36-28.5l36,28.5H14z"/><text x="0" y="115" fill="#000000" font-size="5px" font-weight="bold" font-family="'Helvetica Neue', Helvetica, Arial-Unicode, Arial, Sans-serif">Created by Amr Fakhri</text><text x="0" y="120" fill="#000000" font-size="5px" font-weight="bold" font-family="'Helvetica Neue', Helvetica, Arial-Unicode, Arial, Sans-serif">from the Noun Project</text></svg>
+</script>
+<script id="emailsvg4" type="text/x-handlebars-template">
+  <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 0 48 60" enable-background="new 0 0 48 48" xml:space="preserve"><g><polygon fill="#000000" points="42.6,37.2 5.4,37.2 0.5,47.5 47.5,47.5  "/><path fill="#000000" d="M42.6,0.5H5.4v30.4h37.3V0.5z M35.3,7L24,16.4L12.7,7H35.3z M11.1,7L11.1,7L11.1,7L11.1,7z M36.9,24.5H11.1   V8.3L24,19.1L36.9,8.3V24.5z M36.9,7L36.9,7L36.9,7L36.9,7z"/></g><text x="0" y="63" fill="#000000" font-size="5px" font-weight="bold" font-family="'Helvetica Neue', Helvetica, Arial-Unicode, Arial, Sans-serif">Created by Creative Stall</text><text x="0" y="68" fill="#000000" font-size="5px" font-weight="bold" font-family="'Helvetica Neue', Helvetica, Arial-Unicode, Arial, Sans-serif">from the Noun Project</text></svg>
+</script>
+<script id="emailsvg5" type="text/x-handlebars-template">
+  <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 0 612 990" enable-background="new 0 0 612 792" xml:space="preserve"><path d="M462.6,261.3c-102.8,0-205.5,0-308.3,0c-22.2,0-32.8,10.7-32.8,33c0,71.9,0,143.9,0,215.8c0,22.3,10.7,33,32.8,33  c51.4,0,102.8,0,154.1,0c51.4,0,102.8,0,154.1,0c21.6,0,32.4-10.9,32.4-32.6c0-72.2,0-144.5,0-216.7  C495,272.2,484.2,261.3,462.6,261.3z M136.9,284.3c3.1-7.8,9.8-9,17.4-8.9c51.4,0.1,102.7,0.1,154.1,0.1c51.4,0,102.7,0,154.1,0  c5.4,0,10.6,0.4,14.6,4.6c5.1,5.5,5.2,12.5-0.1,17.9c-47.4,48.5-94.8,97-142.3,145.3c-15.9,16.2-36.8,16-53-0.2  C235.1,396.7,188.7,350,142,303.8C136,297.8,133.8,291.9,136.9,284.3z M147.9,525.4c-4-3.6-7.9-7.2-11.9-10.7c0-3.9,0-7.9-0.1-11.8  c4,3.5,8,7.1,13.5,11.9c0.1-11.9-8.2-15.3-13.5-20.9c0-4,0-8,0-11.9c4,3.6,8.1,7.3,13.2,11.9c1.5-12.2-7.9-15.4-13.1-21.3  c0-4,0-8,0-11.9c4,3.5,8,7.1,13.5,11.9c0.1-11.9-8.2-15.3-13.5-20.9c0,0,0,0,0,0c0,0,0,0,0,0c0-4,0-8,0-11.9  c4,3.6,8.1,7.3,13.2,11.9c1.5-12.2-7.9-15.4-13.1-21.3c0-4,0-8,0-11.9c4,3.5,8,7.1,13.5,11.9c0.1-11.9-8.2-15.3-13.5-20.9  c0-4,0-8,0-11.9c4,3.6,8.1,7.3,13.4,12.2c0.8-12.2-7.9-15.9-13.4-21.5c0-4,0-8,0-11.9c4,3.5,8,7.1,13.5,11.9  c0.1-11.9-8.2-15.3-13.5-20.9c0-4,0-8,0-11.9c4,3.6,8.1,7.3,13.2,11.9c1.5-12.2-7.9-15.4-13.1-21.3c0-4,0-8,0-11.9  c4,3.5,8,7.1,13.8,12.2c-0.4-12-8.4-15.8-13.8-21.2c-0.2-1.9-1-3.9,1.1-6.3c6,6.3,12,12.5,17.9,18.7c13.8,15.4,28.4,29.9,42.6,44.9  c13.3,14,26.7,27.9,39.9,42c2.8,3,5.1,5.8,2,9.9C209.4,464.8,179,495.5,147.9,525.4z M445.4,530.5c-7,0.8-13.9,0.4-20.8,0.4  c-83.5,0-167,0.3-250.4-0.2c-3.9,0-9.3,1.8-10.3-5.2c27-28.7,54.1-57.4,81.1-86.1c3.5-1.9,6.2-0.3,8.7,2.2  c4.6,4.8,9.4,9.4,13.3,14.9c4.3,6,9.2,11.3,15,15.7c18.6,14,41.4,12.1,58-4.8c7.8-8,14.4-17.3,22-25.5c2.9-3.2,5.4-5.9,9.6-2.5  c27,28.7,54.1,57.4,81.1,86.1C452,530.2,449.2,530.1,445.4,530.5z M480.6,333.7c0,4,0,8,0,12c-5.3,5.8-14.6,9.1-13.1,21.3  c5.1-4.6,9.1-8.3,13.2-11.9c0,4,0,8,0,12c-5.2,5.6-13.7,9.1-13.4,21.2c5.7-5.2,9.6-8.7,13.4-12.1c0,4,0,8,0,12  c-5.3,5.8-14.6,9.1-13.1,21.3c5.1-4.6,9.1-8.3,13.2-11.9c0,4,0,8,0,12c-5.2,5.6-13.7,9.1-13.4,21.2c5.7-5.2,9.6-8.7,13.4-12.1  c0,4,0,8,0,12c-5.3,5.8-14.6,9.1-13.1,21.3c5.1-4.6,9.1-8.3,13.2-11.9c0,4,0,8,0,12c-5.2,5.6-13.7,9.1-13.4,21.2  c5.7-5.2,9.6-8.7,13.4-12.1c0,4,0,8,0,12c-5.3,5.8-14.6,9.1-13.1,21.3c5.1-4.6,9.1-8.3,13.2-11.9c0,4,0,8,0,12  c-5.2,5.6-13.7,9.1-13.4,21.2c5.7-5.2,9.6-8.7,13.4-12.1c0,4,0,7.9-0.1,11.9c-2.6,5.1-4.2,11.2-11.9,10.7  c-30.6-30.5-61.1-61-91.7-91.5c-3.8-4.9-0.1-8.5,2.7-11.2c13.1-13,24.8-27.2,37.5-40.5c13.2-13.7,26.8-27.1,38.9-41.8  c7.7-8.1,15.3-16.2,23.3-24.7c2.3,3.6,1.3,6.3,1.2,9.1c-5.2,5.6-13.7,9.1-13.4,21.2C472.9,340.7,476.7,337.2,480.6,333.7z"/><path d="M468.7,525.4c4-3.6,7.9-7.2,11.9-10.7C479.3,525.2,476.2,527.9,468.7,525.4z"/><path d="M262.6,317.7c11.7,0,23.5-0.1,35.2,0c2.5,0,6-0.2,5.9,3.5c-0.1,3.7-3.6,3.3-6.1,3.3c-23.5,0.1-46.9,0.1-70.4,0  c-2.5,0-6,0.2-5.9-3.5c0.1-3.7,3.6-3.3,6.1-3.3C239.1,317.7,250.8,317.7,262.6,317.7z"/><path d="M256.1,338.8c-9.4,0-18.8,0.1-28.2-0.1c-2.7,0-6.7,0.7-6.6-3.7c0.1-3.6,3.7-3.2,6.2-3.2c18.5-0.1,37-0.1,55.4,0  c2.7,0,6.9-0.6,6.6,3.7c-0.3,4-4.3,3.2-7.1,3.2C273.6,338.9,264.8,338.8,256.1,338.8z"/><path d="M244.3,310.5c-6.2,0-12.3,0.1-18.5,0c-2.1,0-4.5-0.4-4.6-3c-0.2-3.3,2.5-3.7,4.8-3.7c12.6-0.1,25.2-0.1,37.8,0  c2.1,0,4.5,0.4,4.6,3c0.2,3.3-2.5,3.7-4.8,3.7C257.2,310.6,250.7,310.5,244.3,310.5z"/><text x="0" y="807" fill="#000000" font-size="5px" font-weight="bold" font-family="'Helvetica Neue', Helvetica, Arial-Unicode, Arial, Sans-serif">Created by gayatri</text><text x="0" y="812" fill="#000000" font-size="5px" font-weight="bold" font-family="'Helvetica Neue', Helvetica, Arial-Unicode, Arial, Sans-serif">from the Noun Project</text></svg>
+</script>
+
+
+<script id="whatsappsvg" type="text/x-handlebars-template">
+  <svg id="whatsappsvg2" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns="http://www.w3.org/2000/svg" height="200" width="200" version="1.1" xmlns:cc="http://creativecommons.org/ns#" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 200 200" xmlns:dc="http://purl.org/dc/elements/1.1/">
+   <defs id="defs4">
+    <path id="m" d="m182.91 68.497c-51.86 0-94.051 42.183-94.051 94.043 0 20.58 6.652 39.64 17.911 55.14l-11.747 34.93 36.137-11.58c14.86 9.82 32.64 15.55 51.75 15.55 51.85 0 94.04-42.18 94.04-94.04s-42.19-94.043-94.04-94.043zm-26.24 47.773c-1.81-4.36-3.2-4.51-6-4.64-0.96-0.05-2-0.09-3.14-0.09-3.61 0-7.34 1.06-9.6 3.36-2.74 2.81-9.59 9.38-9.59 22.87s9.82 26.53 11.19 28.36 19.16 29.92 46.84 41.39c21.61 8.94 28.02 8.15 32.95 7.07 7.18-1.57 16.18-6.85 18.47-13.25 2.28-6.4 2.28-11.89 1.6-13.03-0.69-1.15-2.52-1.83-5.26-3.21-2.74-1.37-16.23-8-18.74-8.91-2.51-0.92-4.84-0.64-6.77 2.04-2.67 3.69-5.23 7.48-7.36 9.73-1.67 1.77-4.35 2.02-6.66 1.04-3.03-1.3-11.58-4.28-22.05-13.61-8.15-7.27-13.65-16.25-15.25-18.99s-0.15-4.38 1.09-5.87c1.4-1.71 2.7-2.93 4.07-4.53s2.14-2.45 3.05-4.28c0.92-1.83 0.3-3.72-0.39-5.09-0.68-1.37-6.17-14.86-8.45-20.36z"/>
+    <linearGradient id="linearGradient4217" y2="256.11" gradientUnits="userSpaceOnUse" x2="182.9" gradientTransform="scale(1 .99998)" y1="69.646" x1="182.9">
+     <stop id="stop10" stop-color="#64D840" offset="0"/>
+     <stop id="stop12" stop-color="#12A100" offset=".5031"/>
+     <stop id="stop14" stop-color="#64D840" offset="1"/>
+    </linearGradient>
+   </defs>
+   <g id="g4235" fill-rule="evenodd" transform="translate(0,-131)">
+    <rect id="rect24" height="200" width="200" y="131" x="0" fill="#234242"/>
+    <g id="g4219" transform="matrix(.78637 0 0 .78637 -42.201 100.85)">
+     <path id="path26" d="m182.91 50.683c-61.79 0-111.87 50.077-111.87 111.86 0.003 21.14 5.868 40.9 16.054 57.76l-20.188 60.02 61.934-19.84c16.02 8.87 34.45 13.92 54.07 13.92 61.77 0 111.85-50.08 111.85-111.86 0.01-61.78-50.08-111.86-111.85-111.86z" fill="#fff"/>
+     <use id="use32" xlink:href="#m" height="100%" width="100%" y="0" x="0" fill="url(#linearGradient4217)"/>
+    </g>
+   </g>
+  </svg>
+</script>
+
+
+<script id="svgfilter" type="text/x-handlebars-template">
+
+<filter id="whiteglow">
+    <feFlood result="flood" flood-color="#ffffff" flood-opacity="1"></feFlood>
+    <feComposite in="flood" result="mask" in2="SourceGraphic" operator="in"></feComposite>
+    <feMorphology in="mask" result="dilated" operator="dilate" radius="2"></feMorphology>
+    <feGaussianBlur in="dilated" result="blurred" stdDeviation="5"></feGaussianBlur>
+    <feMerge>
+        <feMergeNode in="blurred"></feMergeNode>
+        <feMergeNode in="SourceGraphic"></feMergeNode>
+    </feMerge>
+</filter>
+
+<filter id="outerglow" x="-5000%" y="-5000%" width="10000%" height="10000%">
+  <feFlood result="flood" flood-color="#cccccc" flood-opacity="0.2"></feFlood>
+  <feComposite in="flood" result="mask" in2="SourceGraphic" operator="in"></feComposite>
+  <feMorphology in="mask" result="dilated" operator="dilate" radius="1"></feMorphology>
+  <feGaussianBlur in="dilated" result="blurred" stdDeviation="1"></feGaussianBlur>
+  <feComposite in="blurred" in2="SourceGraphic" operator="arithmetic" k2="1" k3="-1" result="nocombine"></feComposite>
+  <feMerge>
+      <feMergeNode in="nocombine"></feMergeNode>
+      <feMergeNode in="SourceGraphic"></feMergeNode>
+  </feMerge>
+</filter>
+
+<!-- //a transparent glow that takes on the colour of the object it's applied to. http://stackoverflow.com/questions/9630008/how-can-i-create-a-glow-around-a-rectangle-with-svg -->
+<filter id="glow">
+    <feGaussianBlur stdDeviation="12.5" result="coloredBlur"/>
+    <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+    </feMerge>
+</filter>
+
+<!-- //a transparent grey drop-shadow that blends with the background colour -->
+<filter id="shadow" width="1.5" height="1.5" x="-.25" y="-.25">
+    <feGaussianBlur in="SourceAlpha" stdDeviation="2.5" result="blur"/>
+    <feColorMatrix result="bluralpha" type="matrix" values=
+            "1 0 0 0   0
+             1 1 0 0   0
+             0 0 1 0   0
+             1 0 0 0.9 0 "/>
+    <feOffset in="bluralpha" dx="30" dy="3" result="offsetBlur"/>
+    <feMerge>
+        <feMergeNode in="offsetBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+    </feMerge>
+</filter>
+
+</script>
+<script>
+
+
+
+
+
+	//alert( ); 
+	function snippetBodyLoad()
+	{
+		//alert("yey. this wont work.");
+	}
+	window.snippetBodyLoad2 = function()
+	{
+		//alert("yey2");
+	}
+	// window.parent.document.getElementById("pageContent").style.display="block";
+	// alert(window.parent.pageid);
+	// var sdfsdf= window.parent.constructMenuHollow("",[{svgscriptid:"svgPROGRAMicon", svgWd:100, svgHt:100, fncall:"menuCalls.showProgramScreen"}, 
+ //                                               {svgscriptid:"svgAPPLYicon", svgWd:100, svgHt:100, fncall:"menuCalls.showApplyScreen"}]);
+	// alert(sdfsdf);
+
+
+
+       var outerradius = 250;
+       var viewboxHtWd = outerradius * 2;
+       var arcMenuStyles = "";
+       var svgstr = '<circle cx="250" cy="250" r="250" stroke="black" stroke-width="0" fill="rgba(3,3,3,0.7)" style="filter:url(#outerglow)"/>';
+      var cmenuhtml = '<svg viewBox="0 0 '+viewboxHtWd+' '+viewboxHtWd+'">'+'<defs>'+document.getElementById("svgfilter").innerHTML+'</defs><style type="text/css">'+arcMenuStyles+'</style>'+svgstr+'</svg>';
+
+	    var container =    window.parent.document.getElementById("pageContent")
+    container.style.boxShadow = "5px 5px 3px 1px rgba(0,0,0,0.7)";
+    container.style.background = "White";
+    container.style.color = "Black";
+var  deviceProperty = window.parent.deviceProperty;
+
+
+var reqrsX = 410;
+var reqrsY = 610;
+var avlX = deviceProperty.browserWidth*0.9;
+var avlY = deviceProperty.browserHeight*0.7;// take only 70% max area of screen
+var calcratio = (deviceProperty.layout=="Portrait")?avlX/reqrsX:avlY/reqrsY;
+// alert(deviceProperty.browserHeight+"  "+avlY);
+// alert(reqrsX*calcratio+", "+reqrsY*calcratio+"  "+calcratio);
+
+
+
+    var wd = reqrsX*calcratio;//Math.round( ((deviceProperty.layout=="Portrait")?deviceProperty.browserWidth:deviceProperty.browserHeight) * 0.75);
+    container.style.width = wd;
+    container.style.left = Math.round(deviceProperty.browserWidth/2 - wd/2);
+    var ht = reqrsY*calcratio;//wd; //ht and wd of the svg viewport viewbox
+    container.style.height = ht;
+    container.style.top = Math.round(deviceProperty.browserHeight/2 - ht/2);;
+      container.style.border="none";
+      container.style.display="block";
+      container.style.background="White";//"#4d4d4d";
+
+        window.parent._clickCallbacks = function(){};
+
+       var outerradius1 = 50 * calcratio;
+       var viewboxHtWd1 = outerradius1 * 2 ;
+       var arcMenuStyles1 = "";
+       var svgstr1 = '<rect x="'+((wd/2)-outerradius1)+'" y="'+((ht/4)-outerradius1)+'" width="'+outerradius1*2+'" height="'+outerradius1*2+'" stroke="black" stroke-width="0" fill="rgba(3,3,3,0.7)" style="filter:url(#outerglow)"/>';
+       // var svgstr1 = '<circle cx="'+wd/2+'" cy="'+(ht/4)+'" r="'+outerradius1+'" stroke="black" stroke-width="0" fill="rgba(3,3,3,0.7)" style="filter:url(#outerglow)"/>';
+      var cmenuhtml1 = '<svg viewBox="0 0 '+wd+' '+ht+'">'+'<defs>'+document.getElementById("svgfilter").innerHTML+'</defs><style type="text/css">'+arcMenuStyles1+'</style>'+svgstr1+'</svg>';
+
+var heightinputelmnts = ((ht/2)/7);
+var offsettop = ht/2 - heightinputelmnts;
+var gap = heightinputelmnts/5;
+var offsetleft = 14;
+console.log(gap+" "+offsettop+" "+heightinputelmnts);
+      var rst = window.parent.replaceHelper({
+              loginformloginicon:window.parent.document.getElementById("svgCONTACTUSINVERTEDicon").innerHTML,
+              litop:(ht/4 - outerradius1),
+              lileft:(wd/2 - outerradius1),
+              liwd:outerradius1 * 2,
+              liht:outerradius1 * 2,
+              emailtop:offsettop,
+              emailboxtop:offsettop+heightinputelmnts,
+              submittop:offsettop+heightinputelmnts,
+              widthinputelmnts:wd-(offsetleft*2.5),
+              widthemailsubsc:(wd*0.7)-offsetleft,
+              submitleft:(wd*0.7)+offsetleft*0.5,
+              widthsubmit:(wd*0.3)-offsetleft*2,
+              whatsapp:document.getElementById("emailsvg3").innerHTML,
+
+              pwdtop:offsettop+heightinputelmnts*2+gap*2,
+              pwdboxtop:offsettop+heightinputelmnts*3+gap*3,
+              fgtpwdtop:offsettop + heightinputelmnts*5.5+gap*5.5,
+              heightinputelmnts:heightinputelmnts,
+              leftinputelmnts:offsetleft
+            }, document.getElementById("svgLoginForm").innerHTML);
+        container.innerHTML = cmenuhtml1 + rst;
+ // alert(container.innerHTML);
+
+
+</script>
+
+<!-- should always be the last line. ensures the HTML above is loaded as dom content and available -->
+<img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" onload="this.parentNode.removeChild(this); snippetBodyLoad2(); menuCalls.showLoginScreen(); snippetBodyLoad(); " />

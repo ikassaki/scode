@@ -1013,7 +1013,10 @@ window.menuCalls = new function()
               }
   this.showContactUsScreen = function()
               {
-                alert("you clicked contactus menu item"+isprivate);
+                // alert("you clicked contactus menu item"+isprivate);
+                document.getElementById("svgmenuActionResult").src="contactHTMLsnippet.html"
+                showMenu();
+
                 // xHTP.send("loginHTMLsnippet.html", function(resp)
                 //               {
                 //                 var MyDiv = document.getElementById("pageContent");
