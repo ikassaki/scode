@@ -101,20 +101,32 @@
 
 -->
 
+<style>
+  
+ /* table {
+    border-collapse: collapse;
+}
+  table, th, td {
+    border: 1px solid red;
+}*/
+
+</style>
+
 <div style="position:absolute; top:{{box1}}px; left:0px;">
 
 <div style="position:relative;
               left:{{leftinputelmnts}}px;
               /*border:1px solid red;*/
               width:{{widthinputelmnts}}px;
-              background-color: rgb(248,249,249);
+              border-top:  {{boxborderinnercolor}};
+              border-bottom: {{boxborderinnercolor}};
               ">
-              <table width="{{widthinputelmnts}}px" style="border: 0px solid red; padding: 5%; background-color: rgb(248,249,249);">
+              <table width="{{widthinputelmnts}}px" style="border: 0px solid red; padding: 5%; background-color: {{alternatebandcolor}};">
               <tr><td>&nbsp;</td></tr>
-              <tr align="center"><td align="center"><span  style="font-family: 'Lato', sans-serif; font-weight: 700; font-size: 25px; font-variant: small-caps;">Readymade talent</span></td></tr>
+              <tr align="center"><td align="center"><span  style="font-family: '{{headlinefont}}', sans-serif; font-weight: 700; font-size: {{headlinefz}}; {{fontvari}}">Readymade talent</span></td></tr>
               <tr><td>&nbsp;</td></tr>
               <tr><td>
-                <span style="font-family: 'Lato', sans-serif; font-weight: 400; font-size: 18px; line-height: 140%;">Hire your superstar. Choose from pre-vetted ready-to-go talent that has been trained on the job and industry ready. Talent that is productive from day one in your office. Alternatively order a talent with your custom specification who will be trained specific to your organisations processes, methodologies, technologies, projects and codebase. You worry about getting you project to market/client. No worrying about whether a hired talent will scale up to your requirements and no wasting time for talent to fumble around getting to know your organisation. Choose from full stack or custom stack trained talent. Talent that has not just learned but also practised solid foundations in programming and analysis.</span>
+                <span style="font-family: 'Lato', sans-serif; font-weight: 400; font-size: {{copyfontsz}}; line-height: 140%;">Hire your superstar. Choose from pre-vetted ready-to-go talent that has been trained on the job and industry ready. Talent that is productive from day one in your office. Alternatively order a talent with your custom specification who will be trained specific to your organisations processes, methodologies, technologies, projects and codebase. You worry about getting you project to market/client. No worrying about whether a hired talent will scale up to your requirements and no wasting time for talent to fumble around getting to know your organisation. Choose from full stack or custom stack trained talent. Talent that has not just learned but also practised solid foundations in programming and analysis.</span>
               </td></tr>
 
               <tr><td>&nbsp;</td></tr>
@@ -128,7 +140,7 @@
                               color:white; 
                               font-family: 'Lato', sans-serif;
                               font-weight: 700; 
-                              font-size: 18px;
+                              font-size: {{copyfontsz}};
                               padding-top: 10px;
                               padding-bottom: 10px;
                               padding-left: 25px;
@@ -138,7 +150,7 @@
               </td></tr>
               <tr><td>&nbsp;</td></tr>
               <tr align="center"style="border:1px solid red;"><td align="center">
-                <div style="border:1px solid red; width:50%; height:50%; border:0px solid red;"> {{svgheroicon}} </div>
+                <div style="border:1px solid red; width:{{svgcontentheightwidth}}; height:{{svgcontentheightwidth}}; border:0px solid red;"> {{svgheroicon}} </div>
               </td></tr>
               <tr><td>&nbsp;</td></tr>
               </table>
@@ -151,14 +163,110 @@
               left:{{leftinputelmnts}}px;
               /*border:1px solid red;*/
               width:{{widthinputelmnts}}px;
+             border-top:  {{boxbordercolor}};
+             border-bottom:  {{boxbordercolor}};
+              
+              ">
+              <table width="{{widthinputelmnts}}px" style="border: 0px solid red; padding: 5%; background-color: white;">
+              <tr><td>&nbsp;</td></tr>
+              <tr align="center"><td align="center"><span  style="font-family: '{{headlinefont}}', sans-serif; font-weight: 700; font-size: {{headlinefz}}; {{fontvari}}">Engineer and deploy an instant team</span></td></tr>
+              <tr><td>&nbsp;</td></tr>
+              <tr><td>
+                <span style="font-family: 'Lato', sans-serif; font-weight: 400; font-size: {{copyfontsz}}; line-height: 140%;">If you have a new project or idea coming up for implementation, mix-match and select the right team instantly sitting right in front of your favorite computing device. No running around meeting people, conducting tests, scheduling calls and interviews,  waiting for talent to acknowledge your offer, dealing with talent churn etc. Peace of mind. If a talent leaves mid-way, we will replace the talent. No scouting around. Instead focus on your idea/client and the deliverables. Time to market should be your only focus. Put the right team - choose how many testers, developers, managers etc needs to be in your team. You are the captain. Choose a team from the pre-trained talent availbale readily. Deploy or expand your team in days, not months.</span>
+              </td></tr>
+
+              <tr><td>&nbsp;</td></tr>
+              <tr align="center"><td align="center">
+
+                  <input type="submit" style="
+                              border-radius: 3px; 
+                              margin:0px;
+                              background-color: #ff5000 /*#FFCC01, #ff5000, ff7700, ff5000, eeac00, ff5b27, ed5525, ff6c2f, ff631d*/; 
+                              border: none; 
+                              color:white; 
+                              font-family: 'Lato', sans-serif;
+                              font-weight: 700; 
+                              font-size: {{copyfontsz}};
+                              padding-top: 10px;
+                              padding-bottom: 10px;
+                              padding-left: 25px;
+                              padding-right: 25px; 
+                              " 
+                              value="Get In Touch" onclick="alert(this.parentNode);this.parentNode.parentNode.submit();alert(2);" />
+              </td></tr>
+              <tr><td>&nbsp;</td></tr>
+              <tr align="center"style="border:1px solid red;"><td align="center">
+                <div style="border:1px solid red; width:{{svgcontentheightwidth}}; height:{{svgcontentheightwidth}}; border:0px solid red;"> {{svgteamicon}} </div>
+              </td></tr>
+              <tr><td>&nbsp;</td></tr>
+              </table>
+              
+</div>
+
+
+
+<div style="position:relative;
+              left:{{leftinputelmnts}}px;
+              /*border:1px solid red;*/
+              width:{{widthinputelmnts}}px;
+             border-top:  {{boxborderinnercolor}};
+             border-bottom: {{boxborderinnercolor}};
+               
+              ">
+              <table width="{{widthinputelmnts}}px" style="border: 0px solid red; padding: 5%; background-color: {{alternatebandcolor}};">
+              <tr><td>&nbsp;</td></tr>
+              <tr align="center"><td align="center"><span  style="font-family: '{{headlinefont}}', sans-serif; font-weight: 700; font-size: {{headlinefz}}; {{fontvari}}">Sponsor</span></td></tr>
+              <tr><td>&nbsp;</td></tr>
+              <tr><td>
+                <span style="font-family: 'Lato', sans-serif; font-weight: 400; font-size: {{copyfontsz}}; line-height: 140%;">Sponsor a student. You can choose to sponsor one or more of your employees to get trained at our facility. You can also donate or sponsor students from economically disadvantaaged sections, or students from partially represented communities or regions. You can sponsor in terms of fees, equipment, time, opportunities, internships etc. </span>
+              </td></tr>
+
+              <tr><td>&nbsp;</td></tr>
+              <tr align="center"><td align="center">
+
+                  <input type="submit" style="
+                              border-radius: 3px; 
+                              margin:0px;
+                              background-color: #ff5000 /*#FFCC01, #ff5000, ff7700, ff5000, eeac00, ff5b27, ed5525, ff6c2f, ff631d*/; 
+                              border: none; 
+                              color:white; 
+                              font-family: 'Lato', sans-serif;
+                              font-weight: 700; 
+                              font-size: {{copyfontsz}};
+                              padding-top: 10px;
+                              padding-bottom: 10px;
+                              padding-left: 25px;
+                              padding-right: 25px; 
+                              " 
+                              value="Get In Touch" onclick="alert(this.parentNode);this.parentNode.parentNode.submit();alert(2);" />
+              </td></tr>
+              <tr><td>&nbsp;</td></tr>
+              <tr align="center"style="border:1px solid red;"><td align="center">
+                <div style="border:1px solid red; width:{{svgcontentheightwidth}}; height:{{svgcontentheightwidth}}; border:0px solid red;"> {{svgsponsoricon}} </div>
+              </td></tr>
+              <tr><td>&nbsp;</td></tr>
+              </table>
+              
+</div>
+
+
+
+
+
+<div style="position:relative;
+              left:{{leftinputelmnts}}px;
+              /*border:1px solid red;*/
+             border-bottom:  {{boxbordercolor}};
+             border-top:  {{boxbordercolor}};
+               width:{{widthinputelmnts}}px;
               background-color: rgb(248,249,249);
               ">
               <table width="{{widthinputelmnts}}px" style="border: 0px solid red; padding: 5%; background-color: white;">
               <tr><td>&nbsp;</td></tr>
-              <tr align="center"><td align="center"><span  style="font-family: 'Lato', sans-serif; font-weight: 700; font-size: 25px; font-variant: small-caps;">Engineer and deploy an instant team</span></td></tr>
+              <tr align="center"><td align="center"><span  style="font-family: '{{headlinefont}}', sans-serif; font-weight: 700; font-size: {{headlinefz}}; {{fontvari}} ">Temporary augmentation</span></td></tr>
               <tr><td>&nbsp;</td></tr>
               <tr><td>
-                <span style="font-family: 'Lato', sans-serif; font-weight: 400; font-size: 18px; line-height: 140%;">If you have a new project or idea coming up for implementation, mix-match and select the right team instantly sitting right in front of your favorite computing device. No running around meeting people, conducting tests, scheduling calls and interviews,  waiting for talent to acknowledge your offer, dealing with talent churn etc. Peace of mind. If a talent leaves mid-way, we will replace the talent. No scouting around. Instead focus on your idea/client and the deliverables. Time to market should be your only focus. Put the right team - choose how many testers, developers, managers etc needs to be in your team. You are the captain. Choose a team from the pre-trained talent availbale readily. Deploy or expand your team in days, not months.</span>
+                <span style="font-family: 'Lato', sans-serif; font-weight: 400; font-size: {{copyfontsz}}; line-height: 140%;">Dont have enough resources on hand to rush through the deadline? Hire additional help just in time to help see through your dedalines. Disband them once your deliverables are successfully completed.</span>
               </td></tr>
 
               <tr><td>&nbsp;</td></tr>
@@ -172,97 +280,7 @@
                               color:white; 
                               font-family: 'Lato', sans-serif;
                               font-weight: 700; 
-                              font-size: 18px;
-                              padding-top: 10px;
-                              padding-bottom: 10px;
-                              padding-left: 25px;
-                              padding-right: 25px; 
-                              " 
-                              value="Get In Touch" onclick="alert(this.parentNode);this.parentNode.parentNode.submit();alert(2);" />
-              </td></tr>
-              <tr><td>&nbsp;</td></tr>
-              <tr align="center"style="border:1px solid red;"><td align="center">
-                <div style="border:1px solid red; width:50%; height:50%; border:0px solid red;"> {{svgteamicon}} </div>
-              </td></tr>
-              <tr><td>&nbsp;</td></tr>
-              </table>
-              
-</div>
-
-
-
-<div style="position:relative;
-              left:{{leftinputelmnts}}px;
-              /*border:1px solid red;*/
-              width:{{widthinputelmnts}}px;
-              background-color: rgb(248,249,249);
-              ">
-              <table width="{{widthinputelmnts}}px" style="border: 0px solid red; padding: 5%; background-color: rgb(248,249,249);">
-              <tr><td>&nbsp;</td></tr>
-              <tr align="center"><td align="center"><span  style="font-family: 'Lato', sans-serif; font-weight: 700; font-size: 25px; font-variant: small-caps;">Sponsor</span></td></tr>
-              <tr><td>&nbsp;</td></tr>
-              <tr><td>
-                <span style="font-family: 'Lato', sans-serif; font-weight: 400; font-size: 18px; line-height: 140%;">Sponsor a student. You can choose to sponsor one or more of your employees to get trained at our facility. You can also donate or sponsor students from economically disadvantaaged sections, or students from partially represented communities or regions. You can sponsor in terms of fees, equipment, time, opportunities, internships etc. </span>
-              </td></tr>
-
-              <tr><td>&nbsp;</td></tr>
-              <tr align="center"><td align="center">
-
-                  <input type="submit" style="
-                              border-radius: 3px; 
-                              margin:0px;
-                              background-color: #ff5000 /*#FFCC01, #ff5000, ff7700, ff5000, eeac00, ff5b27, ed5525, ff6c2f, ff631d*/; 
-                              border: none; 
-                              color:white; 
-                              font-family: 'Lato', sans-serif;
-                              font-weight: 700; 
-                              font-size: 18px;
-                              padding-top: 10px;
-                              padding-bottom: 10px;
-                              padding-left: 25px;
-                              padding-right: 25px; 
-                              " 
-                              value="Get In Touch" onclick="alert(this.parentNode);this.parentNode.parentNode.submit();alert(2);" />
-              </td></tr>
-              <tr><td>&nbsp;</td></tr>
-              <tr align="center"style="border:1px solid red;"><td align="center">
-                <div style="border:1px solid red; width:50%; height:50%; border:0px solid red;"> {{svgsponsoricon}} </div>
-              </td></tr>
-              <tr><td>&nbsp;</td></tr>
-              </table>
-              
-</div>
-
-
-
-
-
-<div style="position:relative;
-              left:{{leftinputelmnts}}px;
-              /*border:1px solid red;*/
-              width:{{widthinputelmnts}}px;
-              background-color: rgb(248,249,249);
-              ">
-              <table width="{{widthinputelmnts}}px" style="border: 0px solid red; padding: 5%; background-color: white;">
-              <tr><td>&nbsp;</td></tr>
-              <tr align="center"><td align="center"><span  style="font-family: 'Mate SC', sans-serif; font-weight: 700; font-size: 25px; font-variant: small-caps;">Temporary augmentation</span></td></tr>
-              <tr><td>&nbsp;</td></tr>
-              <tr><td>
-                <span style="font-family: 'Lato', sans-serif; font-weight: 400; font-size: 18px; line-height: 140%;">Dont have enough resources on hand to rush through the deadline? Hire additional help just in time to help see through your dedalines. Disband them once your deliverables are successfully completed.</span>
-              </td></tr>
-
-              <tr><td>&nbsp;</td></tr>
-              <tr align="center"><td align="center">
-
-                  <input type="submit" style="
-                              border-radius: 3px; 
-                              margin:0px;
-                              background-color: #ff5000 /*#FFCC01, #ff5000, ff7700, ff5000, eeac00, ff5b27, ed5525, ff6c2f, ff631d*/; 
-                              border: none; 
-                              color:white; 
-                              font-family: 'Lato', sans-serif;
-                              font-weight: 700; 
-                              font-size: 18px;
+                              font-size: {{copyfontsz}};
                               padding-top: 10px;
                               padding-bottom: 10px;
                               padding-left: 25px;
@@ -272,7 +290,7 @@
               </td></tr>
               <tr><td>&nbsp;</td></tr>
               <tr align="center"><td align="center">
-                <div style="width:50%; height:50%; border:0px solid red;"> {{svgaugmenticon}} </div>
+                <div style="width:{{svgcontentheightwidth}}; height:{{svgcontentheightwidth}}; border:0px solid red;"> {{svgaugmenticon}} </div>
               </td></tr>
               <tr><td>&nbsp;</td></tr>
               </table>
@@ -285,15 +303,16 @@
 <div style="position:relative;
               left:{{leftinputelmnts}}px;
               /*border:1px solid red;*/
-              width:{{widthinputelmnts}}px;
+             border-top:  {{boxborderinnercolor}};
+               width:{{widthinputelmnts}}px;
               background-color: rgb(248,249,249);
               ">
-              <table width="{{widthinputelmnts}}px" style="border: 0px solid red; padding: 5%; background-color:  rgb(248,249,249);;">
+              <table width="{{widthinputelmnts}}px" style="border: 0px solid red; padding: 5%; background-color: {{alternatebandcolor}};">
               <tr><td>&nbsp;</td></tr>
-              <tr align="center"><td align="center"><span  style="font-family: 'Mate SC', sans-serif; font-weight: 700; font-size: 25px; font-variant: small-caps;">Outsource</span></td></tr>
+              <tr align="center"><td align="center"><span  style="font-family: '{{headlinefont}}', sans-serif; font-weight: 700; font-size: {{headlinefz}}; {{fontvari}}">Outsource</span></td></tr>
               <tr><td>&nbsp;</td></tr>
               <tr><td>
-                <span style="font-family: 'Lato', sans-serif; font-weight: 400; font-size: 18px; line-height: 140%;">Outsource to us your tool development and ancillary software development work at very competitive rates.Outsource to us your tool development and ancillary software development work at very competitive rates.</span>
+                <span style="font-family: 'Lato', sans-serif; font-weight: 400; font-size: {{copyfontsz}}; line-height: 140%;">Outsource to us your tool development and ancillary software development work at very competitive rates.Outsource to us your tool development and ancillary software development work at very competitive rates.</span>
               </td></tr>
 
               <tr><td>&nbsp;</td></tr>
@@ -307,7 +326,7 @@
                               color:white; 
                               font-family: 'Lato', sans-serif;
                               font-weight: 700; 
-                              font-size: 18px;
+                              font-size: {{copyfontsz}};
                               padding-top: 10px;
                               padding-bottom: 10px;
                               padding-left: 25px;
@@ -317,7 +336,7 @@
               </td></tr>
               <tr><td>&nbsp;</td></tr>
               <tr align="center"><td align="center">
-                <div style="width:50%; height:50%; border:0px solid red;"> {{svgosicon}} </div>
+                <div style="width:{{svgcontentheightwidth}}; height:{{svgcontentheightwidth}}; border:0px solid red;"> {{svgosicon}} </div>
               </td></tr>
               <tr><td>&nbsp;</td></tr>
               </table>
@@ -470,6 +489,16 @@ heightboxes = 300;
               heightinputelmnts:heightboxes,
               widthinputelmnts:wd-(offsetleft*2.5),
               widthinputelmnts:wd,
+
+              svgcontentheightwidth: (wd/2)+"px",
+
+              headlinefont: "Mate SC", //Mate SC
+              //fontvari:"font-variant:small-caps;",
+              headlinefz: (wd*0.09)+"px",
+              copyfontsz: (wd*0.05)+"px",
+              alternatebandcolor: " rgb(247,248,248);",
+              boxbordercolor: "1px solid rgb(230,230,230)",
+              boxborderinnercolor: "1px solid rgb(220,220,220)",
 
 
               hr1left:offsetleft,
