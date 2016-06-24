@@ -716,11 +716,12 @@ var calcratio = (deviceProperty.layout=="Portrait")?avlX/reqrsX:avlY/reqrsY;
        var viewboxHtWd1 = outerradius1 * 2 ;
        var arcMenuStyles1 = "";
        // var svgstr1 = '<rect x="'+((wd/2)-outerradius1)+'" y="'+((ht/4)-outerradius1)+'" width="'+outerradius1*2+'" height="'+outerradius1*2+'" stroke="black" stroke-width="0" fill="rgba(3,3,3,0.7)" style="filter:url(#outerglow)"/>';
-       var svgstr1 = '<circle cx="'+wd/2+'" cy="'+(ht/4)+'" r="'+outerradius1+'" stroke="black" stroke-width="0" fill="rgba(3,3,3,0.7)" style="filter:url(#outerglow)"/>';
+       var svgstr1 = '<circle cx="'+wd/2+'" cy="'+(ht/4)+'" r="'+outerradius1+'" stroke="black" stroke-width="0" fill="rgba(3,3,3,0.7)" style=""/>';
        
        // var svgstr1 = '<circle cx="'+wd/2+'" cy="'+(ht/4)+'" r="'+outerradius1+'" stroke="black" stroke-width="0" fill="rgba(3,3,3,0.7)" style="filter:url(#outerglow)"/>';
       var cmenuhtml1 = '<svg viewBox="0 0 '+wd+' '+ht+'">'+'<defs>'+document.getElementById("svgfilter").innerHTML+'</defs><style type="text/css">'+arcMenuStyles1+'</style>'+svgstr1+'</svg>';
       // var cmenuhtml1 = '<svg viewBox="0 0 '+wd+' '+ht+'">'+svgstr1+'</svg>';
+
 
 
 var heightinputelmnts = ((ht/2)/7);
