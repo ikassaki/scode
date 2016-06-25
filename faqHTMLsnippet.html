@@ -49,263 +49,6 @@
 
 
 
-<script id="svgLoginFormLscape" type="text/x-handlebars-template">
-
-  <div style="position:absolute; left:0; top:0; border:0px solid red; height:{{scrollinnerht}}px; width:{{scrollinnerwd}}px; overflow: scroll;">
-
-
-    <div style="border:0px solid red; position:absolute; top:0;left:0;height:{{containerht}}px; width:{{containerwd}}px;">
-    {{svgcommoninserts}}
-    </div>
-
-    <div style="border:0px solid red; position:absolute; top:{{litop}};left:{{lileft}};height:{{liht}}px; width:{{liwd}}px;" id="loginformloginicon">{{loginformloginicon}}
-    </div>
-
-
-    <div style="position:absolute; top:{{box1}}px; left:0px; ">
-
-      <div style="position:relative;
-                    left:{{leftinputelmnts}}px;
-                    /*border:1px solid red;*/
-                    width:{{widthinputelmnts}}px;
-                    ">
-                    <table width="{{widthinputelmnts}}px" style="border: 0px solid red; padding: 5%; background-color: white;">
-                    <tr><td>
-                      <span style="font-family: 'Lato', sans-serif; font-weight: 400; font-size: {{copyfontsz}}; line-height: 140%; color:{{copytextcolor}};">
-                      At BITROMAN, we invite industry leaders and startup champions to join hands as partners. Whether you are a recruiter, entrepreneur or an employer, we invite you to strike a conversation with us. Here are a few ways you can contribute or make use of this elite community.
-                      </span>
-                    </td></tr>
-                    <tr><td>&nbsp;</td></tr>
-                    </table>
-      </div>
-
-
-      <div style="position:relative;
-                    left:{{leftinputelmnts}}px;
-                    width:{{widthinputelmnts}}px;
-                    border-top:  {{boxborderinnercolor}};
-                    border-bottom: {{boxborderinnercolor}};
-                    ">
-                    <table width="{{widthinputelmnts}}px" style="border: 0px solid red; padding: 5%; background-color: {{alternatebandcolor}};">
-                    <tr>
-                      <td rowspan="7" align="center" style="width:{{svgcontentheightwidth}};">
-                        <div style="border:1px solid red; width:{{svgcontentheightwidth}}; height:{{svgcontentheightwidth}}; border:0px solid red;"> {{svgheroicon}} </div>
-                      </td>
-                      <td>&nbsp;</td>
-                    </tr>
-                    <tr align="center">
-                      <td align="center"><span  style="font-family: '{{headlinefont}}', sans-serif; font-weight: 700; font-size: {{headlinefz}}; {{fontvari}}">Readymade talent</span></td></tr>
-                    <tr><td>&nbsp;</td></tr>
-                    <tr><td>
-                      <span style="font-family: 'Lato', sans-serif; font-weight: 400; font-size: {{copyfontsz}}; line-height: 140%; color:{{copytextcolor}};">Hire your superstar. Choose from pre-vetted ready-to-go talent that has been trained on the job and industry ready. Talent that is productive from day one in your office. Alternatively order a talent with your custom specification who will be trained specific to your organisations processes, methodologies, technologies, projects and codebase. You worry about getting you project to market/client. No worrying about whether a hired talent will scale up to your requirements and no wasting time for talent to fumble around getting to know your organisation. Choose from full stack or custom stack trained talent. Talent that has not just learned but also practised solid foundations in programming and analysis.</span>
-                    </td></tr>
-
-                    <tr><td>&nbsp;</td></tr>
-                    <tr align="center">
-                      <td align="center">
-                        <input type="submit" style="
-                                    border-radius: 3px; 
-                                    margin:0px;
-                                    background-color: #ff5000 /*#FFCC01, #ff5000, ff7700, ff5000, eeac00, ff5b27, ed5525, ff6c2f, ff631d*/; 
-                                    border: none; 
-                                    color:white; 
-                                    font-family: 'Lato', sans-serif;
-                                    font-weight: 700; 
-                                    font-size: {{copyfontsz}};
-                                    padding-top: 10px;
-                                    padding-bottom: 10px;
-                                    padding-left: 25px;
-                                    padding-right: 25px; 
-                                    " 
-                                    value="Get In Touch" onclick="alert(this.parentNode);this.parentNode.parentNode.submit();alert(2);" />
-                    </td></tr>
-                    <tr><td>&nbsp;</td></tr>
-                    </table>                   
-      </div>
-
-
-      <div style="position:relative;
-                    left:{{leftinputelmnts}}px;
-                    width:{{widthinputelmnts}}px;
-                    border-top:  {{boxborderinnercolor}};
-                    border-bottom: {{boxborderinnercolor}};
-                    ">
-                    <table width="{{widthinputelmnts}}px" style="border: 0px solid red; padding: 5%; ">
-                    <tr>
-                      <td>&nbsp;</td>
-                      <td rowspan="7" align="center" style="width:{{svgcontentheightwidth}};">
-                        <div style="border:1px solid red; width:{{svgcontentheightwidth}}; height:{{svgcontentheightwidth}}; border:0px solid red;"> {{svgteamicon}} </div>
-                      </td>
-                    </tr>
-                    <tr align="center">
-                      <td align="center"><span  style="font-family: '{{headlinefont}}', sans-serif; font-weight: 700; font-size: {{headlinefz}}; {{fontvari}}">Engineer and deploy an instant team</span></td></tr>
-                    <tr><td>&nbsp;</td></tr>
-                    <tr><td>
-                      <span style="font-family: 'Lato', sans-serif; font-weight: 400; font-size: {{copyfontsz}}; line-height: 140%; color:{{copytextcolor}};">If you have a new project or idea coming up for implementation, mix-match and select the right team instantly sitting right in front of your favorite computing device. No running around meeting people, conducting tests, scheduling calls and interviews,  waiting for talent to acknowledge your offer, dealing with talent churn etc. Peace of mind. If a talent leaves mid-way, we will replace the talent. No scouting around. Instead focus on your idea/client and the deliverables. Time to market should be your only focus. Put the right team - choose how many testers, developers, managers etc needs to be in your team. You are the captain. Choose a team from the pre-trained talent availbale readily. Deploy or expand your team in days, not months.</span>
-                    </td></tr>
-
-                    <tr><td>&nbsp;</td></tr>
-                    <tr align="center">
-                      <td align="center">
-                        <input type="submit" style="
-                                    border-radius: 3px; 
-                                    margin:0px;
-                                    background-color: #ff5000 /*#FFCC01, #ff5000, ff7700, ff5000, eeac00, ff5b27, ed5525, ff6c2f, ff631d*/; 
-                                    border: none; 
-                                    color:white; 
-                                    font-family: 'Lato', sans-serif;
-                                    font-weight: 700; 
-                                    font-size: {{copyfontsz}};
-                                    padding-top: 10px;
-                                    padding-bottom: 10px;
-                                    padding-left: 25px;
-                                    padding-right: 25px; 
-                                    " 
-                                    value="Get In Touch" onclick="alert(this.parentNode);this.parentNode.parentNode.submit();alert(2);" />
-                    </td></tr>
-                    <tr><td>&nbsp;</td></tr>
-                    </table>                   
-      </div>
-
-
-      <div style="position:relative;
-                    left:{{leftinputelmnts}}px;
-                    width:{{widthinputelmnts}}px;
-                    border-top:  {{boxborderinnercolor}};
-                    border-bottom: {{boxborderinnercolor}};
-                    ">
-                    <table width="{{widthinputelmnts}}px" style="border: 0px solid red; padding: 5%; background-color: {{alternatebandcolor}};">
-                    <tr>
-                      <td rowspan="7" align="center" style="width:{{svgcontentheightwidth}};">
-                        <div style="border:1px solid red; width:{{svgcontentheightwidth}}; height:{{svgcontentheightwidth}}; border:0px solid red;"> {{svgsponsoricon}} </div>
-                      </td>
-                      <td>&nbsp;</td>
-                    </tr>
-                    <tr align="center">
-                      <td align="center"><span  style="font-family: '{{headlinefont}}', sans-serif; font-weight: 700; font-size: {{headlinefz}}; {{fontvari}}">Sponsor</span></td></tr>
-                    <tr><td>&nbsp;</td></tr>
-                    <tr><td>
-                      <span style="font-family: 'Lato', sans-serif; font-weight: 400; font-size: {{copyfontsz}}; line-height: 140%; color:{{copytextcolor}};">Sponsor a student. You can choose to sponsor one or more of your employees to get trained at our facility. You can also donate or sponsor students from economically disadvantaaged sections, or students from partially represented communities or regions. You can sponsor in terms of fees, equipment, time, opportunities, internships etc.</span>
-                    </td></tr>
-
-                    <tr><td>&nbsp;</td></tr>
-                    <tr align="center">
-                      <td align="center">
-                        <input type="submit" style="
-                                    border-radius: 3px; 
-                                    margin:0px;
-                                    background-color: #ff5000 /*#FFCC01, #ff5000, ff7700, ff5000, eeac00, ff5b27, ed5525, ff6c2f, ff631d*/; 
-                                    border: none; 
-                                    color:white; 
-                                    font-family: 'Lato', sans-serif;
-                                    font-weight: 700; 
-                                    font-size: {{copyfontsz}};
-                                    padding-top: 10px;
-                                    padding-bottom: 10px;
-                                    padding-left: 25px;
-                                    padding-right: 25px; 
-                                    " 
-                                    value="Get In Touch" onclick="alert(this.parentNode);this.parentNode.parentNode.submit();alert(2);" />
-                    </td></tr>
-                    <tr><td>&nbsp;</td></tr>
-                    </table>                   
-      </div>
-
-
-      <div style="position:relative;
-                    left:{{leftinputelmnts}}px;
-                    width:{{widthinputelmnts}}px;
-                    border-top:  {{boxborderinnercolor}};
-                    border-bottom: {{boxborderinnercolor}};
-                    ">
-                    <table width="{{widthinputelmnts}}px" style="border: 0px solid red; padding: 5%; ">
-                    <tr>
-                      <td>&nbsp;</td>
-                      <td rowspan="7" align="center" style="width:{{svgcontentheightwidth}};">
-                        <div style="border:1px solid red; width:{{svgcontentheightwidth}}; height:{{svgcontentheightwidth}}; border:0px solid red;"> {{svgaugmenticon}} </div>
-                      </td>
-                    </tr>
-                    <tr align="center">
-                      <td align="center"><span  style="font-family: '{{headlinefont}}', sans-serif; font-weight: 700; font-size: {{headlinefz}}; {{fontvari}}">Temporary augmentation</span></td></tr>
-                    <tr><td>&nbsp;</td></tr>
-                    <tr><td>
-                      <span style="font-family: 'Lato', sans-serif; font-weight: 400; font-size: {{copyfontsz}}; line-height: 140%; color:{{copytextcolor}};">Dont have enough resources on hand to rush through the deadline? Hire additional help just in time to help see through your dedalines. Disband them once your deliverables are successfully completed.</span>
-                    </td></tr>
-
-                    <tr><td>&nbsp;</td></tr>
-                    <tr align="center">
-                      <td align="center">
-                        <input type="submit" style="
-                                    border-radius: 3px; 
-                                    margin:0px;
-                                    background-color: #ff5000 /*#FFCC01, #ff5000, ff7700, ff5000, eeac00, ff5b27, ed5525, ff6c2f, ff631d*/; 
-                                    border: none; 
-                                    color:white; 
-                                    font-family: 'Lato', sans-serif;
-                                    font-weight: 700; 
-                                    font-size: {{copyfontsz}};
-                                    padding-top: 10px;
-                                    padding-bottom: 10px;
-                                    padding-left: 25px;
-                                    padding-right: 25px; 
-                                    " 
-                                    value="Get In Touch" onclick="alert(this.parentNode);this.parentNode.parentNode.submit();alert(2);" />
-                    </td></tr>
-                    <tr><td>&nbsp;</td></tr>
-                    </table>                   
-      </div>
-
-
-
-      <div style="position:relative;
-                    left:{{leftinputelmnts}}px;
-                    width:{{widthinputelmnts}}px;
-                    border-top:  {{boxborderinnercolor}};
-                    border-bottom: {{boxborderinnercolor}};
-                    ">
-                    <table width="{{widthinputelmnts}}px" style="border: 0px solid red; padding: 5%; background-color: {{alternatebandcolor}};">
-                    <tr>
-                      <td rowspan="7" align="center" style="width:{{svgcontentheightwidth}};">
-                        <div style="border:1px solid red; width:{{svgcontentheightwidth}}; height:{{svgcontentheightwidth}}; border:0px solid red;"> {{svgosicon}} </div>
-                      </td>
-                      <td>&nbsp;</td>
-                    </tr>
-                    <tr align="center">
-                      <td align="center"><span  style="font-family: '{{headlinefont}}', sans-serif; font-weight: 700; font-size: {{headlinefz}}; {{fontvari}}">Outsource</span></td></tr>
-                    <tr><td>&nbsp;</td></tr>
-                    <tr><td>
-                      <span style="font-family: 'Lato', sans-serif; font-weight: 400; font-size: {{copyfontsz}}; line-height: 140%; color:{{copytextcolor}};">Outsource to us your tool development and ancillary software development work at very competitive rates.Outsource to us your tool development and ancillary software development work at very competitive rates.</span>
-                    </td></tr>
-
-                    <tr><td>&nbsp;</td></tr>
-                    <tr align="center">
-                      <td align="center">
-                        <input type="submit" style="
-                                    border-radius: 3px; 
-                                    margin:0px;
-                                    background-color: #ff5000 /*#FFCC01, #ff5000, ff7700, ff5000, eeac00, ff5b27, ed5525, ff6c2f, ff631d*/; 
-                                    border: none; 
-                                    color:white; 
-                                    font-family: 'Lato', sans-serif;
-                                    font-weight: 700; 
-                                    font-size: {{copyfontsz}};
-                                    padding-top: 10px;
-                                    padding-bottom: 10px;
-                                    padding-left: 25px;
-                                    padding-right: 25px; 
-                                    " 
-                                    value="Get In Touch" onclick="alert(this.parentNode);this.parentNode.parentNode.submit();alert(2);" />
-                    </td></tr>
-                    <tr><td>&nbsp;</td></tr>
-                    </table>                   
-      </div>
-
-
-
-    </div>
-  </div>
-</script>
-
 
 <script id="svgLoginForm" type="text/x-handlebars-template">
 
@@ -318,44 +61,18 @@
     <div style="border:0px solid red; position:absolute; top:{{litop}};left:{{lileft}};height:{{liht}}px; width:{{liwd}}px;" id="loginformloginicon">{{loginformloginicon}}
     </div>
 
-<!--
-
-https://www.appacademy.io/employers
-http://www.galvanize.com/partners/become-a-partner/
-https://hackbrightacademy.com/sponsor/
-http://www.galvanize.com/partners/
-http://flatironschool.com/hire
-http://reactorcore.com/hiring/
-
-
-https://hackbrightacademy.com/courses/fellowship/
-  nice use of icons
-
-
--->
-
-<style>
-  
- /* table {
-    border-collapse: collapse;
-}
-  table, th, td {
-    border: 1px solid red;
-}*/
-
-</style>
 
     <div style="position:absolute; top:{{box1}}px; left:0px; ">
 
       <div style="position:relative;
                     left:{{leftinputelmnts}}px;
                     /*border:1px solid red;*/
-                    width:{{widthinputelmnts}}px;
+                    width:{{containerwd}}px;
                     ">
-                    <table width="{{widthinputelmnts}}px" style="border: 0px solid red; padding: 5%; background-color: white;">
+                    <table width="{{containerwd}}px" style="border: 0px solid red; padding:{{copypadleft}}; background-color: white;">
                     <tr><td>
                       <span style="font-family: 'Lato', sans-serif; font-weight: 400; font-size: {{copyfontsz}}; line-height: 140%; color:{{copytextcolor}};">
-                      At BITROMAN, we invite industry leaders and startup champions to join hands as partners. Whether you are a recruiter, entrepreneur or an employer, we invite you to strike a conversation with us. Here are a few ways you can contribute or make use of this elite community.
+                      As a prospective professional, you would have several doubts before joining a high profile course like this. If any of the below does not answer your question, feel free to get in touch with us.
                       </span>
                     </td></tr>
                     <tr><td>&nbsp;</td></tr>
@@ -364,189 +81,29 @@ https://hackbrightacademy.com/courses/fellowship/
 
 
 
-      <div style="position:relative;
-                    left:{{leftinputelmnts}}px;
-                    /*border:1px solid red;*/
-                    width:{{widthinputelmnts}}px;
-                    border-top:  {{boxborderinnercolor}};
-                    border-bottom: {{boxborderinnercolor}};
-                    ">
-                    <table width="{{widthinputelmnts}}px" style="border: 0px solid red; padding: 5%; background-color: {{alternatebandcolor}};">
-                    <tr><td>&nbsp;</td></tr>
-                    <tr align="center"><td align="center"><span  style="font-family: '{{headlinefont}}', sans-serif; font-weight: 700; font-size: {{headlinefz}}; {{fontvari}}">Readymade talent</span></td></tr>
-                    <tr><td>&nbsp;</td></tr>
-                    <tr><td>
-                      <span style="font-family: 'Lato', sans-serif; font-weight: 400; font-size: {{copyfontsz}}; line-height: 140%; color:{{copytextcolor}};">Hire your superstar. Choose from pre-vetted ready-to-go talent that has been trained on the job and industry ready. Talent that is productive from day one in your office. Alternatively order a talent with your custom specification who will be trained specific to your organisations processes, methodologies, technologies, projects and codebase. You worry about getting you project to market/client. No worrying about whether a hired talent will scale up to your requirements and no wasting time for talent to fumble around getting to know your organisation. Choose from full stack or custom stack trained talent. Talent that has not just learned but also practised solid foundations in programming and analysis.</span>
-                    </td></tr>
-
-                    <tr><td>&nbsp;</td></tr>
-                    <tr align="center"><td align="center">
-
-                        <input type="submit" style="
-                                    border-radius: 3px; 
-                                    margin:0px;
-                                    background-color: #ff5000 /*#FFCC01, #ff5000, ff7700, ff5000, eeac00, ff5b27, ed5525, ff6c2f, ff631d*/; 
-                                    border: none; 
-                                    color:white; 
-                                    font-family: 'Lato', sans-serif;
-                                    font-weight: 700; 
-                                    font-size: {{copyfontsz}};
-                                    padding-top: 10px;
-                                    padding-bottom: 10px;
-                                    padding-left: 25px;
-                                    padding-right: 25px; 
-                                    " 
-                                    value="Get In Touch" onclick="alert(this.parentNode);this.parentNode.parentNode.submit();alert(2);" />
-                    </td></tr>
-                    <tr><td>&nbsp;</td></tr>
-                    <tr align="center"style="border:1px solid red;"><td align="center">
-                      <div style="border:1px solid red; width:{{svgcontentheightwidth}}; height:{{svgcontentheightwidth}}; border:0px solid red;"> {{svgheroicon}} </div>
-                    </td></tr>
-                    <tr><td>&nbsp;</td></tr>
-                    </table>
-                    
-      </div>
-
-
 
       <div style="position:relative;
                     left:{{leftinputelmnts}}px;
                     /*border:1px solid red;*/
-                    width:{{widthinputelmnts}}px;
-                   border-top:  {{boxbordercolor}};
-                   border-bottom:  {{boxbordercolor}};
-                    
-                    ">
-                    <table width="{{widthinputelmnts}}px" style="border: 0px solid red; padding: 5%; background-color: white;">
-                    <tr><td>&nbsp;</td></tr>
-                    <tr align="center"><td align="center"><span  style="font-family: '{{headlinefont}}', sans-serif; font-weight: 700; font-size: {{headlinefz}}; {{fontvari}}">Engineer and deploy an instant team</span></td></tr>
-                    <tr><td>&nbsp;</td></tr>
-                    <tr><td>
-                      <span style="font-family: 'Lato', sans-serif; font-weight: 400; font-size: {{copyfontsz}}; line-height: 140%; color:{{copytextcolor}};">If you have a new project or idea coming up for implementation, mix-match and select the right team instantly sitting right in front of your favorite computing device. No running around meeting people, conducting tests, scheduling calls and interviews,  waiting for talent to acknowledge your offer, dealing with talent churn etc. Peace of mind. If a talent leaves mid-way, we will replace the talent. No scouting around. Instead focus on your idea/client and the deliverables. Time to market should be your only focus. Put the right team - choose how many testers, developers, managers etc needs to be in your team. You are the captain. Choose a team from the pre-trained talent availbale readily. Deploy or expand your team in days, not months.</span>
-                    </td></tr>
-
-                    <tr><td>&nbsp;</td></tr>
-                    <tr align="center"><td align="center">
-
-                        <input type="submit" style="
-                                    border-radius: 3px; 
-                                    margin:0px;
-                                    background-color: #ff5000 /*#FFCC01, #ff5000, ff7700, ff5000, eeac00, ff5b27, ed5525, ff6c2f, ff631d*/; 
-                                    border: none; 
-                                    color:white; 
-                                    font-family: 'Lato', sans-serif;
-                                    font-weight: 700; 
-                                    font-size: {{copyfontsz}};
-                                    padding-top: 10px;
-                                    padding-bottom: 10px;
-                                    padding-left: 25px;
-                                    padding-right: 25px; 
-                                    " 
-                                    value="Get In Touch" onclick="alert(this.parentNode);this.parentNode.parentNode.submit();alert(2);" />
-                    </td></tr>
-                    <tr><td>&nbsp;</td></tr>
-                    <tr align="center"style="border:1px solid red;"><td align="center">
-                      <div style="border:1px solid red; width:{{svgcontentheightwidth}}; height:{{svgcontentheightwidth}}; border:0px solid red;"> {{svgteamicon}} </div>
-                    </td></tr>
-                    <tr><td>&nbsp;</td></tr>
-                    </table>
-                    
-      </div>
-
-
-
-      <div style="position:relative;
-                    left:{{leftinputelmnts}}px;
-                    /*border:1px solid red;*/
-                    width:{{widthinputelmnts}}px;
                    border-top:  {{boxborderinnercolor}};
-                   border-bottom: {{boxborderinnercolor}};
-                     
-                    ">
-                    <table width="{{widthinputelmnts}}px" style="border: 0px solid red; padding: 5%; background-color: {{alternatebandcolor}};">
-                    <tr><td>&nbsp;</td></tr>
-                    <tr align="center"><td align="center"><span  style="font-family: '{{headlinefont}}', sans-serif; font-weight: 700; font-size: {{headlinefz}}; {{fontvari}}">Sponsor</span></td></tr>
-                    <tr><td>&nbsp;</td></tr>
-                    <tr><td>
-                      <span style="font-family: 'Lato', sans-serif; font-weight: 400; font-size: {{copyfontsz}}; line-height: 140%; color:{{copytextcolor}};">Sponsor a student. You can choose to sponsor one or more of your employees to get trained at our facility. You can also donate or sponsor students from economically disadvantaaged sections, or students from partially represented communities or regions. You can sponsor in terms of fees, equipment, time, opportunities, internships etc. </span>
-                    </td></tr>
-
-                    <tr><td>&nbsp;</td></tr>
-                    <tr align="center"><td align="center">
-
-                        <input type="submit" style="
-                                    border-radius: 3px; 
-                                    margin:0px;
-                                    background-color: #ff5000 /*#FFCC01, #ff5000, ff7700, ff5000, eeac00, ff5b27, ed5525, ff6c2f, ff631d*/; 
-                                    border: none; 
-                                    color:white; 
-                                    font-family: 'Lato', sans-serif;
-                                    font-weight: 700; 
-                                    font-size: {{copyfontsz}};
-                                    padding-top: 10px;
-                                    padding-bottom: 10px;
-                                    padding-left: 25px;
-                                    padding-right: 25px; 
-                                    " 
-                                    value="Get In Touch" onclick="alert(this.parentNode);this.parentNode.parentNode.submit();alert(2);" />
-                    </td></tr>
-                    <tr><td>&nbsp;</td></tr>
-                    <tr align="center"style="border:1px solid red;"><td align="center">
-                      <div style="border:1px solid red; width:{{svgcontentheightwidth}}; height:{{svgcontentheightwidth}}; border:0px solid red;"> {{svgsponsoricon}} </div>
-                    </td></tr>
-                    <tr><td>&nbsp;</td></tr>
-                    </table>
-                    
-      </div>
-
-
-
-
-
-      <div style="position:relative;
-                    left:{{leftinputelmnts}}px;
-                    /*border:1px solid red;*/
-                   border-bottom:  {{boxbordercolor}};
-                   border-top:  {{boxbordercolor}};
-                     width:{{widthinputelmnts}}px;
+                     width:{{containerwd}}px;
                     background-color: rgb(248,249,249);
+
                     ">
-                    <table width="{{widthinputelmnts}}px" style="border: 0px solid red; padding: 5%; background-color: white;">
-                    <tr><td>&nbsp;</td></tr>
-                    <tr align="center"><td align="center"><span  style="font-family: '{{headlinefont}}', sans-serif; font-weight: 700; font-size: {{headlinefz}}; {{fontvari}} ">Temporary augmentation</span></td></tr>
-                    <tr><td>&nbsp;</td></tr>
-                    <tr><td>
-                      <span style="font-family: 'Lato', sans-serif; font-weight: 400; font-size: {{copyfontsz}}; line-height: 140%; color:{{copytextcolor}};">Dont have enough resources on hand to rush through the deadline? Hire additional help just in time to help see through your dedalines. Disband them once your deliverables are successfully completed.</span>
-                    </td></tr>
-
-                    <tr><td>&nbsp;</td></tr>
-                    <tr align="center"><td align="center">
-
-                        <input type="submit" style="
-                                    border-radius: 3px; 
-                                    margin:0px;
-                                    background-color: #ff5000 /*#FFCC01, #ff5000, ff7700, ff5000, eeac00, ff5b27, ed5525, ff6c2f, ff631d*/; 
-                                    border: none; 
-                                    color:white; 
-                                    font-family: 'Lato', sans-serif;
-                                    font-weight: 700; 
-                                    font-size: {{copyfontsz}};
-                                    padding-top: 10px;
-                                    padding-bottom: 10px;
-                                    padding-left: 25px;
-                                    padding-right: 25px; 
-                                    " 
-                                    value="Get In Touch" onclick="alert(this.parentNode);this.parentNode.parentNode.submit();alert(2);" />
-                    </td></tr>
-                    <tr><td>&nbsp;</td></tr>
-                    <tr align="center"><td align="center">
-                      <div style="width:{{svgcontentheightwidth}}; height:{{svgcontentheightwidth}}; border:0px solid red;"> {{svgaugmenticon}} </div>
-                    </td></tr>
-                    <tr><td>&nbsp;</td></tr>
-                    </table>
-                    
+                    <div style="border:0px solid red;width:{{widthinputelmnts}}px;">&nbsp;</div>
+                    <div style="border:0px solid red;width:{{widthinputelmnts}}px;padding-left:{{catpadleft}};">
+                        <span  style="font-family: '{{catfont}}', sans-serif; font-weight: 700; font-size: {{catfz}}; text-transform: uppercase; color:{{catfcolor}};">General</span>
+                    </div>
+                    <div style="border:0px solid red;width:{{widthinputelmntsleft}}px;padding-left:{{catpadleft}};">
+                        <span  style="font-family: '{{qfont}}', sans-serif; font-weight: 700; font-size: {{qfz}}; color:{{qfcolor}};">What makes your program unique?</span>
+                    </div>
+                    <div style="border:0px solid red;width:{{widthinputelmntsright}}px;padding-left:{{copypadleft}};padding-top:{{catpadtop}};">
+                        <span style="font-family: {{copyfont}}, sans-serif; font-weight: 400; font-size: {{copyfontsz}}; line-height: 140%; color:{{copytextcolor}};">
+                      As a prospective professional, you would have several doubts before joining a high profile course like this. If any of the below does not answer your question, feel free to get in touch with us.
+                      </span>
+                    </div>
+                    <div style="border:0px solid red;width:{{widthinputelmnts}}px;">&nbsp;</div>
       </div>
-
 
 
 
@@ -554,44 +111,45 @@ https://hackbrightacademy.com/courses/fellowship/
                     left:{{leftinputelmnts}}px;
                     /*border:1px solid red;*/
                    border-top:  {{boxborderinnercolor}};
-                     width:{{widthinputelmnts}}px;
-                    background-color: rgb(248,249,249);
+                     width:{{containerwd}}px;
                     ">
-                    <table width="{{widthinputelmnts}}px" style="border: 0px solid red; padding: 5%; background-color: {{alternatebandcolor}};">
-                    <tr><td>&nbsp;</td></tr>
-                    <tr align="center"><td align="center"><span  style="font-family: '{{headlinefont}}', sans-serif; font-weight: 700; font-size: {{headlinefz}}; {{fontvari}}">Outsource</span></td></tr>
-                    <tr><td>&nbsp;</td></tr>
+                    <div style="border:0px solid red;width:{{widthinputelmnts}}px;">&nbsp;</div>
+                    <div style="border:0px solid red;width:{{widthinputelmnts}}px;padding-left:{{catpadleft}};">
+                        <span  style="font-family: '{{catfont}}', sans-serif; font-weight: 700; font-size: {{catfz}}; text-transform: uppercase; color:{{catfcolor}};">General</span>
+                    </div>
+                    <div style="border:0px solid red;width:{{widthinputelmntsleft}}px;padding-left:{{catpadleft}};">
+                        <span  style="font-family: '{{qfont}}', sans-serif; font-weight: 700; font-size: {{qfz}}; color:{{qfcolor}};">What makes your program unique?</span>
+                    </div>
+                    <div style="border:0px solid red;width:{{widthinputelmntsright}}px;padding-left:{{copypadleft}};padding-top:{{catpadtop}};">
+                        <span style="font-family: {{copyfont}}, sans-serif; font-weight: 400; font-size: {{copyfontsz}}; line-height: 140%; color:{{copytextcolor}};">
+                      As a prospective professional, you would have several doubts before joining a high profile course like this. If any of the below does not answer your question, feel free to get in touch with us.
+                      </span>
+                    </div>
+                    <div style="border:0px solid red;width:{{widthinputelmnts}}px;">&nbsp;</div>
+      </div>
+
+
+
+
+
+      <div style="position:relative;
+                    left:{{leftinputelmnts}}px;
+                    /*border:1px solid red;*/
+                    width:{{widthinputelmnts}}px;
+                    ">
+                    <table width="{{widthinputelmnts}}px" style="border: 0px solid red; padding: 5%; background-color: rgb(51,51,51);">
                     <tr><td>
-                      <span style="font-family: 'Lato', sans-serif; font-weight: 400; font-size: {{copyfontsz}}; line-height: 140%; color:{{copytextcolor}};">Outsource to us your tool development and ancillary software development work at very competitive rates.Outsource to us your tool development and ancillary software development work at very competitive rates.</span>
-                    </td></tr>
-
-                    <tr><td>&nbsp;</td></tr>
-                    <tr align="center"><td align="center">
-
-                        <input type="submit" style="
-                                    border-radius: 3px; 
-                                    margin:0px;
-                                    background-color: #ff5000 /*#FFCC01, #ff5000, ff7700, ff5000, eeac00, ff5b27, ed5525, ff6c2f, ff631d*/; 
-                                    border: none; 
-                                    color:white; 
-                                    font-family: 'Lato', sans-serif;
-                                    font-weight: 700; 
-                                    font-size: {{copyfontsz}};
-                                    padding-top: 10px;
-                                    padding-bottom: 10px;
-                                    padding-left: 25px;
-                                    padding-right: 25px; 
-                                    " 
-                                    value="Get In Touch" onclick="alert(this.parentNode);this.parentNode.parentNode.submit();alert(2);" />
-                    </td></tr>
-                    <tr><td>&nbsp;</td></tr>
-                    <tr align="center"><td align="center">
-                      <div style="width:{{svgcontentheightwidth}}; height:{{svgcontentheightwidth}}; border:0px solid red;"> {{svgosicon}} </div>
+                      <span style="font-family: 'Lato', sans-serif; font-weight: 400; font-size: {{copyfontsz}}; line-height: 140%; color:{{copytextcolor}};">
+                      make similar to footer at site
+                      http://www.fullstackacademy.com/blog/guaranteed-bootcamp-admission
+                      have truly bitroman somewhere...white on black.
+                      </span>
                     </td></tr>
                     <tr><td>&nbsp;</td></tr>
                     </table>
-                    
       </div>
+
+
 
     </div>
   </div>
@@ -739,14 +297,20 @@ heightboxes = 300;
               svgsponsoricon: document.getElementById("svgSPONSORicon").innerHTML,
               svgheroicon: document.getElementById("svgHEROicon").innerHTML,
               svgosicon: document.getElementById("svgOUTSOURCEicon").innerHTML,
-              loginformloginicon:window.parent.document.getElementById("svgPARTNERicon").innerHTML,
+              loginformloginicon:window.parent.document.getElementById("svgFAQicon").innerHTML,
               litop:(ht/4 - (outerradius1*1.7)/2),
               lileft:(wd/2 - (outerradius1*1.7)/2),
               liwd:outerradius1 * 1.7,
               liht:outerradius1 * 1.7,
               heightinputelmnts:heightboxes,
-              widthinputelmnts:wd-(offsetleft*2.5),
-              widthinputelmnts:wd,
+              widthinputelmnts:wd-(offsetleft*2.5)-(wd*0.05),
+              widthinputelmntsleft:wd-(offsetleft*2.5)-(wd*0.05),
+              widthinputelmntsright:wd-(offsetleft*2.5)-(wd*0.05),
+              //widthinputelmnts:wd,
+
+              copypadleft:wd*0.05,
+              catpadleft:wd*0.03,
+              catpadtop:lessofhtwd*0.02,
 
               scrollinnerht:ht+50,//50 to compensate for scrollbar
               scrollinnerwd:wd+50,// the ht and wd is that of "container"
@@ -758,11 +322,18 @@ heightboxes = 300;
               svgcontentheightwidth: (lessofhtwd/2)+"px",
               copytextcolor: "grey",
 
+              catfont: "Lato", //Mate SC
+              qfont: "Lato", //Mate SC
+              copyfont: "Lato", 
               headlinefont: "Mate SC", //Mate SC
               fontvari:";",
               // fontvari:"font-variant:small-caps;",
+              catfz: (lessofhtwd*0.04)+"px",
+              qfz: (lessofhtwd*0.05)+"px",
               headlinefz: (lessofhtwd*0.09)+"px",
               copyfontsz: (lessofhtwd*0.05)+"px",
+              catfcolor: "grey",
+              qfcolor: "black",
               alternatebandcolor: " rgb(247,248,248);",
               boxbordercolor: "1px solid rgb(230,230,230)",
               boxborderinnercolor: "1px solid rgb(220,220,220)",
@@ -781,7 +352,7 @@ heightboxes = 300;
               leftinputelmnts:offsetleft,
               leftinputelmnts:0
               
-            }, document.getElementById((deviceProperty.layout=="Landscape")?"svgLoginFormLscape":"svgLoginForm").innerHTML);
+            }, document.getElementById((deviceProperty.layout=="Landscape")?"svgLoginForm":"svgLoginForm").innerHTML);
         // container.innerHTML = cmenuhtml1 + rst;
         container.innerHTML = rst;
  console.log(container.innerHTML);

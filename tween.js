@@ -999,7 +999,9 @@ window.menuCalls = new function()
               }
   this.showFAQScreen = function()
               {
-                alert("you clicked faq menu item"+isprivate);
+                // alert("you clicked faq menu item"+isprivate);
+                document.getElementById("svgmenuActionResult").src="faqHTMLsnippet.html"
+                showMenu();
               }
   this.showFeedbackScreen = function()
               {
@@ -1009,7 +1011,9 @@ window.menuCalls = new function()
               }
   this.showPartnersScreen = function()
               {
-                alert("you clicked Partners menu item"+isprivate);
+                document.getElementById("svgmenuActionResult").src="partnerHTMLsnippet.html"
+                showMenu();
+                // alert("you clicked Partners menu item"+isprivate);
               }
   this.showContactUsScreen = function()
               {
