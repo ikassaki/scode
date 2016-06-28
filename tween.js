@@ -995,7 +995,9 @@ window.menuCalls = new function()
               }
   this.showApplyScreen = function()
               {
-                alert("you clicked apply menu item"+isprivate);
+                document.getElementById("svgmenuActionResult").src="applyHTMLsnippet.html"
+                showMenu();
+                // alert("you clicked apply menu item"+isprivate);
               }
   this.showFAQScreen = function()
               {
