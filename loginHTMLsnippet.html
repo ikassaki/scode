@@ -1,0 +1,240 @@
+
+<h3>Hi There!</h3>
+
+<script id="svgLoginForm" type="text/x-handlebars-template">
+<div style="position:absolute; left:0; top:0;">
+<div style="border:0px solid red; position:absolute; top:{{litop}};left:{{lileft}};height:{{liht}}px; width:{{liwd}}px;" id="loginformloginicon">{{loginformloginicon}}</div>
+
+<form name="loginForm" id="loginForm" action="corp.bitroman.com/login" target="svgmenuActionResult" style="color:#333">
+	<p style="display:none; letter-spacing:0px; font-family: 'Fjalla One', sans-serif;">EMAIL You shall not pass, <span style="letter-spacing:0px; font-family: 'Fjalla One', sans-serif;">unless you fill up the right credentials</span></p><br/><br/>
+
+	<p style="position:absolute; 
+            margin:0px;
+            letter-spacing:0.5px; 
+            font-family: 'Oswald', sans-serif;
+            font-weight: 900; 
+            top:{{emailtop}}px;
+            width:{{widthinputelmnts}}px;
+            height:{{heightinputelmnts}}px;
+            line-height:{{heightinputelmnts}}px;
+            left:{{leftinputelmnts}}px; 
+            ">
+      EMAIL
+  </p>
+
+	<input style="position:absolute;
+                letter-spacing:0px;
+                margin:0px; 
+                font-family: 'Open Sans', sans-serif;
+                font-weight: 400;
+                background-color: #f2f2f2; 
+                border: 1px solid #e6e6e6; 
+                padding-left:7px; 
+                top:{{emailboxtop}}px; 
+                width:{{widthinputelmnts}}px;
+                height:{{heightinputelmnts}}px;
+                left:{{leftinputelmnts}}px; 
+                " 
+                type="email" placeholder="Email"  maxlength="100" /> 
+
+	<p style="position:absolute;
+            letter-spacing:0.5px; 
+            margin:0px; display:table-cell; vertical-align:middle;
+            font-family: 'Lato', sans-serif;
+            font-weight: 900; 
+            top:{{pwdtop}}px; 
+            width:{{widthinputelmnts}}px;
+            height:{{heightinputelmnts}}px;
+            line-height:{{heightinputelmnts}}px;
+            left:{{leftinputelmnts}}px; 
+            ">
+            PASSWORD</p>
+
+	<input style="position:absolute;
+                margin:0px;
+                font-family: 'Lato', sans-serif;
+                font-weight: 400; 
+                background-color: #f2f2f2; 
+                border: 1px solid #e6e6e6; 
+                padding-left:7px; 
+                top:{{pwdboxtop}}px; 
+                width:{{widthinputelmnts}}px;
+                height:{{heightinputelmnts}}px;
+                left:{{leftinputelmnts}}px; 
+                " 
+                type="password" placeholder="Password"  maxlength="100" />
+
+	<input type="submit" style="position:absolute;
+                              border-radius: 3px; 
+                              margin:0px;
+                              background-color: #ff5000 /*ff7700, ff5000, eeac00, ff5b27, ed5525, ff6c2f, ff631d*/; 
+                              border: none; 
+                              color:white; 
+                              font-family: 'Lato', sans-serif;
+                              font-weight: 400; 
+                              height:{{heightinputelmnts}}px; 
+                              width: {{widthsubmit}}px; 
+                              top:{{submittop}}px;
+                              left:{{leftinputelmnts}}px; 
+                              " 
+                              value="LOGIN" onclick="alert(this.parentNode);this.parentNode.parentNode.submit();alert(2);" />
+
+	<a style="position:absolute; display:none;
+            font-family: 'Mate SC', sans-serif;
+            margin:0px; 
+            top:{{fgtpwdtop}}px; 
+            left:{{leftinputelmnts}}px; 
+            width:{{widthinputelmnts}}px;
+            height:{{heightinputelmnts}}px;
+            ">
+            FORGOT Password</a>
+<!-- http://trycolors.com/?try=1&FFED00=4&FF0000=4&FF00AB=2&0047ab=0&00EDFF=0&00B500=0&FFFFFF=0&000000=1 -->
+</form>
+<div style="display:none; border:2px solid red; position:absolute; top:200px;left:5px;height:350px; width:290px;" id="loginformbg"></div>
+</div>
+</script>
+
+<script id="svgfilter" type="text/x-handlebars-template">
+
+<filter id="whiteglow">
+    <feFlood result="flood" flood-color="#ffffff" flood-opacity="1"></feFlood>
+    <feComposite in="flood" result="mask" in2="SourceGraphic" operator="in"></feComposite>
+    <feMorphology in="mask" result="dilated" operator="dilate" radius="2"></feMorphology>
+    <feGaussianBlur in="dilated" result="blurred" stdDeviation="5"></feGaussianBlur>
+    <feMerge>
+        <feMergeNode in="blurred"></feMergeNode>
+        <feMergeNode in="SourceGraphic"></feMergeNode>
+    </feMerge>
+</filter>
+
+<filter id="outerglow" x="-5000%" y="-5000%" width="10000%" height="10000%">
+  <feFlood result="flood" flood-color="#cccccc" flood-opacity="0.2"></feFlood>
+  <feComposite in="flood" result="mask" in2="SourceGraphic" operator="in"></feComposite>
+  <feMorphology in="mask" result="dilated" operator="dilate" radius="1"></feMorphology>
+  <feGaussianBlur in="dilated" result="blurred" stdDeviation="1"></feGaussianBlur>
+  <feComposite in="blurred" in2="SourceGraphic" operator="arithmetic" k2="1" k3="-1" result="nocombine"></feComposite>
+  <feMerge>
+      <feMergeNode in="nocombine"></feMergeNode>
+      <feMergeNode in="SourceGraphic"></feMergeNode>
+  </feMerge>
+</filter>
+
+<!-- //a transparent glow that takes on the colour of the object it's applied to. http://stackoverflow.com/questions/9630008/how-can-i-create-a-glow-around-a-rectangle-with-svg -->
+<filter id="glow">
+    <feGaussianBlur stdDeviation="12.5" result="coloredBlur"/>
+    <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+    </feMerge>
+</filter>
+
+<!-- //a transparent grey drop-shadow that blends with the background colour -->
+<filter id="shadow" width="1.5" height="1.5" x="-.25" y="-.25">
+    <feGaussianBlur in="SourceAlpha" stdDeviation="2.5" result="blur"/>
+    <feColorMatrix result="bluralpha" type="matrix" values=
+            "1 0 0 0   0
+             1 1 0 0   0
+             0 0 1 0   0
+             1 0 0 0.9 0 "/>
+    <feOffset in="bluralpha" dx="30" dy="3" result="offsetBlur"/>
+    <feMerge>
+        <feMergeNode in="offsetBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+    </feMerge>
+</filter>
+
+</script>
+<script>
+
+
+
+
+
+	//alert( ); 
+	function snippetBodyLoad()
+	{
+		//alert("yey. this wont work.");
+	}
+	window.snippetBodyLoad2 = function()
+	{
+		//alert("yey2");
+	}
+	// window.parent.document.getElementById("pageContent").style.display="block";
+	// alert(window.parent.pageid);
+	// var sdfsdf= window.parent.constructMenuHollow("",[{svgscriptid:"svgPROGRAMicon", svgWd:100, svgHt:100, fncall:"menuCalls.showProgramScreen"}, 
+ //                                               {svgscriptid:"svgAPPLYicon", svgWd:100, svgHt:100, fncall:"menuCalls.showApplyScreen"}]);
+	// alert(sdfsdf);
+
+
+
+       var outerradius = 250;
+       var viewboxHtWd = outerradius * 2;
+       var arcMenuStyles = "";
+       var svgstr = '<circle cx="250" cy="250" r="250" stroke="black" stroke-width="0" fill="rgba(3,3,3,0.7)" style="filter:url(#outerglow)"/>';
+      var cmenuhtml = '<svg viewBox="0 0 '+viewboxHtWd+' '+viewboxHtWd+'">'+'<defs>'+document.getElementById("svgfilter").innerHTML+'</defs><style type="text/css">'+arcMenuStyles+'</style>'+svgstr+'</svg>';
+
+	    var container =    window.parent.document.getElementById("pageContent")
+    container.style.boxShadow = "5px 5px 3px 1px rgba(0,0,0,0.7)";
+    container.style.background = "White";
+    container.style.color = "Black";
+var  deviceProperty = window.parent.deviceProperty;
+
+
+var reqrsX = 410;
+var reqrsY = 600;
+var avlX = deviceProperty.browserWidth*0.7;
+var avlY = deviceProperty.browserHeight*0.7;// take only 70% max area of screen
+var calcratio = (deviceProperty.layout=="Portrait")?avlX/reqrsX:avlY/reqrsY;
+// alert(deviceProperty.browserHeight+"  "+avlY);
+// alert(reqrsX*calcratio+", "+reqrsY*calcratio+"  "+calcratio);
+
+
+
+    var wd = reqrsX*calcratio;//Math.round( ((deviceProperty.layout=="Portrait")?deviceProperty.browserWidth:deviceProperty.browserHeight) * 0.75);
+    container.style.width = wd;
+    container.style.left = Math.round(deviceProperty.browserWidth/2 - wd/2);
+    var ht = reqrsY*calcratio;//wd; //ht and wd of the svg viewport viewbox
+    container.style.height = ht;
+    container.style.top = Math.round(deviceProperty.browserHeight/2 - ht/2);;
+      container.style.border="none";
+      container.style.display="block";
+      container.style.background="White";//"#4d4d4d";
+
+        window.parent._clickCallbacks = function(){};
+
+       var outerradius1 = 50 * calcratio;
+       var viewboxHtWd1 = outerradius1 * 2 ;
+       var arcMenuStyles1 = "";
+       var svgstr1 = '<circle cx="'+wd/2+'" cy="'+(ht/4)+'" r="'+outerradius1+'" stroke="black" stroke-width="0" fill="rgba(3,3,3,0.7)" style="filter:url(#outerglow)"/>';
+      var cmenuhtml1 = '<svg viewBox="0 0 '+wd+' '+ht+'">'+'<defs>'+document.getElementById("svgfilter").innerHTML+'</defs><style type="text/css">'+arcMenuStyles1+'</style>'+svgstr1+'</svg>';
+
+var heightinputelmnts = ((ht/2)/7);
+var offsettop = ht/2 - heightinputelmnts;
+var gap = heightinputelmnts/5;
+var offsetleft = 14;
+console.log(gap+" "+offsettop+" "+heightinputelmnts);
+      var rst = window.parent.replaceHelper({
+              loginformloginicon:window.parent.document.getElementById("svgLOGINicon").innerHTML,
+              litop:(ht/4 - outerradius1),
+              lileft:(wd/2 - outerradius1),
+              liwd:outerradius1 * 2,
+              liht:outerradius1 * 2,
+              emailtop:offsettop,
+              emailboxtop:offsettop+heightinputelmnts+gap,
+              pwdtop:offsettop+heightinputelmnts*2+gap*2,
+              pwdboxtop:offsettop+heightinputelmnts*3+gap*3,
+              submittop:offsettop+heightinputelmnts*4.5+gap*4.5,
+              fgtpwdtop:offsettop + heightinputelmnts*5.5+gap*5.5,
+              widthinputelmnts:wd-(offsetleft*2.5),
+              heightinputelmnts:heightinputelmnts,
+              leftinputelmnts:offsetleft,
+              widthsubmit:(wd/3)
+            }, document.getElementById("svgLoginForm").innerHTML);
+        container.innerHTML = cmenuhtml1 + rst;
+ // alert(container.innerHTML);
+
+
+</script>
+
+<!-- should always be the last line. ensures the HTML above is loaded as dom content and available -->
+<img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" onload="this.parentNode.removeChild(this); snippetBodyLoad2(); menuCalls.showLoginScreen(); snippetBodyLoad(); " />

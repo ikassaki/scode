@@ -820,3 +820,272 @@ function createKT()
   }
 
 }
+
+window.g_MenushowTgl = false;
+  function showMenu ()
+  {
+      var menuDivName = "centralmenu";
+      document.getElementById("pageContent").style.display = "none";
+    if (window.g_MenushowTgl)
+    {
+        document.getElementById(menuDivName).innerHTML = "";
+        tForeverCircleSpin.resume();
+        document.getElementById("LandingTag").style.display="block";
+        document.getElementById(menuDivName).style.display="none";
+        _clickCallbacks = null;
+    }
+    else
+    {    
+        var cmenuhtml = constructMenuHollow(menuDivName, [  
+                                               {svgscriptid:"svgPROGRAMicon", svgWd:100, svgHt:100, fncall:"menuCalls.showProgramScreen"} , 
+                                               {svgscriptid:"svgAPPLYicon", svgWd:100, svgHt:100, fncall:"menuCalls.showApplyScreen"} , 
+                                               {svgscriptid:"svgFAQicon", svgWd:100, svgHt:100, fncall:"menuCalls.showFAQScreen"} , 
+                                               {svgscriptid:"svgFEEDBACKicon", svgWd:100, svgHt:100, fncall:"menuCalls.showFeedbackScreen"},
+                                               {svgscriptid:"svgPARTNERicon", svgWd:100, svgHt:100, fncall:"menuCalls.showPartnersScreen"} ,
+                                               {svgscriptid:"svgCONTACTUSINVERTEDicon", svgWd:150, svgHt:150, fncall:"menuCalls.showContactUsScreen"} , 
+                                               {svgscriptid:"svgLOGINicon", svgWd:100, svgHt:100, fncall:"menuCalls.showLoginScreen"} 
+                        ] );
+
+        document.getElementById(menuDivName).style.display="block";
+        document.getElementById(menuDivName).innerHTML = cmenuhtml;
+      
+      console.log(document.getElementById(menuDivName).outerHTML);
+
+        //http://codepen.io/anon/pen/AkoGx?editors=1010
+        //http://stackoverflow.com/questions/5736398/how-to-calculate-the-svg-path-for-an-arc-of-a-circle
+        //document.getElementById("arc2").setAttribute("d", describeArc(250, 300, 150, 0, 180));
+        //tweenclickActive = true;
+        tForeverCircleSpin.pause();
+        document.getElementById("LandingTag").style.display="none";
+        _clickCallbacks = function(){};
+        _clickCallbacks = showMenu;
+    }
+    window.g_MenushowTgl = !window.g_MenushowTgl;
+  }
+
+
+
+ function constructMenuHollow(menuDivName, icons)
+ {
+  //https://sarasoueidan.com/blog/building-a-circular-navigation-with-svg/
+   try
+    {   
+        var polarToCartesian = function (centerX, centerY, radius, angleInDegrees) 
+        {
+            var angleInRadians = (angleInDegrees-90) * Math.PI / 180.0;
+
+            return {
+              x: centerX + (radius * Math.cos(angleInRadians)),
+              y: centerY + (radius * Math.sin(angleInRadians))
+            };
+        }
+
+        var describeArc = function (x, y, radius, startAngle, endAngle)
+        {
+
+            var start = polarToCartesian(x, y, radius, endAngle);
+            var end = polarToCartesian(x, y, radius, startAngle);
+
+            var arcSweep = endAngle - startAngle <= 180 ? "0" : "1";
+
+            var d = [
+                "M", start.x, start.y, 
+                "A", radius, radius, 0, arcSweep, 0, end.x, end.y,
+                "L", x,y,
+                "L", start.x, start.y
+            ].join(" ");
+
+            return d;       
+        }
+
+         //http://jsbin.com/zuvaxuvezu/edit?html,js,output
+        var describeArcHollow = function (x, y, radius, startAngle, endAngle){
+
+            var start = polarToCartesian(x, y, radius, endAngle);
+            var end = polarToCartesian(x, y, radius, startAngle);
+
+            var arcSweep = endAngle - startAngle <= 180 ? "0" : "1";
+
+            var d = [
+                "M", start.x, start.y, 
+                "A", radius, radius, 0, arcSweep, 0, end.x, end.y
+            ].join(" ");
+
+            return d;       
+        }
+
+       var svgstr = "";
+       var outerradius = 250;
+       var viewboxHtWd = outerradius * 2;
+       var thickness = 120;
+       var arcMenuStyles = "";
+       var arcMenuidstring = "arcMenu";
+       var arcMenuHoverColor = "black"; var arcMenuColor = "rgba(52,52,52,0.7)"; var arcMenuClickCode = "var e = arguments[0] || window.event; (e.stopPropagation)?e.stopPropagation():e.cancelBubble = true;";
+       var pstr = '<path id="{{arcid}}" fill="none" stroke="'+arcMenuColor+'" stroke-width="'+thickness+'" d="{{describearc}}" onclick="'+arcMenuClickCode+'{{fncall}}()" />';
+       // var pstr = '<path id="{{arcid}}" fill="none" stroke="rgba(252,252,252,1)" stroke-width="'+thickness+'" d="{{describearc}}"/>';
+       var da;
+       var menuCt = icons.length;
+       for(var i=0; i<menuCt; i++)
+       {       
+            da = describeArcHollow(250,250,outerradius-thickness/2,(360/menuCt)*i,(360/menuCt)*(i+1));
+            svgstr += replaceHelper({arcid:arcMenuidstring+i, describearc:da, i:i, fncall:icons[i].fncall}, pstr);
+            arcMenuStyles += "#"+arcMenuidstring+i+":hover {stroke:"+arcMenuHoverColor+"; cursor:hand;} " + "#"+arcMenuidstring+i+" {stroke:"+arcMenuColor+"; cursor:hand;} ";
+       }
+     
+       var calcHtWd = function(sourceIconWidth, sourceIconHeight, angle)
+       {
+          var reqIconRatio = 0.18; //Master key.
+          //var sourceIconWidth = 100; //hardcoded
+          var sourceIconWidthRatio = sourceIconWidth / viewboxHtWd;
+          var convertSourceIconWidthRatio = reqIconRatio / sourceIconWidthRatio;
+          //var sourceIconHeight = 100; //hardcoded
+          var sourceIconHeightRatio = sourceIconHeight / viewboxHtWd;
+          var convertSourceIconHeightRatio = reqIconRatio / sourceIconHeightRatio;
+       
+       
+          var wdth = Math.round( ((deviceProperty.layout=="Portrait")?deviceProperty.browserWidth:deviceProperty.browserHeight) * 0.75);
+          var higt = wdth; //its a square viewbox for the circle.
+          var ratio = wdth/(outerradius*2);
+          var svgFAQiconratioWd = sourceIconWidth * ratio;
+          svgFAQiconratioWd = svgFAQiconratioWd * convertSourceIconWidthRatio;
+       
+          var svgFAQiconratioHt = sourceIconHeight * ratio;
+          svgFAQiconratioHt = svgFAQiconratioHt * convertSourceIconHeightRatio;
+
+          var ptc = polarToCartesian(250,250,outerradius-thickness/2,angle);
+          ptc.x = (ptc.x * ratio) - svgFAQiconratioWd/2;
+          ptc.y = (ptc.y * ratio) - svgFAQiconratioHt/2;
+
+          return {Ht:svgFAQiconratioHt, Wd:svgFAQiconratioWd, X:ptc.x, Y:ptc.y};
+       }
+
+      var cmenuhtml = '<svg viewBox="0 0 '+viewboxHtWd+' '+viewboxHtWd+'">'+'<style type="text/css">'+arcMenuStyles+'</style>'+svgstr+'</svg>';
+      for(var i=0; i<menuCt; i++)
+      {
+        var cmenuicon = calcHtWd(icons[i].svgWd,icons[i].svgHt,(360/menuCt)*i+(360/menuCt)/2);
+        cmenuhtml +=  '<div onmouseover="document.getElementById(\''+arcMenuidstring+i+'\').style.stroke=\''+arcMenuHoverColor+'\';" onmouseout="document.getElementById(\'arcMenu'+i+'\').style.stroke=\''+arcMenuColor+'\';" onclick="'+arcMenuClickCode+icons[i].fncall+'();" style="cursor:hand;position:absolute;left:'+cmenuicon.X+';top:'+cmenuicon.Y+';width:'+cmenuicon.Wd+';height:'+cmenuicon.Ht+'">'+  document.getElementById(icons[i].svgscriptid).innerHTML + '</div>';
+      }
+      return cmenuhtml;
+      // document.getElementById("centralmenuIcon").innerHTML = "hi there";
+
+      //http://greensock.com/forums/topic/7573-tween-around-circle/
+      // to place icons in a circular path
+
+      //alert('<div style="position:absolute;left:0px;top:0px;width:100px;height:100px;border:2px solid red;">'+  document.getElementById("svgFAQicon") + '</div>');
+
+      }catch(e){console.log(e);}
+
+ }
+
+
+//http://javascript.crockford.com/private.html
+window.menuCalls = new function()
+{
+  var isprivate = "hello";
+  this.ispublic = "helloP";
+  this.showLoginScreen = function()
+              {
+                // alert("you clicked login menu item"+isprivate);
+                document.getElementById("svgmenuActionResult").src="loginHTMLsnippet.html"
+                showMenu();
+              }
+  this.showProgramScreen = function()
+              {
+                alert("you clicked program menu item"+isprivate);
+              }
+  this.showApplyScreen = function()
+              {
+                document.getElementById("svgmenuActionResult").src="applyHTMLsnippet.html"
+                showMenu();
+                // alert("you clicked apply menu item"+isprivate);
+              }
+  this.showFAQScreen = function()
+              {
+                // alert("you clicked faq menu item"+isprivate);
+                document.getElementById("svgmenuActionResult").src="faqHTMLsnippet.html"
+                showMenu();
+              }
+  this.showFeedbackScreen = function()
+              {
+                // alert("you clicked feedback menu item"+isprivate);
+                document.getElementById("svgmenuActionResult").src="feedbackHTMLsnippet.html"
+                showMenu();
+              }
+  this.showPartnersScreen = function()
+              {
+                document.getElementById("svgmenuActionResult").src="partnerHTMLsnippet.html"
+                showMenu();
+                // alert("you clicked Partners menu item"+isprivate);
+              }
+  this.showContactUsScreen = function()
+              {
+                // alert("you clicked contactus menu item"+isprivate);
+                document.getElementById("svgmenuActionResult").src="contactHTMLsnippet.html"
+                showMenu();
+
+                // xHTP.send("loginHTMLsnippet.html", function(resp)
+                //               {
+                //                 var MyDiv = document.getElementById("pageContent");
+                //                 MyDiv.innerHTML = resp; alert(resp);
+                //                 var arr = MyDiv.getElementsByTagName('script')
+                //                 for (var n = 0; n < arr.length; n++)
+                //                     eval(arr[n].innerHTML);//run script inside div  
+                //                 // the above approach,  not sure if entire response is available as DOM. not sure if innerHTML is synchronous across all browsers.  http://stackoverflow.com/questions/7001376/event-to-determine-when-innerhtml-has-loaded
+
+                //               }
+                // , "");
+              }
+}
+
+//http://stackoverflow.com/questions/2557247/easiest-way-to-retrieve-cross-browser-xmlhttprequest
+window.xHTP = new function()
+{
+  var XMLHttpFactories = [
+    function () {return new XMLHttpRequest()},
+    function () {return new ActiveXObject("Msxml2.XMLHTTP")},
+    function () {return new ActiveXObject("Msxml3.XMLHTTP")},
+    function () {return new ActiveXObject("Microsoft.XMLHTTP")}
+  ];
+
+
+  var createXMLHTTPObject = function() 
+  {
+    var xmlhttp = false;
+    for (var i=0;i<XMLHttpFactories.length;i++) {
+        try {
+            xmlhttp = XMLHttpFactories[i]();
+        }
+        catch (e) {
+            continue;
+        }
+        break;
+    }
+    return xmlhttp;
+  }
+
+  this.send = function (url,callback,postData) 
+  {
+    var req = createXMLHTTPObject();
+    if (!req) return;
+    var method = (postData) ? "POST" : "GET";
+    req.open(method,url,true);
+    //req.setRequestHeader('User-Agent','XMLHTTP/1.0');
+    if (postData)
+        req.setRequestHeader('Content-type','application/x-www-form-urlencoded');
+    req.onreadystatechange = function () 
+    {
+        if (req.readyState != 4) return;
+        if (req.status != 200 && req.status != 304) 
+        {
+            //alert('HTTP error ' + req.status);
+            return;
+        }
+        if (req.status == 200)
+          callback(req.responseText);
+    }
+    if (req.readyState == 4) return;
+    req.send(postData);
+  }
+
+}
+
