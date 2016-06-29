@@ -1128,63 +1128,6 @@ might not be able to access external javascript?
 
 
 
-<script id="svgCircularMenu" type="text/x-handlebars-template">
-	<svg style="enable-background:new 0 0 400 100" viewBox="0 0 400 100" id="menu"  x="0px" y="0px" >
-		<defs>
-		   <pattern id="img1" patternUnits="userSpaceOnUse" width="71" height="85">
-		    <image xlink:href="http://subtlepatterns2015.subtlepatterns.netdna-cdn.com/patterns/new_year_background.png" x="0" y="0" width="71" height="85" />
-		  </pattern>
-
-		     <pattern id="img2" patternUnits="userSpaceOnUse" width="400" height="400">
-		    <image xlink:href="http://subtlepatterns2015.subtlepatterns.netdna-cdn.com/patterns/concrete_seamless.png" x="0" y="0" width="400" height="400" />
-		  </pattern>
-		  
-		</defs>
-	  	<rect width="400" height="100" style="fill:url(#img2);stroke-width:3;stroke:rgb(0,0,0)" />
-	</svg>
-</script>
-	
-
-<script id="svgCircularMenu2" type="text/x-handlebars-template">
-	<svg class="shadow" style="enable-background:new -2 -2 504 504" viewBox="-2 -2 504 504" id="menu"  x="0px" y="0px" >
-	<defs>
-	  <pattern id="img1" patternUnits="userSpaceOnUse" width="71" height="85">
-	    <image xlink:href="http://subtlepatterns2015.subtlepatterns.netdna-cdn.com/patterns/new_year_background.png" x="0" y="0" width="71" height="85" />
-	  </pattern>
-	  <pattern id="img2" patternUnits="userSpaceOnUse" width="400" height="400">
-	    <image xlink:href="http://subtlepatterns2015.subtlepatterns.netdna-cdn.com/patterns/concrete_seamless.png" x="0" y="0" width="400" height="400" />
-	  </pattern>  
-	</defs>
-	<style type="text/css">
-		.st1{fill:#FFFFFF;}
-		.shadow 
-		{
-		    -webkit-filter: drop-shadow(0px 0px 5.5px rgba(255,255,255,.7) );
-			filter: drop-shadow(1px 3px 2px rgba(255,255,255,.7) );
-			/*fill:rgba(255,255,255,0.9);*/
-		}
-	</style>
-	<g id="symbolsContainer">    
-		<symbol class="icon icon-" id="icon-11" viewBox="0 0 35 35"><!--Replace the contents of this symbol with the content of your icon--><rect fill="none" stroke="#ffffff" stroke-width="1" width="100%" height="100%"></rect><text fill="#222" x="50%" y="50%" dy=".3em" text-anchor="middle" font-size="1.2em">1</text></symbol>
-
-	    <symbol class="shadow" id="icon-21" viewBox="0 0 35 35"><!--Replace the contents of this symbol with the content of your icon-->
-	    <rect fill="none" stroke="#ffffff" stroke-width="1" width="100%" height="100%"></rect><text fill="#222" x="50%" y="50%" dy=".3em" text-anchor="middle" font-size="1.2em">2</text>
-
-	    </symbol>
-
-	    <symbol class="icon icon-" id="icon-31" viewBox="0 0 35 35"><!--Replace the contents of this symbol with the content of your icon--><rect fill="none" stroke="#ffffff" stroke-width="1" width="100%" height="100%"></rect><text fill="#222" x="50%" y="50%" dy=".3em" text-anchor="middle" font-size="1.2em">3</text></symbol>
-
-	</g>
-	<g id="itemsContainer">       
-		<path d="M400,250 l100,0 A250,250 0 0,0 375,33.49364905389035 l-50,86.60254037844385 A150,150 0 0,1 400,250" ></path><use xlink:href="#icon-1" width="35" height="35" x="416.0973815917969" y="126.5" transform="rotate(60 433.5973815917969 144)"></use>
-
-	        <a class="item" id="item-2" role="link" tabindex="0" xlink:href=" " xlink:title=" " transform="matrix(0.5,-0.86602,0.86602,0.5,-91.5063509461097,341.5063509461096)" data-svg-origin="250 250" style=""><path  fill="url(#img2)" stroke="#ffffff" d="M400,250 l100,0 A250,250 0 0,0 375,33.49364905389035 l-50,86.60254037844385 A150,150 0 0,1 400,250" class="sector"></path><use xlink:href="#icon-2" width="135" height="135" x="416.0973815917969" y="126.5" transform="rotate(60 433.5973815917969 144)"></use></a>
-	        <a id="item-3" role="link" tabindex="0" xlink:href=" " xlink:title=" " transform="matrix(-0.49999,-0.86602,0.86602,-0.49999,158.49364905389024,591.5063509461097)" data-svg-origin="250 250" style=""><path d="M400,250 l100,0 A250,250 0 0,0 375,33.49364905389035 l-50,86.60254037844385 A150,150 0 0,1 400,250" ></path><use xlink:href="#icon-3" width="35" height="35" x="416.0973815917969" y="126.5" transform="rotate(60 433.5973815917969 144)"></use></a>
-	</g>
-	</svg>
-</script>
-
-
 	<script id="svgTechIcons" type="text/x-handlebars-template">
 			<svg id="svgTechIconsContainer" style=" border:0px solid red; " version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 					 viewBox="0 0 500 70" style="enable-background:new 0 0 500 70;" xml:space="preserve">
 				<style type="text/css">
@@ -1423,7 +1366,7 @@ might not be able to access external javascript?
 				</div>
 
 				<div id="centralmenu" style="opacity:1; z-index:1000; border: 0px solid yellow; color:white; position:absolute; left:{{absXsvgmenu}}; top:{{absYsvgmenu}}; width:{{absWdsvgmenu}}; height:{{absHtsvgmenu}};  ">
-					{{svgCircularMenuPlaceHolder}}
+					
 				</div>
 
 				<div id="centralmenuIcon" style="opacity:1; z-index:1000; border: 0px solid yellow; color:white; position:absolute; left:{{absXTRsvgmenuicon}}; top:{{absYTRsvgmenuicon}}; width:{{absWdTRsvgmenuicon}}; height:{{absHtTRsvgmenuicon}};  ">
@@ -1526,7 +1469,7 @@ might not be able to access external javascript?
 				</div>
 
 				<div id="centralmenu" style="opacity:1; z-index:1000; border: 0px solid yellow; color:white; position:absolute; left:{{absXsvgmenu}}; top:{{absYsvgmenu}}; width:{{absWdsvgmenu}}; height:{{absHtsvgmenu}};  ">
-					{{svgCircularMenuPlaceHolder}}
+					
 				</div>
 
 				<div id="bottomrighticons" style="opacity:0.2; z-index:1000; border: 0px solid yellow; color:white; position:absolute; left:{{absXBRsvgicon}}; top:{{absYBRsvgicon}}; width:{{absWdBRsvgicon}}; height:{{absHtBRsvgicon}};  ">
@@ -1827,8 +1770,6 @@ might not be able to access external javascript?
 		context.loadingImgBg = '<style id="loaderstyle" type="text/css">'+document.getElementById("loaderstyle").innerHTML+"<\/style>";
 		context.svgTechIconsPlaceHolder =  document.getElementById("svgTechIcons").innerHTML;
 		context.svgclickplaypausePlaceHolder =  document.getElementById("svgclickplaypause").innerHTML;
-
-		context.svgCircularMenuPlaceHolder =  document.getElementById("svgCircularMenu").innerHTML;
 
 		context.svgTRMenuIconPlaceHolder =  document.getElementById("svgTRMenuIcon").innerHTML;
 
