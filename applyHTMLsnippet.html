@@ -41,6 +41,22 @@
   </script>
 
 
+  <script id="svgPREVicon" type="text/x-handlebars-template">
+    <svg  version="1.1" x="0px" y="0px" viewBox="0 0 100 100" style="enable-background:new 0 0 100 100" >
+    
+    <path style="fill:#ff5000;" transform="rotate(180 50 50)" d="M5.12,99.999h44.882c1.396,0,2.804-0.533,3.871-1.601l44.521-44.522c1.07-1.067,1.605-2.471,1.605-3.87v-0.007  c0-1.402-0.535-2.805-1.605-3.871L53.873,1.605c-1.067-1.067-2.476-1.604-3.871-1.604H5.12C2.293,0.001,0,2.293,0,5.12v89.761  C0,97.707,2.293,99.999,5.12,99.999z"/>
+
+    </svg>
+  </script>
+
+
+  <script id="svgPREViconD" type="text/x-handlebars-template">
+    <svg  version="1.1" x="0px" y="0px" viewBox="0 0 100 100" style="enable-background:new 0 0 100 100" >
+    
+    <path style="fill:#505050;" transform="rotate(180 50 50)" d="M5.12,99.999h44.882c1.396,0,2.804-0.533,3.871-1.601l44.521-44.522c1.07-1.067,1.605-2.471,1.605-3.87v-0.007  c0-1.402-0.535-2.805-1.605-3.871L53.873,1.605c-1.067-1.067-2.476-1.604-3.871-1.604H5.12C2.293,0.001,0,2.293,0,5.12v89.761  C0,97.707,2.293,99.999,5.12,99.999z"/>
+
+    </svg>
+  </script>
 
 
 
@@ -1891,18 +1907,71 @@
     </div>
 
 
-    <div style="border:0px solid red; position:absolute;  top:{{nxtbtntop}};left:{{nxtbtnleft}};height:{{nxtbtnht}}px; width:{{nxtbtnwd}}px;  z-index: 500;">{{nxtbtnsvg}}
-    </div>
-
     <div style="border:0px solid red; position:absolute; opacity:0.0; top:{{bgpttop}};left:0;height:{{bgptht}}px; width:{{bgptwd}}px; background-color: black; z-index: 500;">{{bgpattern}}
     </div>
 
 
     <img style="border:0px solid red; position:absolute; opacity:{{imgopacity}}; top:{{imgtop}};left:0;height:{{imght}}px; width:{{imgwd}}px; z-index: 700; " src="IMG/{{imgnm}}" />
 
-    <div style="position:absolute; top:{{emailtxttop}}; left:{{emailtxtleft}}; font-family: '{{headlinefont}}', sans-serif; font-weight: 700; font-size: {{headlinefz}}; {{fontvari}}; color:{{headlinetextcolor}};">Email</div>
 
-    <input type="email"  placeholder="Your Email Address"  maxlength="100" style="position:absolute; top:{{emailboxtop}}; left:{{emailboxleft}}; font-family: 'Lato', sans-serif; font-weight: 400; font-size: {{copyfontsz}}; line-height: 140%; color:{{copytextcolor}}; width: {{emailboxwd}}; z-index: 5500;" ></input>
+    <div id="pagesnip1" style="display: block;">
+        <div style="border:0px solid red; position:absolute;  top:{{nxtbtntop}};left:{{nxtbtnleft}};height:{{nxtbtnht}}px; width:{{nxtbtnwd}}px;  z-index: 5500;"  onclick="applyHTMLsnippetJS.goNext(this.parentNode.parentNode,'pagesnip1','pagesnip2');">{{nxtbtnsvg}}
+        </div>
+        <div style="border:0px solid red; position:absolute;  top:{{nxtbtntop}};left:{{prevbtnleft}};height:{{nxtbtnht}}px; width:{{nxtbtnwd}}px;  z-index: 5500;">{{prevbtnsvgD}}
+        </div>
+
+        <div style="position:absolute; top:{{emailtxttop}}; left:{{emailtxtleft}}; font-family: '{{headlinefont}}', sans-serif; font-weight: {{headlinefontwt}}; font-size: {{headlinefz}}; {{fontvari}}; color:{{headlinetextcolor}};">Email</div>
+
+
+        <input type="email" class="hover-item" placeholder="Your Email Address"  maxlength="100" style="position:absolute; top:{{emailboxtop}}; left:{{emailboxleft}}; font-family: 'Lato', sans-serif; font-weight: 400; font-size: {{copyfontsz}}; line-height: 140%; color:{{copytextcolor}}; width: {{emailboxwd}}; z-index: 5500; background-color: transparent; border:none; border-bottom: 1px dashed grey; outline: none;"  ></input>
+
+    </div>
+
+    <div id="pagesnip2" style="display: none;">
+        <div style="border:0px solid red; position:absolute;  top:{{nxtbtntop}};left:{{nxtbtnleft}};height:{{nxtbtnht}}px; width:{{nxtbtnwd}}px;  z-index: 5500;"  onclick="applyHTMLsnippetJS.goNext(this.parentNode.parentNode,'pagesnip2','pagesnip3');">{{nxtbtnsvg}}
+        </div>
+        <div style="border:0px solid red; position:absolute;  top:{{nxtbtntop}};left:{{prevbtnleft}};height:{{nxtbtnht}}px; width:{{nxtbtnwd}}px;  z-index: 5500;" onclick="applyHTMLsnippetJS.goNext(this.parentNode.parentNode,'pagesnip2','pagesnip1');">{{prevbtnsvg}}
+        </div>
+
+        <div style="position:absolute; top:{{emailtxttop}}; left:{{emailtxtleft}}; font-family: '{{headlinefont}}', sans-serif; font-weight: {{headlinefontwt}}; font-size: {{headlinefz}}; {{fontvari}}; color:{{headlinetextcolor}};">Phone number</div>
+
+
+        <input type="text" class="hover-item" placeholder="Your phone number"  maxlength="10" style="position:absolute; top:{{emailboxtop}}; left:{{emailboxleft}}; font-family: 'Lato', sans-serif; font-weight: 400; font-size: {{copyfontsz}}; line-height: 140%; color:{{copytextcolor}}; width: {{emailboxwd}}; z-index: 5500; background-color: transparent; border:none; border-bottom: 1px dashed grey; outline: none;"  ></input>
+
+    </div>
+
+
+   <div id="pagesnip3" style="display: none;">
+        <div style="border:0px solid red; position:absolute;  top:{{nxtbtntop}};left:{{submitbtnleft}};height:{{nxtbtnht}}px; width:{{nxtbtnwd}}px;  z-index: 5500;"  >
+
+                        <input type="submit" style="
+                                    border-radius: 3px; 
+                                    margin:0px;
+                                    background-color: #ff5000 /*#FFCC01, #ff5000, ff7700, ff5000, eeac00, ff5b27, ed5525, ff6c2f, ff631d*/; 
+                                    border: none; 
+                                    color:white; 
+                                    font-family: 'Lato', sans-serif;
+                                    font-weight: 400; 
+                                    font-size: {{submitfontsz}};
+                                    height:{{nxtbtnht}}px;
+                                    width:{{submitbtnwd}}px; 
+                                    " 
+                                    value="SUBMIT" onclick="alert(this.parentNode);this.parentNode.parentNode.submit();alert(2);" />
+
+
+        </div>
+
+        <div style="border:0px solid red; position:absolute;  top:{{nxtbtntop}};left:{{prevbtnleft}};height:{{nxtbtnht}}px; width:{{nxtbtnwd}}px;  z-index: 5500;" onclick="applyHTMLsnippetJS.goNext(this.parentNode.parentNode,'pagesnip3','pagesnip2');">{{prevbtnsvg}}
+        </div>
+
+        <div style="position:absolute; top:{{emailtxttop}}; left:{{emailtxtleft}}; font-family: '{{headlinefont}}', sans-serif; font-weight: {{headlinefontwt}}; font-size: {{headlinefz}}; {{fontvari}}; color:{{headlinetextcolor}};">Date of Birth</div>
+
+
+        <input type="text" class="hover-item" placeholder="Your date of birth"  maxlength="100" style="position:absolute; top:{{emailboxtop}}; left:{{emailboxleft}}; font-family: 'Lato', sans-serif; font-weight: 400; font-size: {{copyfontsz}}; line-height: 140%; color:{{copytextcolor}}; width: {{emailboxwd}}; z-index: 5500; background-color: transparent; border:none; border-bottom: 1px dashed grey; outline: none;"  ></input>
+
+    </div>
+
+
 
     </div>
   </div>
@@ -1925,6 +1994,20 @@ https://hackbright.hobsonsradius.com/ssc/aform/G0705pN68670x6700kM0B71.ssc
 
 <script>
 
+window.parent.applyHTMLsnippetJS = new function()
+{
+  var isprivate = "hello";
+  this.ispublic = "helloP";
+  this.goNext = function(pnode, tohide, toshow)
+              {
+                // alert("you clicked login menu item"+pnode);
+                pnode.querySelector("#"+tohide).style.display="none";
+                pnode.querySelector("#"+toshow).style.display="block";
+              }  
+}
+
+
+var arcMenuClickCode = "var e = arguments[0] || window.event; (e.stopPropagation)?e.stopPropagation():e.cancelBubble = true;";
 
        var outerradius = 250;
        var viewboxHtWd = outerradius * 2;
@@ -1994,6 +2077,8 @@ var lessofhtwd = (ht>wd)?wd:(ht/1.5);
 
       var rst = window.parent.replaceHelper({              
               nxtbtnsvg:document.getElementById("svgNEXTicon").innerHTML,              
+              prevbtnsvg:document.getElementById("svgPREVicon").innerHTML,              
+              prevbtnsvgD:document.getElementById("svgPREViconD").innerHTML,              
               bgpattern:document.getElementById("svg20162icon").innerHTML,              
               // loginformloginicon:document.getElementById("svg20161icon").innerHTML,              
               loginformloginicon:window.parent.document.getElementById("svgAPPLYicon").innerHTML,              
@@ -2013,6 +2098,7 @@ var lessofhtwd = (ht>wd)?wd:(ht/1.5);
               nxtbtnwd:30*calcratio,
               nxtbtnleft:255*calcratio,
               nxtbtntop:320*calcratio,
+              prevbtnleft:155*calcratio,
 
 
               scrollinnerht:ht+50,//50 to compensate for scrollbar
@@ -2024,13 +2110,17 @@ var lessofhtwd = (ht>wd)?wd:(ht/1.5);
               imgopacity:0.2,
               leftinputelmnts:0,
 
-              headlinetextcolor:"white",
-              headlinefont: "Mate SC", //Mate SC
+              headlinetextcolor:"gray",
+              headlinefont: "Source Sans Pro", //Mate SC
               fontvari:";",
-              // fontvari:"font-variant:small-caps;",
-              headlinefz: (lessofhtwd*0.09)+"px",
+              // fontvari:"letter-spacing:1px; font-variant:small-caps;",
+              headlinefontwt:400,
+              headlinefz: (lessofhtwd*0.07)+"px",
               copyfontsz: (lessofhtwd*0.05)+"px",
               copytextcolor: "grey",
+              submitfontsz:10*calcratio,
+              submitbtnleft:221*calcratio,
+              submitbtnwd:70*calcratio,
  
               emailtxttop:140*calcratio,
               emailtxtleft:20*calcratio,
@@ -2039,8 +2129,9 @@ var lessofhtwd = (ht>wd)?wd:(ht/1.5);
               emailboxleft:20*calcratio
 
             }, document.getElementById((deviceProperty.layout=="Landscape")?"svgLoginForm":"svgLoginForm").innerHTML);
+    // var jscode = "<script>"+document.getElementById("svgLoginFormJS").innerHTML+"<\/script>";
       container.innerHTML = rst;
-// alert(rst);
+// alert(jscode);
 
         window.parent.document.getElementById("LandingTag").style.display="none";
         window.parent.document.getElementById("LandingCiY").style.display="none";
