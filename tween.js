@@ -220,7 +220,7 @@ function tween4()
 
 
 //window.repeatAdFns = [createKT, ads1, ads12];
-window.repeatAdFns = [createKT, ITEvolution, ads1, ads2, ads3, ads4, ads5, ads6, ads7, ads8, ads9, ads10, ads11, ads12];
+window.repeatAdFns = [ noTweensOnPageLoad, createKT, ITEvolution, ads1, ads2, ads3, ads4, ads5, ads6, ads7, ads8, ads9, ads10, ads11, ads12];
 window.repeatAdCtr = 0;
 window.tweenclickToggle = false;
 function tweenclick()
@@ -416,7 +416,7 @@ function GetFadeInFadeOut(boolFadeIn)
                         } );
   var induration = 0.25; outduration = .25;
   
-  if (boolFadeIn)
+  if (boolFadeIn) //hide logo and born for it msg.
   {
     tbigbangClick
       .addLabel("start")
@@ -436,12 +436,14 @@ function GetFadeInFadeOut(boolFadeIn)
   else
   {
     tbigbangClick
+      .addLabel("start")
       .addLabel("loadingblack")
       .to([b], 0, { scale:1, opacity:0, force3D:true,  ease: Linear.easeNone }, "loadingblack")
       // .to(b0, 1.0, { scale:1.5, opacity:0.3, force3D:true,  ease: Linear.easeNone }, "loadingblack+=.55")
       .to([yel, bh, bl, bt, svgicos, blctp], 0.9, { opacity:1, ease: Back.easeIn.config(1.4) }, "loadingblack+=1.5")
       .to(b, .1, { scale:1, ease: Linear.easeOut }, "loadingblack+=2.101")
       .to(b, 1.4, { opacity:1, ease: Linear.easeOut }, "loadingblack+=2.301")
+      .addLabel("finish")
 
     // tbigbangClick
     //   .addLabel("loadingblack")
@@ -672,6 +674,7 @@ window._focusRectAnimation =
 
 
 
+
 texts = [
     [5.0, "There is a War going On..."], /*  mate sc */
     [0.7, "a"],
@@ -682,7 +685,7 @@ texts = [
     // [5.0, "A war for Talent"],
     // [5.0, "and, This is Your battle"],
     // [5.0, "the Question is..."],
-    [1.5, "So,"],
+    // [1.5, "So,"],
     [1.0, "What"],
     [0.7, "is"],
     [5.0, "Your battle plan ?"]
@@ -709,25 +712,20 @@ t1exts = [
     // [9.9, "and your plan to win your battle is by flaunting your degree certificate? "]  /*when the time comes for you to face the battle / you are going to face a battle for talent. at the cusp of battle*/
     ];
 
-window._g_createKT_FirstTime = true;
-function createKT()
+
+// texts = [ 0, "hi"
+// ];
+
+window._g_createKT_FirstTime = true; //whether logo and born to command it etc have been shown.
+function noTweensOnPageLoad()
 {
+  tweenclickActive=true;
+  _clickCallbacks = function(){};
   var lroot = document.getElementById("landingroot");
   var pstr = document.getElementById("poster");
   var cover = document.getElementById('cover');
 
-  tweenclickActive=true;
-  _clickCallbacks = function(){};
-
-  var getDummyTween = function(seconds)
-                {
-                  var ctr = {val:0};
-                  var thetimeline = new TimelineMax( {data:["dummytween"], onComplete:TlineStartOrComplete, onCompleteParams:["{self}", false], onStart:TlineStartOrComplete, onStartParams:["{self}", true]} );
-                  thetimeline.to(ctr, seconds, {val:1});
-                  return thetimeline;
-                }
-
-  var backToLanding = function()
+  
                       {
                         if (window._g_createKT_FirstTime)
                         {
@@ -755,8 +753,54 @@ function createKT()
                         tweenclickActive=false;
                         _clickCallbacks = null;
                       }
+}
 
-  var whatsyourplan = function()
+
+function createKT()
+{
+
+  tweenclickActive=true;
+  _clickCallbacks = function(){};
+
+  var getDummyTween = function(seconds)
+                {
+                  var ctr = {val:0};
+                  var thetimeline = new TimelineMax( {data:["dummytween"], onComplete:TlineStartOrComplete, onCompleteParams:["{self}", false], onStart:TlineStartOrComplete, onStartParams:["{self}", true]} );
+                  thetimeline.to(ctr, seconds, {val:1});
+                  return thetimeline;
+                }
+
+    var backToLanding = function() {  noTweensOnPageLoad();  }
+/*    var backToLanding1 = function()
+                      {
+                        if (window._g_createKT_FirstTime)
+                        {
+                          lroot.style.display = "block";
+                          var btl = "";
+                          btl = new TimelineMax( { data:["warplanKTShowLanding"], 
+                                                  onComplete:TlineStartOrComplete, 
+                                                  onCompleteParams:["{self}", false], 
+                                                  onStart:TlineStartOrComplete, 
+                                                  onStartParams:["{self}", true],
+                                                 }
+                                              ); 
+                          btl.to(lroot, 5, {opacity:1});
+                          window._g_createKT_FirstTime = false;
+                          highlightCTP();
+                        }
+                        else
+                        {
+                          var tmx2 = GetFadeInFadeOut(false);
+                          tmx2.play();
+                        }
+                        pstr.style.display = "none";                        
+                        cover.style.display = "none";                        
+                        tForeverCircleSpin.resume();
+                        tweenclickActive=false;
+                        _clickCallbacks = null;
+                      }
+*/
+    var whatsyourplan = function()
                       {
                         var tl = "";
                         tl = new TimelineMax( { data:["warplanKT"], 
@@ -801,12 +845,14 @@ function createKT()
                         cover.style.display = "table";
                       }
   tForeverCircleSpin.pause();
+
   if (window._g_createKT_FirstTime)
   {
       whatsyourplan();
   }
   else
   {
+    
     var tmx1 = GetFadeInFadeOut(true);
     tmx1.tweenFromTo( "start",
                       "finish", 
@@ -822,16 +868,23 @@ function createKT()
 }
 
 window.g_MenushowTgl = false;
-  function showMenu ()
+window.g_MenuSelectedDialogToBeDisplayed = false;
+  function showMenu (tobj)
   {
       var menuDivName = "centralmenu";
       document.getElementById("pageContent").style.display = "none";
     if (window.g_MenushowTgl)
     {
         document.getElementById(menuDivName).innerHTML = "";
-        tForeverCircleSpin.resume();
-        document.getElementById("LandingTag").style.display="block";
         document.getElementById(menuDivName).style.display="none";
+
+        if (null != tobj) // if a mouse event was passed, then its for dismissal of menu without menu selection.
+        {
+          tForeverCircleSpin.resume();
+          document.getElementById("LandingTag").style.display="block";
+          document.getElementById("LandingCiY").style.display="block";
+          document.getElementById("LandingLog").style.display="block";
+        }
         _clickCallbacks = null;
     }
     else
@@ -848,7 +901,8 @@ window.g_MenushowTgl = false;
 
         document.getElementById(menuDivName).style.display="block";
         document.getElementById(menuDivName).innerHTML = cmenuhtml;
-      
+  
+    
       console.log(document.getElementById(menuDivName).outerHTML);
 
         //http://codepen.io/anon/pen/AkoGx?editors=1010
@@ -857,6 +911,8 @@ window.g_MenushowTgl = false;
         //tweenclickActive = true;
         tForeverCircleSpin.pause();
         document.getElementById("LandingTag").style.display="none";
+        document.getElementById("LandingCiY").style.display="block";
+        document.getElementById("LandingLog").style.display="block";
         _clickCallbacks = function(){};
         _clickCallbacks = showMenu;
     }
@@ -991,7 +1047,9 @@ window.menuCalls = new function()
               }
   this.showProgramScreen = function()
               {
-                alert("you clicked program menu item"+isprivate);
+                //alert("you clicked program menu item"+isprivate);
+                document.getElementById("svgmenuActionResult").src="programHTMLsnippet.html"
+                showMenu();
               }
   this.showApplyScreen = function()
               {
